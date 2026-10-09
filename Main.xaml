@@ -299,6 +299,7 @@
                           <InArgument x:TypeArguments="x:String" x:Key="in_wwwVilnius">[Config("VilniusLT_user").ToString]</InArgument>
                           <InArgument x:TypeArguments="x:Int32" x:Key="in_VPR">[CInt(Config("VPR"))]</InArgument>
                           <InArgument x:TypeArguments="s:String[]" x:Key="in_WorkFilesList">[WorkFilesList]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_RivileApiKey">[Config(&quot;Rivile_ApiKey&quot;).ToString]</InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>

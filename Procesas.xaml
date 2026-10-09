@@ -7,6 +7,7 @@
     <x:Property Name="in_wwwVilnius" Type="InArgument(x:String)" />
     <x:Property Name="in_VPR" Type="InArgument(x:Int32)" />
     <x:Property Name="in_WorkFilesList" Type="InArgument(s:String[])" />
+    <x:Property Name="in_RivileApiKey" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -185,6 +186,7 @@
             <InArgument x:TypeArguments="x:Double" x:Key="in_Pajamu_suma">[Pajamu_suma]</InArgument>
             <InArgument x:TypeArguments="x:Int32" x:Key="in_VPR">[in_VPR]</InArgument>
             <InArgument x:TypeArguments="s:String[]" x:Key="in_WorkFilesList">[in_WorkFilesList]</InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="in_RivileApiKey">[in_RivileApiKey]</InArgument>
           </ui:InvokeWorkflowFile.Arguments>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
