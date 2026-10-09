@@ -465,14 +465,6 @@
                                 </ui:Target>
                               </ui:TypeInto.Target>
                             </ui:TypeInto>
-                            <ui:StartProcess WorkingDirectory="{x:Null}" Arguments="shell:AppsFolder\FirstOrder.AI.AuthenticatorApp_8vmr2j06510pw!authenticator" ContinueOnError="False" DisplayName="Start Process" FileName="explorer.exe" sap:VirtualizedContainerService.HintSize="411.2,88" sap2010:WorkflowViewState.IdRef="StartProcess_2">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                            </ui:StartProcess>
                             <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" ContinueOnError="False" DisplayName="Type Into 'SPIS_psw'" sap:VirtualizedContainerService.HintSize="411.2,156" sap2010:WorkflowViewState.IdRef="TypeInto_5" Text="[in_Config(&quot;SPIS_psw&quot;).ToString]">
                               <ui:TypeInto.Target>
                                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6232bea2-6c95-4638-8c46-9a5670196373" InformativeScreenshot="e19a6e4aac97e5738443ed0d180bc8cf" Selector="&lt;webctrl tag='INPUT' type='password' /&gt;">
@@ -507,86 +499,32 @@
                                 </ui:Target>
                               </ui:Click.Target>
                             </ui:Click>
-                            <uix:NApplicationCard AttachMode="ByInstance" ContinueOnError="False" DisplayName="Use Application: Authenticator" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="411.2,1615.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" ScopeGuid="80523f10-2241-48bb-8f48-3f71eb1fa11f" Version="V2">
-                              <uix:NApplicationCard.Body>
-                                <ActivityAction x:TypeArguments="x:Object">
-                                  <ActivityAction.Argument>
-                                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
-                                  </ActivityAction.Argument>
-                                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="377.6,1336" sap2010:WorkflowViewState.IdRef="Sequence_39">
-                                    <sap:WorkflowViewStateService.ViewState>
-                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                      </scg:Dictionary>
-                                    </sap:WorkflowViewStateService.ViewState>
-                                    <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="334.4,390.4" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="HardwareEvents" ScopeIdentifier="80523f10-2241-48bb-8f48-3f71eb1fa11f" Shortcuts="[d(hk)][k(Esc)][u(hk)]" Version="V4">
-                                      <uix:NKeyboardShortcuts.VerifyOptions>
-                                        <uix:VerifyExecutionOptions Mode="Appears">
-                                          <uix:VerifyExecutionOptions.Retry>
-                                            <InArgument x:TypeArguments="x:Boolean" />
-                                          </uix:VerifyExecutionOptions.Retry>
-                                          <uix:VerifyExecutionOptions.Timeout>
-                                            <InArgument x:TypeArguments="x:Double" />
-                                          </uix:VerifyExecutionOptions.Timeout>
-                                        </uix:VerifyExecutionOptions>
-                                      </uix:NKeyboardShortcuts.VerifyOptions>
-                                    </uix:NKeyboardShortcuts>
-                                    <uix:NClick ActivateBefore="{x:Null}" ClickType="Single" DisplayName="Click 'authenticator.exe Authe…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="334.4,323.2" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="80523f10-2241-48bb-8f48-3f71eb1fa11f" Version="V4">
-                                      <uix:NClick.Target>
-                                        <uix:TargetAnchorable DesignTimeRectangle="30, 203, 55, 57" ElementVisibilityArgument="Interactive" Guid="5ab27201-3e19-40d4-9e2b-c26fbad52a5d" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADcAAAA5CAYAAACS0bM2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAOqSURBVGhD7ZnpTxNBGMb9rxUwBlHDoQFRBIxgoVKwHHJoRY4GECgIBUpLOVoIgXATY9QPfnydZ+LibjI7e027XdIneZIy7By/vO+8O7t7h26xynBBVRkuqHIM9+PXHzq++Em5o++UPbguqDEH5sKcbmQbDhMUA8jMmNsppC248+vfwgn9MNZiV5ZwpQSm2S6gFA5pIBq8FGwnRaVwfu4xK2NtVjKFUxm1rf0ryvwzfouucWOr6JnCoQSLBrRrQKRzF5TMntDcap4m5re48Rtt6dylZ1CsUSZTOC8piQht7J5RbCZF9e1DVNXQTRX1XdxVT7t5W2x2k1/jBdAqNU3hRIPZMRb7LX1E7ZEJDnK39i33vboQt/Y3/vc6Msmv9QIok1I4LHJ955Q6otM8ShpITXMfb4Mfvei7aa9k13RG47yPW0CZlMJl8lc0Fl9nUQnfACBaw5NJSu2eU2rvnP82RjDM+6CvaEwry6QMbot5kxWQlu6YYfGIIAoJCgiM3/qo4lr0QV+MIRpbZpnUwbG02tg5oyct/Qa4e8zYfytsb2l7EW16OPRBXzepKZNSuPXtU3r4vPdm4XoAtMMVOnDNaHe772RSHrnHL6OGyFkZ16JPiUeO7bm9C2rqHHMM1xz6yPtiDNHYMsukDA7O5C9p4PMyVbKbtghEZNzvPkyslna1hJFWa2zfNXaM2Ioequard+P8NiEaz45lUgoHA3Bh7YABjrLFmwNWNnRRW88XWt4MyAlFM9JzJXNMocEZetDYw6L4HwrRQgGJxhKeTiaaZSoIHIxFowJ29scNKVrdFKGpxW2eil7BYJkKBgenWQTDw3OG9ARofdsge/TJ8QiL+jmxTEWH01zXOkiJjcNgpiUsg+OVMuytUsIy+QKHAoOiMp3Y9pyaMvmy56rZWXJqMctfQ4j6ObFMRYerbuql+NIOf/wR9XFqmYoOh+PWwPgyO0t622uaZfIlLe+zp+/3nxL8sCzq58Qy+VRQQvTszQitZU+E/ZxYpoLCoRJGRhcYnPG1Qk2zun0nU0HhcINOpA6poX2IQ8F1rQM0u6LmdALLZAqn6jsBntPmk/tUy6Dgr8m8MjDXL2W9vk7XGzBLLIIw9qHoGjd2/Tpd9ecrpKiKpwC9XX8IgVSlZiFslZKQFE519FTaKmqQFA66tZ+NNZUSoF0wyBYchDTwcw9ibjupqJdtOE2YACW4GKCYA3M5hdLkGC5IKsMFVWW4oKoMF1SV4YKqWwxH9BcPu4OmxltOGAAAAABJRU5ErkJggg==" InformativeScreenshot="03b450ec79b33e0a6f5fe4613f9d5978.png" ScopeSelectorArgument="&lt;wnd app='authenticator.exe' appid='FirstOrder.AI.AuthenticatorApp_8vmr2j06510pw!authenticator' title='Authenticator' /&gt;" SearchSteps="Image" TargetType="ImageBased" Version="V6" WaitForReadyArgument="None" />
-                                      </uix:NClick.Target>
-                                      <uix:NClick.VerifyOptions>
-                                        <uix:VerifyExecutionOptions Mode="Appears">
-                                          <uix:VerifyExecutionOptions.Retry>
-                                            <InArgument x:TypeArguments="x:Boolean" />
-                                          </uix:VerifyExecutionOptions.Retry>
-                                          <uix:VerifyExecutionOptions.Timeout>
-                                            <InArgument x:TypeArguments="x:Double" />
-                                          </uix:VerifyExecutionOptions.Timeout>
-                                        </uix:VerifyExecutionOptions>
-                                      </uix:NClick.VerifyOptions>
-                                    </uix:NClick>
-                                    <uix:NClick ActivateBefore="{x:Null}" ClickType="Single" DelayBefore="3" DisplayName="Click 'authenticator.exe Authe…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="334.4,323.2" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="80523f10-2241-48bb-8f48-3f71eb1fa11f" Version="V4">
-                                      <uix:NClick.Target>
-                                        <uix:TargetAnchorable DesignTimeRectangle="30, 203, 55, 57" ElementVisibilityArgument="Interactive" Guid="5ab27201-3e19-40d4-9e2b-c26fbad52a5d" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADcAAAA5CAYAAACS0bM2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAOqSURBVGhD7ZnpTxNBGMb9rxUwBlHDoQFRBIxgoVKwHHJoRY4GECgIBUpLOVoIgXATY9QPfnydZ+LibjI7e027XdIneZIy7By/vO+8O7t7h26xynBBVRkuqHIM9+PXHzq++Em5o++UPbguqDEH5sKcbmQbDhMUA8jMmNsppC248+vfwgn9MNZiV5ZwpQSm2S6gFA5pIBq8FGwnRaVwfu4xK2NtVjKFUxm1rf0ryvwzfouucWOr6JnCoQSLBrRrQKRzF5TMntDcap4m5re48Rtt6dylZ1CsUSZTOC8piQht7J5RbCZF9e1DVNXQTRX1XdxVT7t5W2x2k1/jBdAqNU3hRIPZMRb7LX1E7ZEJDnK39i33vboQt/Y3/vc6Msmv9QIok1I4LHJ955Q6otM8ShpITXMfb4Mfvei7aa9k13RG47yPW0CZlMJl8lc0Fl9nUQnfACBaw5NJSu2eU2rvnP82RjDM+6CvaEwry6QMbot5kxWQlu6YYfGIIAoJCgiM3/qo4lr0QV+MIRpbZpnUwbG02tg5oyct/Qa4e8zYfytsb2l7EW16OPRBXzepKZNSuPXtU3r4vPdm4XoAtMMVOnDNaHe772RSHrnHL6OGyFkZ16JPiUeO7bm9C2rqHHMM1xz6yPtiDNHYMsukDA7O5C9p4PMyVbKbtghEZNzvPkyslna1hJFWa2zfNXaM2Ioequard+P8NiEaz45lUgoHA3Bh7YABjrLFmwNWNnRRW88XWt4MyAlFM9JzJXNMocEZetDYw6L4HwrRQgGJxhKeTiaaZSoIHIxFowJ29scNKVrdFKGpxW2eil7BYJkKBgenWQTDw3OG9ARofdsge/TJ8QiL+jmxTEWH01zXOkiJjcNgpiUsg+OVMuytUsIy+QKHAoOiMp3Y9pyaMvmy56rZWXJqMctfQ4j6ObFMRYerbuql+NIOf/wR9XFqmYoOh+PWwPgyO0t622uaZfIlLe+zp+/3nxL8sCzq58Qy+VRQQvTszQitZU+E/ZxYpoLCoRJGRhcYnPG1Qk2zun0nU0HhcINOpA6poX2IQ8F1rQM0u6LmdALLZAqn6jsBntPmk/tUy6Dgr8m8MjDXL2W9vk7XGzBLLIIw9qHoGjd2/Tpd9ecrpKiKpwC9XX8IgVSlZiFslZKQFE519FTaKmqQFA66tZ+NNZUSoF0wyBYchDTwcw9ibjupqJdtOE2YACW4GKCYA3M5hdLkGC5IKsMFVWW4oKoMF1SV4YKqWwxH9BcPu4OmxltOGAAAAABJRU5ErkJggg==" InformativeScreenshot="03b450ec79b33e0a6f5fe4613f9d5978.png" ScopeSelectorArgument="&lt;wnd app='authenticator.exe' appid='FirstOrder.AI.AuthenticatorApp_8vmr2j06510pw!authenticator' title='Authenticator' /&gt;" SearchSteps="Image" TargetType="ImageBased" Version="V6" WaitForReadyArgument="None" />
-                                      </uix:NClick.Target>
-                                      <uix:NClick.VerifyOptions>
-                                        <uix:VerifyExecutionOptions Mode="Appears">
-                                          <uix:VerifyExecutionOptions.Retry>
-                                            <InArgument x:TypeArguments="x:Boolean" />
-                                          </uix:VerifyExecutionOptions.Retry>
-                                          <uix:VerifyExecutionOptions.Timeout>
-                                            <InArgument x:TypeArguments="x:Double" />
-                                          </uix:VerifyExecutionOptions.Timeout>
-                                        </uix:VerifyExecutionOptions>
-                                      </uix:NClick.VerifyOptions>
-                                    </uix:NClick>
-                                    <uix:NGetClipboard DelayBefore="2" DisplayName="Get Clipboard" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="334.4,89.6" sap2010:WorkflowViewState.IdRef="NGetClipboard_1" Result="[AuthCode]" ScopeIdentifier="80523f10-2241-48bb-8f48-3f71eb1fa11f" Version="V4" />
-                                  </Sequence>
-                                </ActivityAction>
-                              </uix:NApplicationCard.Body>
-                              <uix:NApplicationCard.OCREngine>
-                                <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
-                                  <ActivityFunc.Argument>
-                                    <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
-                                  </ActivityFunc.Argument>
-                                </ActivityFunc>
-                              </uix:NApplicationCard.OCREngine>
-                              <uix:NApplicationCard.TargetApp>
-                                <uix:TargetApp Area="290, 82, 400, 750" FilePath="FirstOrder.AI.AuthenticatorApp_8vmr2j06510pw!authenticator" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAO3SURBVFhH3ZdZaFRnFMdjXVCsWn1UrL740Ad98MHSB0EoRR9cagWrT1bRB0GULlijdUHjVkGoSi1q1GgiLrjG4IIbROxoXNqaxBiMTWrG2CTiDM3o3Jnv3l/PydzB8WbuJBlMBP9wZubO8p3f951zzzmTEw6Hx8ZisTPGmCqxh91kVeozFAqNzYlGo/t4R7Isa1+OPFx2r7td6jsrgGAYTlXA2kuQfwvKnkD4lfthJ9QpgBcv4WI1LDkNY7ZC/59gwEr4YjfMLIRvi6HgDpQ/g5cx90ftqF2AuA33G2DzNRi/Ez5aBR/8CL2WQW8xvZ6UD18WwNT9CZt9CFach5PlUPcCjKzhp4wAN2phzhEYviHhsKc47p0LfVzT10mA6QKgEGrTXBh9nnsUtpZCVaO7qEe+AI+fw2g55h5LE86TTlPNDyDVpgnIZLnHFp2CZ/+5i6fIF+BaDQyU+Kbu2Gs9BexDyQPNAd1tOoCkaY78JaH0yhfg6iMBkN35AWj8P9nisPi0wy+lDgtPOK27TedcTQH+fOounqKsADQkn+2wuVdvc6MmSlltlOpGw/fFdmvsuxyg73KHg7cNZ8stRuZFmbzH4kJllEvVRnLB6VoAvR6y2qaszvDDmRj9lsPnu+DnKzEqG+LMKrTT5sPbA5Dj/3i9obzBsPlKnHHbbBYcc8gPxKlpMnxz2HQtQJ9ch02XTWuBarEcmlscQq8cqXyOFByHo38Ycdg2DG8NoP8Km5KKuPuttrpVF2fGAbtrAYozANysfV8ASv+WMrs6PcDZLELwdRFUSJf0yheg4l8YlicAnj7QN9dmb8DCcRzi5rUZMX3vwgNLasGbAFohtan9I53RK1+AcBQm/JZovakACjRqozjJj/CV2OyCCCtLIqw7H2HtuQjzj1htbsMpApB7DiJpZgRfANWvv2vVexNATUuxgmmnTDYjLcFTpOul6wfTD0DJA3dRjzIChGTE0uTROcALoab50V47VrBNV7VmuIt6lBFApXHTxfXovfmQCUDDoKeRJys3triLpVG7ACpd4DuZ9wbLXZF6Gn4AumvN+t03E6eYSR0CUGnpPX4fPt2eOInWmdADoDvWnSvsdRnnMs2CSXUYIKl6GcfXXIQRMidqIg4SgIl7ErvW+a/oHjRH3C93QJ0GSOpuEOYdg5EbYcZB2HYdHjW7H3ZCWQOoLAO366FSipaGKBslAeT/zbuR+tZ/x1ts25b9dK/Up/rOCQQCQ4PB4KqmpqZCsaJuskL1GQgEhv0P/gj8glmxCFgAAAAASUVORK5CYII=" InformativeScreenshot="382845e32f86c291b2382d3271c615a9.png" Selector="&lt;wnd app='authenticator.exe' appid='FirstOrder.AI.AuthenticatorApp_8vmr2j06510pw!authenticator' title='Authenticator' /&gt;">
-                                  <uix:TargetApp.Arguments>
-                                    <InArgument x:TypeArguments="x:String" />
-                                  </uix:TargetApp.Arguments>
-                                </uix:TargetApp>
-                              </uix:NApplicationCard.TargetApp>
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                            </uix:NApplicationCard>
+                            <Sequence DisplayName="SPIS TOTP kodas">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="x:Int32" Name="totpSecondsLeft" />
+                              </Sequence.Variables>
+                            <ui:InvokeCode Code="' ============================================================================&#xA;' UiPath &quot;Invoke Code&quot; (VBNet) - TOTP kodo generavimas (kaip pyotp.TOTP(SECRET).now())&#xA;' SHA1, 6 skaitmenys, 30 s intervalas&#xA;'&#xA;' Argumentai:&#xA;'   in_Secret        In   String   Base32 raktas (geriausia iš Orchestrator Credential asset)&#xA;'   out_Code         Out  String   6 skaitmenų kodas, pvz. &quot;048213&quot;&#xA;'   out_SecondsLeft  Out  Int32    kiek sekundžių kodas dar galios&#xA;' ============================================================================&#xA;&#xA;' ---------- 1. Base32 dekodavimas ----------&#xA;Dim alphabet As String = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ234567&quot;&#xA;Dim s As String = in_Secret.ToUpper().Replace(&quot; &quot;, &quot;&quot;).Replace(&quot;-&quot;, &quot;&quot;).TrimEnd(&quot;=&quot;c)&#xA;Dim key As New System.Collections.Generic.List(Of Byte)()&#xA;Dim buffer As Integer = 0&#xA;Dim bitsLeft As Integer = 0&#xA;&#xA;For Each c As Char In s&#xA;    Dim v As Integer = alphabet.IndexOf(c)&#xA;    If v &lt; 0 Then Throw New System.Exception(&quot;Netinkamas Base32 simbolis rakte: &quot; &amp; c)&#xA;    buffer = (buffer &lt;&lt; 5) Or v&#xA;    bitsLeft += 5&#xA;    If bitsLeft &gt;= 8 Then&#xA;        key.Add(CByte((buffer &gt;&gt; (bitsLeft - 8)) And &amp;HFF))&#xA;        bitsLeft -= 8&#xA;        buffer = buffer And ((1 &lt;&lt; bitsLeft) - 1)&#xA;    End If&#xA;Next&#xA;&#xA;' ---------- 2. Laiko skaitiklis (30 s žingsnis) ----------&#xA;Dim unixNow As Long = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds()&#xA;Dim counter As Long = unixNow \ 30&#xA;out_SecondsLeft = CInt(30 - (unixNow Mod 30))&#xA;&#xA;Dim counterBytes As Byte() = System.BitConverter.GetBytes(counter)&#xA;If System.BitConverter.IsLittleEndian Then System.Array.Reverse(counterBytes)&#xA;&#xA;' ---------- 3. HMAC-SHA1 ----------&#xA;Dim hash As Byte()&#xA;Using h As New System.Security.Cryptography.HMACSHA1(key.ToArray())&#xA;    hash = h.ComputeHash(counterBytes)&#xA;End Using&#xA;&#xA;' ---------- 4. Dinaminis sutrumpinimas (RFC 4226) ----------&#xA;Dim offset As Integer = hash(hash.Length - 1) And &amp;HF&#xA;Dim binary As Integer =&#xA;    ((CInt(hash(offset)) And &amp;H7F) &lt;&lt; 24) Or&#xA;    ((CInt(hash(offset + 1)) And &amp;HFF) &lt;&lt; 16) Or&#xA;    ((CInt(hash(offset + 2)) And &amp;HFF) &lt;&lt; 8) Or&#xA;    (CInt(hash(offset + 3)) And &amp;HFF)&#xA;&#xA;out_Code = (binary Mod 1000000).ToString(&quot;D6&quot;)" ContinueOnError="{x:Null}" DisplayName="TOTP kodas (vietoj Authenticator programos)" Language="VBNet">
+                                <ui:InvokeCode.Arguments>
+                                  <InArgument x:TypeArguments="x:String" x:Key="in_Secret">[in_Config(&quot;SPIS_totp&quot;).ToString]</InArgument>
+                                  <OutArgument x:TypeArguments="x:String" x:Key="out_Code">[AuthCode]</OutArgument>
+                                  <OutArgument x:TypeArguments="x:Int32" x:Key="out_SecondsLeft">[totpSecondsLeft]</OutArgument>
+                                </ui:InvokeCode.Arguments>
+                              </ui:InvokeCode>
+                            <If Condition="[totpSecondsLeft &lt; 5]" DisplayName="Jei kodas galios mažiau nei 5 s">
+                                <If.Then>
+                            <Sequence DisplayName="Kodas baigia galioti - palaukti ir sugeneruoti naują">
+                            <Delay Duration="00:00:06" />
+                            <ui:InvokeCode Code="' ============================================================================&#xA;' UiPath &quot;Invoke Code&quot; (VBNet) - TOTP kodo generavimas (kaip pyotp.TOTP(SECRET).now())&#xA;' SHA1, 6 skaitmenys, 30 s intervalas&#xA;'&#xA;' Argumentai:&#xA;'   in_Secret        In   String   Base32 raktas (geriausia iš Orchestrator Credential asset)&#xA;'   out_Code         Out  String   6 skaitmenų kodas, pvz. &quot;048213&quot;&#xA;'   out_SecondsLeft  Out  Int32    kiek sekundžių kodas dar galios&#xA;' ============================================================================&#xA;&#xA;' ---------- 1. Base32 dekodavimas ----------&#xA;Dim alphabet As String = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ234567&quot;&#xA;Dim s As String = in_Secret.ToUpper().Replace(&quot; &quot;, &quot;&quot;).Replace(&quot;-&quot;, &quot;&quot;).TrimEnd(&quot;=&quot;c)&#xA;Dim key As New System.Collections.Generic.List(Of Byte)()&#xA;Dim buffer As Integer = 0&#xA;Dim bitsLeft As Integer = 0&#xA;&#xA;For Each c As Char In s&#xA;    Dim v As Integer = alphabet.IndexOf(c)&#xA;    If v &lt; 0 Then Throw New System.Exception(&quot;Netinkamas Base32 simbolis rakte: &quot; &amp; c)&#xA;    buffer = (buffer &lt;&lt; 5) Or v&#xA;    bitsLeft += 5&#xA;    If bitsLeft &gt;= 8 Then&#xA;        key.Add(CByte((buffer &gt;&gt; (bitsLeft - 8)) And &amp;HFF))&#xA;        bitsLeft -= 8&#xA;        buffer = buffer And ((1 &lt;&lt; bitsLeft) - 1)&#xA;    End If&#xA;Next&#xA;&#xA;' ---------- 2. Laiko skaitiklis (30 s žingsnis) ----------&#xA;Dim unixNow As Long = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds()&#xA;Dim counter As Long = unixNow \ 30&#xA;out_SecondsLeft = CInt(30 - (unixNow Mod 30))&#xA;&#xA;Dim counterBytes As Byte() = System.BitConverter.GetBytes(counter)&#xA;If System.BitConverter.IsLittleEndian Then System.Array.Reverse(counterBytes)&#xA;&#xA;' ---------- 3. HMAC-SHA1 ----------&#xA;Dim hash As Byte()&#xA;Using h As New System.Security.Cryptography.HMACSHA1(key.ToArray())&#xA;    hash = h.ComputeHash(counterBytes)&#xA;End Using&#xA;&#xA;' ---------- 4. Dinaminis sutrumpinimas (RFC 4226) ----------&#xA;Dim offset As Integer = hash(hash.Length - 1) And &amp;HF&#xA;Dim binary As Integer =&#xA;    ((CInt(hash(offset)) And &amp;H7F) &lt;&lt; 24) Or&#xA;    ((CInt(hash(offset + 1)) And &amp;HFF) &lt;&lt; 16) Or&#xA;    ((CInt(hash(offset + 2)) And &amp;HFF) &lt;&lt; 8) Or&#xA;    (CInt(hash(offset + 3)) And &amp;HFF)&#xA;&#xA;out_Code = (binary Mod 1000000).ToString(&quot;D6&quot;)" ContinueOnError="{x:Null}" DisplayName="TOTP kodas (vietoj Authenticator programos)" Language="VBNet">
+                                <ui:InvokeCode.Arguments>
+                                  <InArgument x:TypeArguments="x:String" x:Key="in_Secret">[in_Config(&quot;SPIS_totp&quot;).ToString]</InArgument>
+                                  <OutArgument x:TypeArguments="x:String" x:Key="out_Code">[AuthCode]</OutArgument>
+                                  <OutArgument x:TypeArguments="x:Int32" x:Key="out_SecondsLeft">[totpSecondsLeft]</OutArgument>
+                                </ui:InvokeCode.Arguments>
+                              </ui:InvokeCode>
+                            </Sequence>
+                                </If.Then>
+                              </If>
+                            </Sequence>
                             <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" ContinueOnError="False" DisplayName="Type Into 'SPIS_psw'" sap:VirtualizedContainerService.HintSize="411.2,156" sap2010:WorkflowViewState.IdRef="TypeInto_8" Text="[AuthCode]">
                               <ui:TypeInto.Target>
                                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6232bea2-6c95-4638-8c46-9a5670196373" InformativeScreenshot="e19a6e4aac97e5738443ed0d180bc8cf" Selector="&lt;html app='chrome.exe' title='Dviejų žingsnių autentifikacija' /&gt;&lt;webctrl name='Input.TwoFactorCode' tag='INPUT' /&gt;">
