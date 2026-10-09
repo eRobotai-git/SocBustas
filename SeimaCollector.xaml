@@ -704,7 +704,7 @@
                                         <OutArgument x:TypeArguments="x:Object">[io_MainRenterRow(105)]</OutArgument>
                                       </ui:AssignOperation.To>
                                       <ui:AssignOperation.Value>
-                                        <InArgument x:TypeArguments="x:Object">[Now.ToString("yyyy-MM-dd HH-mm")]</InArgument>
+                                        <InArgument x:TypeArguments="x:Object">[Now.ToString("yyyy-MM-dd_HH-mm-ss")]</InArgument>
                                       </ui:AssignOperation.Value>
                                     </ui:AssignOperation>
                                     <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_28">
@@ -814,7 +814,7 @@
                                   <OutArgument x:TypeArguments="x:Object">[io_MainRenterRow(105)]</OutArgument>
                                 </ui:AssignOperation.To>
                                 <ui:AssignOperation.Value>
-                                  <InArgument x:TypeArguments="x:Object">[Now.ToString("yyyy-MM-dd HH-mm")]</InArgument>
+                                  <InArgument x:TypeArguments="x:Object">[Now.ToString("yyyy-MM-dd_HH-mm-ss")]</InArgument>
                                 </ui:AssignOperation.Value>
                               </ui:AssignOperation>
                               <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_37">
@@ -948,7 +948,7 @@
                                   <OutArgument x:TypeArguments="x:Object">[io_MainRenterRow(105)]</OutArgument>
                                 </ui:AssignOperation.To>
                                 <ui:AssignOperation.Value>
-                                  <InArgument x:TypeArguments="x:Object">[Now.ToString("yyyy-MM-dd HH-mm")]</InArgument>
+                                  <InArgument x:TypeArguments="x:Object">[Now.ToString("yyyy-MM-dd_HH-mm-ss")]</InArgument>
                                 </ui:AssignOperation.Value>
                               </ui:AssignOperation>
                               <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_14">
@@ -1385,7 +1385,7 @@
                                               <OutArgument x:TypeArguments="x:Object">[io_MainRenterRow(105)]</OutArgument>
                                             </ui:AssignOperation.To>
                                             <ui:AssignOperation.Value>
-                                              <InArgument x:TypeArguments="x:Object">[Now.ToString("yyyy-MM-dd HH-mm")]</InArgument>
+                                              <InArgument x:TypeArguments="x:Object">[Now.ToString("yyyy-MM-dd_HH-mm-ss")]</InArgument>
                                             </ui:AssignOperation.Value>
                                           </ui:AssignOperation>
                                           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_19">
@@ -1569,7 +1569,7 @@
                                         <OutArgument x:TypeArguments="x:Object">[io_MainRenterRow(105)]</OutArgument>
                                       </ui:AssignOperation.To>
                                       <ui:AssignOperation.Value>
-                                        <InArgument x:TypeArguments="x:Object">[Now.ToString("yyyy-MM-dd HH-mm")]</InArgument>
+                                        <InArgument x:TypeArguments="x:Object">[Now.ToString("yyyy-MM-dd_HH-mm-ss")]</InArgument>
                                       </ui:AssignOperation.Value>
                                     </ui:AssignOperation>
                                     <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_24">
@@ -1757,7 +1757,7 @@
                                         <OutArgument x:TypeArguments="x:Object">[io_MainRenterRow(105)]</OutArgument>
                                       </ui:AssignOperation.To>
                                       <ui:AssignOperation.Value>
-                                        <InArgument x:TypeArguments="x:Object">[Now.ToString("yyyy-MM-dd HH-mm")]</InArgument>
+                                        <InArgument x:TypeArguments="x:Object">[Now.ToString("yyyy-MM-dd_HH-mm-ss")]</InArgument>
                                       </ui:AssignOperation.Value>
                                     </ui:AssignOperation>
                                     <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_33">

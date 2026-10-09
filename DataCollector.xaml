@@ -118,6 +118,7 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="DataCollector" sap:VirtualizedContainerService.HintSize="572.8,2515.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataRow" Name="RenterRowDC" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_FamilyList" />
       <Variable x:TypeArguments="x:String" Name="A" />
       <Variable x:TypeArguments="x:String" Name="Address" />
@@ -151,6 +152,58 @@
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
+    <If Condition="[(io_TransactionItem(35).ToString &amp; &quot; &quot; &amp; io_TransactionItem(36).ToString).Replace(&quot;-&quot;, &quot; &quot;).Trim.ToUpper.Split(New Char() {&quot; &quot;c}, StringSplitOptions.RemoveEmptyEntries).Length = 0 OrElse Not (io_TransactionItem(35).ToString &amp; &quot; &quot; &amp; io_TransactionItem(36).ToString).Replace(&quot;-&quot;, &quot; &quot;).Trim.ToUpper.Split(New Char() {&quot; &quot;c}, StringSplitOptions.RemoveEmptyEntries).All(Function(w) (&quot; &quot; &amp; io_TransactionItem(2).ToString.Replace(&quot;-&quot;, &quot; &quot;).ToUpper &amp; &quot; &quot;).Contains(&quot; &quot; &amp; w &amp; &quot; &quot;))]" DisplayName="Ar PAG NUOM vardas ir pavardė sutampa su „Nuomininkas“">
+        <If.Then>
+    <Sequence DisplayName="Nenustatytas pagrindinis nuomininkas (PDD 3.3.5 a, išimtis 11)">
+    <Assign DisplayName="Rasti eilutę pagal AK">
+        <Assign.To>
+          <OutArgument x:TypeArguments="sd:DataRow">[RenterRowDC]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="sd:DataRow">[io_dt_AllRows.AsEnumerable().FirstOrDefault(Function(r) r(37).ToString.Trim = io_TransactionItem(37).ToString.Trim)]</InArgument>
+        </Assign.Value>
+      </Assign>
+    <If Condition="[RenterRowDC IsNot Nothing]" DisplayName="Jei eilutė rasta">
+        <If.Then>
+    <Sequence DisplayName="Įrašyti išimtį">
+    <ui:MultipleAssign DisplayName="Išimtis Nr. 11">
+        <ui:MultipleAssign.AssignOperations>
+          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+          <ui:AssignOperation>
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:Object">[RenterRowDC(107)]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:Object">[&quot;Nenustatytas pagrindinis nuomininkas Excel dokumente&quot;]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation>
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:Object">[RenterRowDC(106)]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:Object">[&quot;Apdoroti rankiniu būdu&quot;]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation>
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:Object">[RenterRowDC(105)]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:Object">[Now.ToString(&quot;yyyy-MM-dd_HH-mm-ss&quot;)]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          </scg:List>
+        </ui:MultipleAssign.AssignOperations>
+      </ui:MultipleAssign>
+    <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[io_dt_AllRows]" DisplayName="Įrašyti Excel (nenustatytas pagrindinis nuomininkas)" sap:VirtualizedContainerService.HintSize="726.4,116" SheetName="Sheet1" WorkbookPath="[in_WorkFilesList(0)]" />
+    </Sequence>
+        </If.Then>
+      </If>
+    <Throw DisplayName="Throw BusinessRuleException" Exception="[New UiPath.Core.BusinessRuleException(&quot;Nenustatytas pagrindinis nuomininkas Excel dokumente&quot;)]" />
+    </Sequence>
+        </If.Then>
+      </If>
     <ui:FilterDataTable DataTable="[io_dt_AllRows]" DisplayName="Filter MainRenter" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="510.4,162.4" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[out_dt_MainRenter]" SelectColumnsMode="Remove">
       <ui:FilterDataTable.Filters>
         <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">

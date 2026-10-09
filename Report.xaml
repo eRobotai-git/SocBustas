@@ -527,9 +527,33 @@
             <Assign.Value>
               <InArgument x:TypeArguments="x:String" xml:space="preserve">[If(TargetRow(107) IsNot Nothing,
    TargetRow(107).ToString.Trim.Substring(0, Math.Min(600, TargetRow(107).ToString.Trim.Length)),
-   String.Empty) +" Neatitinka šeimos asmenų skaičius Vilnius.LT ir Registrų centre"]</InArgument>
+   String.Empty) +" Nesutampa asmenų skaičius (Vilnius.lt ir Registrų centras)"]</InArgument>
             </Assign.Value>
           </Assign>
+          <ui:MultipleAssign DisplayName="Statusas: Apdoroti rankiniu būdu">
+              <ui:MultipleAssign.AssignOperations>
+                <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                <ui:AssignOperation>
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:Object">[TargetRow(106)]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:Object">[&quot;Apdoroti rankiniu būdu&quot;]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation>
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:Object">[TargetRow(105)]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:Object">[Now.ToString(&quot;yyyy-MM-dd_HH-mm-ss&quot;)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                </scg:List>
+              </ui:MultipleAssign.AssignOperations>
+            </ui:MultipleAssign>
+          <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[io_dt_AllRows]" DisplayName="Įrašyti Excel (asmenų skaičius nesutampa)" sap:VirtualizedContainerService.HintSize="726.4,116" SheetName="Sheet1" WorkbookPath="[in_WorkFilesList(0)]" />
+          <Throw DisplayName="Throw BusinessRuleException" Exception="[New UiPath.Core.BusinessRuleException(&quot;Nesutampa asmenų skaičius&quot;)]" />
         </Sequence>
       </If.Then>
       <If.Else>
@@ -734,7 +758,7 @@
               <OutArgument x:TypeArguments="x:Object">[TargetRow(105)]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:Object">[Now.ToString("yyyy-MM-dd HH-mm")]</InArgument>
+              <InArgument x:TypeArguments="x:Object">[Now.ToString("yyyy-MM-dd_HH-mm-ss")]</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_37">
