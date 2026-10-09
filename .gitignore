@@ -1,0 +1,17 @@
+﻿.local/
+.settings/
+.storage/
+.tmp/
+.objects/
+*.log
+Data/Konf/*.txt
+Data/Konf/*.html
+Data/Konf/Tasks.xlsx
+
+# Office laikini failai
+~$*
+
+# Asmens duomenys - nekelti i repo
+Data/Input/
+Data/Output/
+Data/Reports/*.xlsx

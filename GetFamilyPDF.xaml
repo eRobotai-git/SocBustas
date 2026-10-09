@@ -1,0 +1,879 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="GetFamilyPDF" this:GetFamilyPDF.in_Address="Algirdo g. 37-82" this:GetFamilyPDF.in_MR_AK="37703090671" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd2="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_Address" Type="InArgument(x:String)" />
+    <x:Property Name="in_MR_AK" Type="InArgument(x:String)" />
+    <x:Property Name="Out_Status" Type="OutArgument(x:String)" />
+    <x:Property Name="in_wwwVilnius" Type="InArgument(x:String)" />
+    <x:Property Name="io_MainRenterRow" Type="InOutArgument(sd:DataRow)" />
+    <x:Property Name="out_moveToNextTask" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="io_dt_AllRows" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="in_WorkFilesList" Type="InArgument(s:String[])" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1075,9904</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>GetFamilyPDF_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.Platform.Triggers</x:String>
+      <x:String>UiPath.Platform.Triggers.Scope</x:String>
+      <x:String>UiPath.UIAutomationNext</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>Microsoft.Win32.SafeHandles</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>System.Configuration.Assemblies</x:String>
+      <x:String>System.CodeDom.Compiler</x:String>
+      <x:String>System.Buffers</x:String>
+      <x:String>System.Buffers.Text</x:String>
+      <x:String>System.Buffers.Binary</x:String>
+      <x:String>System.Threading</x:String>
+      <x:String>System.Threading.Tasks</x:String>
+      <x:String>System.Threading.Tasks.Sources</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Text.Unicode</x:String>
+      <x:String>System.Security.Principal</x:String>
+      <x:String>System.Security.Permissions</x:String>
+      <x:String>System.Security.Cryptography</x:String>
+      <x:String>System.Runtime</x:String>
+      <x:String>System.Runtime.Remoting</x:String>
+      <x:String>System.Runtime.ExceptionServices</x:String>
+      <x:String>System.Runtime.ConstrainedExecution</x:String>
+      <x:String>System.Runtime.Versioning</x:String>
+      <x:String>System.Runtime.Loader</x:String>
+      <x:String>System.Runtime.Intrinsics</x:String>
+      <x:String>System.Runtime.Intrinsics.Wasm</x:String>
+      <x:String>System.Runtime.Intrinsics.Arm</x:String>
+      <x:String>System.Runtime.Intrinsics.X86</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Runtime.InteropServices.ObjectiveC</x:String>
+      <x:String>System.Runtime.InteropServices.Marshalling</x:String>
+      <x:String>System.Runtime.InteropServices.ComTypes</x:String>
+      <x:String>System.Runtime.CompilerServices</x:String>
+      <x:String>System.Resources</x:String>
+      <x:String>System.Reflection.Metadata</x:String>
+      <x:String>System.Reflection.Emit</x:String>
+      <x:String>System.IO.Enumeration</x:String>
+      <x:String>System.Diagnostics.SymbolStore</x:String>
+      <x:String>System.Diagnostics.Contracts</x:String>
+      <x:String>System.Diagnostics.CodeAnalysis</x:String>
+      <x:String>System.Diagnostics.Tracing</x:String>
+      <x:String>System.Collections.Concurrent</x:String>
+      <x:String>Internal</x:String>
+      <x:String>System.CodeDom</x:String>
+      <x:String>Microsoft.CSharp</x:String>
+      <x:String>System.Linq.Expressions.Interpreter</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>UiPath.Workflow.Runtime</x:String>
+      <x:String>System.Activities.Tracking</x:String>
+      <x:String>System.Activities.Statements.Tracking</x:String>
+      <x:String>System.Activities.Runtime</x:String>
+      <x:String>System.Activities.Runtime.DurableInstancing</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>System.Activities.ParallelTracking</x:String>
+      <x:String>System.Activities.Hosting</x:String>
+      <x:String>System.Activities.Persistence</x:String>
+      <x:String>System.Activities.DurableInstancing</x:String>
+      <x:String>System.ComponentModel.Design.Serialization</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.Security.Authentication.ExtendedProtection</x:String>
+      <x:String>System.Timers</x:String>
+      <x:String>System.ComponentModel.Design</x:String>
+      <x:String>System.Xml.Schema</x:String>
+      <x:String>System.Xml.Xsl</x:String>
+      <x:String>System.Xml.Xsl.Runtime</x:String>
+      <x:String>System.Xml.XPath</x:String>
+      <x:String>System.Xml.Resolvers</x:String>
+      <x:String>Microsoft.CodeAnalysis</x:String>
+      <x:String>Microsoft.CodeAnalysis.FlowAnalysis</x:String>
+      <x:String>Microsoft.CodeAnalysis.Text</x:String>
+      <x:String>Microsoft.CodeAnalysis.Diagnostics</x:String>
+      <x:String>Microsoft.CodeAnalysis.Diagnostics.Telemetry</x:String>
+      <x:String>Microsoft.CodeAnalysis.Operations</x:String>
+      <x:String>Microsoft.CodeAnalysis.Emit</x:String>
+      <x:String>Microsoft.CodeAnalysis.VisualBasic</x:String>
+      <x:String>Microsoft.CodeAnalysis.VisualBasic.Syntax</x:String>
+      <x:String>Microsoft.VisualBasic.FileIO</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>System.IO.Pipes</AssemblyReference>
+      <AssemblyReference>System.Security.Cryptography</AssemblyReference>
+      <AssemblyReference>System.Security.Principal.Windows</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.Process</AssemblyReference>
+      <AssemblyReference>System.IO.MemoryMappedFiles</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Registry</AssemblyReference>
+      <AssemblyReference>System.Net.Primitives</AssemblyReference>
+      <AssemblyReference>System.Net.HttpListener</AssemblyReference>
+      <AssemblyReference>System.Net.WebProxy</AssemblyReference>
+      <AssemblyReference>System.Net.NameResolution</AssemblyReference>
+      <AssemblyReference>System.Net.WebClient</AssemblyReference>
+      <AssemblyReference>System.Net.Requests</AssemblyReference>
+      <AssemblyReference>System.Net.ServicePoint</AssemblyReference>
+      <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>System.Threading.AccessControl</AssemblyReference>
+      <AssemblyReference>System.Threading</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Threading.Tasks.Parallel</AssemblyReference>
+      <AssemblyReference>System.Text.Encoding.CodePages</AssemblyReference>
+      <AssemblyReference>System.Text.Encodings.Web</AssemblyReference>
+      <AssemblyReference>System.Security.Claims</AssemblyReference>
+      <AssemblyReference>System.Security.Cryptography.Pkcs</AssemblyReference>
+      <AssemblyReference>System.Security.Cryptography.ProtectedData</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.CompilerServices.VisualC</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms</AssemblyReference>
+      <AssemblyReference>System.Resources.Writer</AssemblyReference>
+      <AssemblyReference>System.Reflection.MetadataLoadContext</AssemblyReference>
+      <AssemblyReference>Microsoft.PowerShell.Commands.Diagnostics</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.FileVersionInfo</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.DiagnosticSource</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.TraceSource</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.EventLog</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.PerformanceCounter</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.TextWriterTraceListener</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.StackTrace</AssemblyReference>
+      <AssemblyReference>System.Collections.Concurrent</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>System.Net.Security</AssemblyReference>
+      <AssemblyReference>System.Private.Xml.Linq</AssemblyReference>
+      <AssemblyReference>System.Xml.XPath.XDocument</AssemblyReference>
+      <AssemblyReference>Microsoft.CodeAnalysis.CSharp</AssemblyReference>
+      <AssemblyReference>Microsoft.CodeAnalysis.VisualBasic</AssemblyReference>
+      <AssemblyReference>Microsoft.CodeAnalysis</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="GetFamilyPDF" sap:VirtualizedContainerService.HintSize="1085,9839" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Int32" Name="SplitIndex">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:Int32" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="Street" />
+      <Variable x:TypeArguments="s:String[]" Name="Block" />
+      <Variable x:TypeArguments="sd:DataTable" Name="ExtractedTable" />
+      <Variable x:TypeArguments="sd:DataRow" Name="TargetRow" />
+      <Variable x:TypeArguments="x:String" Name="Building">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String" Value="" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="Apartaments">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String">26</Literal>
+        </Variable.Default>
+      </Variable>
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence sap:VirtualizedContainerService.HintSize="1023,289" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,178" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+        <ui:MultipleAssign.AssignOperations>
+          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:Int32">[SplitIndex]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:Int32">[in_Address.Trim.LastIndexOf(" "c)]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[Street]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[in_Address.Trim.Substring(0, SplitIndex)]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="s:String[]">[Block]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="s:String[]">[in_Address.Trim.Substring(SplitIndex + 1).trim.Split("-"c)]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+          </scg:List>
+        </ui:MultipleAssign.AssignOperations>
+      </ui:MultipleAssign>
+    </Sequence>
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: Darbovietė" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="1023,9399" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" IsDisplayNameAuto="True" ScopeGuid="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="989,9124" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:Activate DelayBefore="{x:Null}" DelayMS="{x:Null}" DisplayName="Activate 'chrome.exe Darbovietė'" sap:VirtualizedContainerService.HintSize="947,107" sap2010:WorkflowViewState.IdRef="Activate_2">
+              <ui:Activate.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="0230e94a-3487-4a58-8807-80df042a87f6" InformativeScreenshot="f961cd585fe192773e9a8d48042891a5">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:Activate.Target>
+            </ui:Activate>
+            <uix:NGoToUrl DisplayName="Go To URL - " sap:VirtualizedContainerService.HintSize="947,90" sap2010:WorkflowViewState.IdRef="NGoToUrl_1" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Url="[&quot;https://darboviete.vilnius.lt&quot; + &quot;/registers/residents&quot;]" Version="V4" />
+            <uix:NCheck Action="Check" DisplayName="Check/Uncheck 'INPUT register_type_1'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="947,158" sap2010:WorkflowViewState.IdRef="NCheck_1" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Version="V4">
+              <uix:NCheck.Target>
+                <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" CVScreenId="787d6e38-ecf4-46d2-8932-1cfc65e39068" DesignTimeRectangle="353, 442, 24, 24" ElementType="RadioButton" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='register_type_1' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='register_type_1' tag='INPUT' type='radio' class='w-6 h-6 text-green-600 rounded-full cursor-pointer transition disabled:bg-gray-100 disabled:cursor-not-allowed after:content-none border-black/10' aaname=' Vilniaus miesto gyventojų registre ' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="64e0fa0d-3f49-40f5-9323-13f23d36bc4c" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V6" WaitForReadyArgument="None" />
+              </uix:NCheck.Target>
+            </uix:NCheck>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '4.33. organizuojant soc…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="947,271" sap2010:WorkflowViewState.IdRef="NClick_8" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Version="V4">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" CVScreenId="6ac528bd-4793-40f0-9717-cf3a3a0ccf89" DesignTimeRectangle="353, 754, 533, 46" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='Paieškos priežastis' tag='LABEL' /&gt;&lt;nav up='1' /&gt;&lt;webctrl parentid='searchRegisterTab' tag='BUTTON' /&gt;" Guid="7987307f-0a13-4dcb-9888-fb3f4b06725d" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target CVScreenId="6ac528bd-4793-40f0-9717-cf3a3a0ccf89" DesignTimeRectangle="300, 467, 280, 63" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='TH' class='align-middle' aaname='Paieškos priežastis' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Paieškos priežastis' /&gt;" Guid="c8f58fcf-e393-4772-ba8a-9ae0b5834922" SearchSteps="FuzzySelector" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+              <uix:NClick.VerifyOptions>
+                <uix:VerifyExecutionOptions Mode="Appears">
+                  <uix:VerifyExecutionOptions.Retry>
+                    <InArgument x:TypeArguments="x:Boolean" />
+                  </uix:VerifyExecutionOptions.Retry>
+                  <uix:VerifyExecutionOptions.Timeout>
+                    <InArgument x:TypeArguments="x:Double" />
+                  </uix:VerifyExecutionOptions.Timeout>
+                </uix:VerifyExecutionOptions>
+              </uix:NClick.VerifyOptions>
+            </uix:NClick>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'INPUT'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="947,208" sap2010:WorkflowViewState.IdRef="NTypeInto_4" InteractionMode="SameAsCard" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Text="4.33" Version="V4">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" CVScreenId="725e1131-9109-4b64-8789-faba5ccf15f6" DesignTimeRectangle="184, 460, 1062, 24" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='reason-search' tag='INPUT' /&gt;" Guid="8b154281-be91-4588-9bc3-3bb52b2192ff" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target CVScreenId="2a13029c-e7e0-43af-b4d0-d8b552add130" CvTextArea="190, 492, 934, 11" CvTextArgument="4.1. pradedant Lietuvcs Respublikas administracinių musižengim kodekse numatyty administracini musižengimų teiseną, atliekant administracini musižengimy tyrimą, surašant adiministracinių musižengimy protakolus, magrinéjant adiministracinių musižengimy bylas" CvType="Text" DesignTimeRectangle="190, 492, 934, 11" ElementType="Text" Guid="c8e47f88-7493-40ff-b6a8-f5487229a208" SearchSteps="CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '4.33. organizuojant soc…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="947,271" sap2010:WorkflowViewState.IdRef="NClick_9" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Version="V4">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" CVScreenId="d4ac83fd-4aab-4009-b7ca-879f584e8ac0" DesignTimeRectangle="374, 681, 479, 48" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='hs-selected:font-semibold' parentid='searchRegisterTab' tag='DIV' innertext='4.33. organizuojant socialinio būsto ir kitų gyvenamųjų patalpų apgyvendinimą' /&gt;" Guid="61cc3d44-fe5e-4c36-9ac7-cf88eb7b84d1" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+              </uix:NClick.Target>
+              <uix:NClick.VerifyOptions>
+                <uix:VerifyExecutionOptions Mode="Appears">
+                  <uix:VerifyExecutionOptions.Retry>
+                    <InArgument x:TypeArguments="x:Boolean" />
+                  </uix:VerifyExecutionOptions.Retry>
+                  <uix:VerifyExecutionOptions.Timeout>
+                    <InArgument x:TypeArguments="x:Double" />
+                  </uix:VerifyExecutionOptions.Timeout>
+                </uix:VerifyExecutionOptions>
+              </uix:NClick.VerifyOptions>
+            </uix:NClick>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Detali paieškos priežas…'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="947.2,209.6" sap2010:WorkflowViewState.IdRef="NTypeInto_5" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Text="kas deklaruota bute" Version="V4">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" CVScreenId="9fb844f1-a769-43bf-a7b0-90acf7599b02" DesignTimeRectangle="353, 852, 533, 66" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='detailed-reason' tag='TEXTAREA' /&gt;" Guid="996554d0-299c-4f83-bdd4-29d811f84cd4" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target CVScreenId="9fb844f1-a769-43bf-a7b0-90acf7599b02" DesignTimeRectangle="60, 634, 455, 41" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='TH' class='align-middle' aaname='                                     Detali paieškos priežastis                                                                     ' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Detali paieškos priežastis' /&gt;" Guid="095f2d2e-7d37-48ed-a248-e48feb5f7168" SearchSteps="FuzzySelector" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Ieškoti gatvės'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="947.2,272" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Version="V4">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" CVScreenId="b6e23b47-98a1-4dc0-a63b-5cfff6a40418" DesignTimeRectangle="353, 542, 533, 46" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='searchRegisterTab' tag='BUTTON' aaname='Ieškoti gatvės' /&gt;" Guid="26c59864-d9b6-4a2c-8ae3-a5521b8b662a" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target CVScreenId="b6e23b47-98a1-4dc0-a63b-5cfff6a40418" CvTextArea="311, 429, 45, 14" CvTextArgument="Gatvé" CvType="Text" DesignTimeRectangle="351, 517, 40, 14" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='TH' class='align-middle' aaname='Gatvė' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Gatvė' /&gt;" Guid="c6de8001-2c3b-48a6-9652-632841fbc144" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAARwAAABDCAYAAABOW7p2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALESURBVHhe7dkxTiJRGMBxr7LFFt7FWHgRqzkNiQfYOxDXZG+wNlCwiMHEwphQiAVkNqgMw5uBaJj3YfH7JS9EmAeV/3xv5qQECHKSvgGQSxWc0eTBsiwr6zLhAGEEBwgjOEAYwQHCCA4QRnCAMIIDhBEcIIzgAGEEBwgjOEAYwQHCCA4Q4mX+KjhAfqvY3A7HggPkdzd9LJ+eZ4ID5LeabhbLpeAA+f0d/Ht7FRwgO8EBwggOEEZwgDCCA4QRHCCM4ABhBAcIIzhAmI6Dc1Ne/jwtf6Tr/KqcpJfm1i+O99tAq86Cc120hKZaRXmdbthrHa6LsjdOP/skwYFvp5PgTHoXe6aZ+7J3/sXgrGNxSHCAb6eD4NSOUY3YtBhflWd7JqD2Sakof1VR245QdX3tt9PvOOvdbzYAR3N4cKpp5LS87Kcftqhdn0ZlFZ00FpvPNmHbBCR9bzVNpXvTPcCxHByc+nGqCk5LVHb+w9cmnub+HdNMcdN+Xfp3/ZrPTF9AVgcHp3XC2RucHU+yWvcn93Cq99+noSp2HwHaupfUWF+8jwR07vDg1O/JrCePyr4jz0dMvjDh1L/vsr/5rvW+9uNY8nvA0RwenPS+yVZ00uC0PO7eOyE1I7GOyllRfIRqM7lsJpzmPuD4OgjOyu5j0nptB6d9VcFpPMmqHYfS49qOwKXrUze0gaw6Cs67nfdQ6lHYiklRXrcdqRrfVb//Uo9K2yTT/qRKcOD4Og0OwD6CA4QRHCCM4ABhBAcIIzhAGMEBwggOEEZwgDCCA4S5HY7LxXIpOEB+d9PH8ul5JjhAfi/z17cpR3CAEKvoCA4QRnCAMIIDhJjP54ID5LeKzWg0Ehwgv+l0Ws5mHosDAYbDYblYLAQHyG8wGLy9Cg6QneAAYQQHCCM4QBjBAcI0gjOaPFiWZWVZ/d9/toMDkMt6wvkPzC0pebIfVxYAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+              <uix:NClick.VerifyOptions>
+                <uix:VerifyExecutionOptions Mode="Appears">
+                  <uix:VerifyExecutionOptions.Retry>
+                    <InArgument x:TypeArguments="x:Boolean" />
+                  </uix:VerifyExecutionOptions.Retry>
+                  <uix:VerifyExecutionOptions.Timeout>
+                    <InArgument x:TypeArguments="x:Double" />
+                  </uix:VerifyExecutionOptions.Timeout>
+                </uix:VerifyExecutionOptions>
+              </uix:NClick.VerifyOptions>
+            </uix:NClick>
+            <uix:NSetText DisplayName="Set Text 'Ieškoti gatvės'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="947.2,158.4" sap2010:WorkflowViewState.IdRef="NSetText_1" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Text="[Street]" Version="V4">
+              <uix:NSetText.Target>
+                <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" CVScreenId="25a09433-821c-41f2-8813-263fb6f3ac25" DesignTimeRectangle="362, 601, 515, 38" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='searchRegisterTab' tag='BUTTON' /&gt;&lt;nav up='1' /&gt;&lt;webctrl id='street-search' tag='INPUT' /&gt;" Guid="8806a7eb-615b-42a5-a230-ac2fb15e07af" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target CVScreenId="25a09433-821c-41f2-8813-263fb6f3ac25" DesignTimeRectangle="593, 424, 616, 24" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl class='filter-option-inner-inner' type='' tag='DIV' aaname='Ieškoti gatvės' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Ieškoti gatvės' /&gt;" Guid="2bb7fabc-c5a4-4c18-aa07-756ee74e8fe1" SearchSteps="FuzzySelector" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NSetText.Target>
+            </uix:NSetText>
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="947.2,90.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
+            <uix:NCheckState DisplayName="Check App State 'Rezultatų nerasta pagal…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="947.2,6800.8" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Timeout="1" Version="V5">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="540.8,540.8" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="478.4,272.8" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
+                    <ui:MultipleAssign.AssignOperations>
+                      <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:Object">[io_MainRenterRow(107)]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:Object">["Darboviete.lt nerastas adresas"]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:Object">[io_MainRenterRow(106)]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:Object">["Apdoroti rankiniu būdu"]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_12">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:Object">[io_MainRenterRow(105)]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:Object">[Now.ToString("yyyy-MM-dd HH-mm")]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_13">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="sd:DataRow">[TargetRow]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="sd:DataRow">[io_dt_AllRows.AsEnumerable().FirstOrDefault(Function(r) r(37).ToString.Trim = io_MainRenterRow(37).ToString.Trim)]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_15">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="s:Object[]">[TargetRow.ItemArray]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="s:Object[]">[io_MainRenterRow.ItemArray]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_14">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:Boolean">[out_moveToNextTask]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                      </scg:List>
+                    </ui:MultipleAssign.AssignOperations>
+                  </ui:MultipleAssign>
+                  <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[io_dt_AllRows]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="478.4,116" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="Sheet1" WorkbookPath="[in_WorkFilesList(0)]" />
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="913.6,5874.4" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click first record in street list" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="851.2,272" sap2010:WorkflowViewState.IdRef="NClick_11" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" CVScreenId="e4f278b7-a583-465c-abe6-9bd9ade7d279" DesignTimeRectangle="358, 715, 843, 40" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='searchRegisterTab' tabindex='0' tag='DIV' /&gt;" Guid="dbdd8092-1765-4dc1-80b6-52c9af5dd0b8" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NClick.Target>
+                    <uix:NClick.VerifyOptions>
+                      <uix:VerifyExecutionOptions Mode="Appears">
+                        <uix:VerifyExecutionOptions.Retry>
+                          <InArgument x:TypeArguments="x:Boolean" />
+                        </uix:VerifyExecutionOptions.Retry>
+                        <uix:VerifyExecutionOptions.Timeout>
+                          <InArgument x:TypeArguments="x:Double" />
+                        </uix:VerifyExecutionOptions.Timeout>
+                      </uix:VerifyExecutionOptions>
+                    </uix:NClick.VerifyOptions>
+                  </uix:NClick>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Ieškoti namo numerio'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="851.2,272" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Version="V4">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" CVScreenId="28441210-a403-442c-8d16-7f715f38e56b" DesignTimeRectangle="353, 706, 853, 46" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='Ieškoti namo numerio' parentid='searchRegisterTab' tag='BUTTON' /&gt;" Guid="86d8fb0d-0eb6-436d-a2c8-b4ad1228f1f0" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+                    </uix:NClick.Target>
+                    <uix:NClick.VerifyOptions>
+                      <uix:VerifyExecutionOptions Mode="Appears">
+                        <uix:VerifyExecutionOptions.Retry>
+                          <InArgument x:TypeArguments="x:Boolean" />
+                        </uix:VerifyExecutionOptions.Retry>
+                        <uix:VerifyExecutionOptions.Timeout>
+                          <InArgument x:TypeArguments="x:Double" />
+                        </uix:VerifyExecutionOptions.Timeout>
+                      </uix:VerifyExecutionOptions>
+                    </uix:NClick.VerifyOptions>
+                  </uix:NClick>
+                  <Assign sap:VirtualizedContainerService.HintSize="851.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_4">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[Building]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[Block(0).Trim]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DeselectAfter="True" DisplayName="Type Into 'INPUT'" EmptyFieldMode="SingleLine" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="851.2,209.6" sap2010:WorkflowViewState.IdRef="NTypeInto_6" InteractionMode="WindowMessages" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Text="[Building]" Version="V4">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" CVScreenId="6b4f7013-ba15-4ce2-b69a-d364f01988db" DesignTimeRectangle="362, 421, 827, 38" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='house-search' tag='INPUT' /&gt;" Guid="2d9d1d37-dbb3-4b1b-a774-634e5ce18b5e" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Complete" />
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NCheckState DisplayName="Check App State '141'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="851.2,4767.2" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Version="V5">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="817.6,4188.8" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click first record in building list" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="755.2,272" sap2010:WorkflowViewState.IdRef="NClick_16" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Version="V5">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" CVScreenId="e4f278b7-a583-465c-abe6-9bd9ade7d279" DesignTimeRectangle="8, 139, 0, 0" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="[string.Format(&quot;&lt;webctrl aaname='{0}' class='hs-selected:font-semibold' parentid='searchRegisterTab' tag='DIV' /&gt;&quot;, Building)]" Guid="dbdd8092-1765-4dc1-80b6-52c9af5dd0b8" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                          </uix:NClick.Target>
+                          <uix:NClick.VerifyOptions>
+                            <uix:VerifyExecutionOptions Mode="Appears">
+                              <uix:VerifyExecutionOptions.Retry>
+                                <InArgument x:TypeArguments="x:Boolean" />
+                              </uix:VerifyExecutionOptions.Retry>
+                              <uix:VerifyExecutionOptions.Timeout>
+                                <InArgument x:TypeArguments="x:Double" />
+                              </uix:VerifyExecutionOptions.Timeout>
+                            </uix:VerifyExecutionOptions>
+                          </uix:NClick.VerifyOptions>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NClick>
+                        <If Condition="[Block.Length &gt; 1]" sap:VirtualizedContainerService.HintSize="755.2,3764.8" sap2010:WorkflowViewState.IdRef="If_2">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="721.6,3581.6" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign sap:VirtualizedContainerService.HintSize="678.4,81.6" sap2010:WorkflowViewState.IdRef="Assign_5">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[Apartaments]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[Block(1).Trim]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Ieškoti buto numerio'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="678.4,272" sap2010:WorkflowViewState.IdRef="NClick_5" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Version="V4">
+                                <uix:NClick.Target>
+                                  <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" CVScreenId="637d11c5-f4b8-45b0-ad22-09d3a8d0960d" DesignTimeRectangle="353, 604, 853, 46" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='Ieškoti buto numerio' parentid='searchRegisterTab' tag='BUTTON' /&gt;" Guid="faec7378-6f12-49d6-9155-822566371e39" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+                                </uix:NClick.Target>
+                                <uix:NClick.VerifyOptions>
+                                  <uix:VerifyExecutionOptions Mode="Appears">
+                                    <uix:VerifyExecutionOptions.Retry>
+                                      <InArgument x:TypeArguments="x:Boolean" />
+                                    </uix:VerifyExecutionOptions.Retry>
+                                    <uix:VerifyExecutionOptions.Timeout>
+                                      <InArgument x:TypeArguments="x:Double" />
+                                    </uix:VerifyExecutionOptions.Timeout>
+                                  </uix:VerifyExecutionOptions>
+                                </uix:NClick.VerifyOptions>
+                              </uix:NClick>
+                              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DeselectAfter="True" DisplayName="Type Into 'INPUT'" EmptyFieldMode="SingleLine" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="678.4,209.6" sap2010:WorkflowViewState.IdRef="NTypeInto_7" InteractionMode="WindowMessages" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Text="[Apartaments]" Version="V4">
+                                <uix:NTypeInto.Target>
+                                  <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" DesignTimeRectangle="362, 519, 827, 38" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='apartment-search' tag='INPUT' /&gt;" Guid="1ca7c94c-89f5-4eea-a4f6-64804145ad95" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAz8AAAAqCAYAAACdpuX2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAUeSURBVHhe7d1NTxNBHMBhP20/BPFTEC9FDMIdJSoqMUY5ECgXokhiehYJUeK7iC+M+W/bZXe71aJUWX2eZJKyw7bnX2Z29kICAAD4D1yoXgAAAPgXnTp+jo6OUrfbTaurq2lxcTFdvXo1zczMpHa7bRiGYRiGYRiGceYjeiO6I/ojOiR6JLrktMaOn4ODg+yHFhYW0r1799LTp0/T/v5+evv2bfr69Wv13wEAAM5E9EZ0R/THzs5O1iPz8/NZn0SnjGus+NnY2Ehzc3Npe3s7HR8fV6cBAAD+qG/fvqXHjx9nnRK9Mo4fxk9UVCwtrayspMPDw+o0AADAX/Xhw4d0586drFt+tgo0Mn729vayfXWdTqc6BQAAcK6sr69n/RIdM0pt/EQxxY2xnw4AAKAJ4jGd6JhRK0C18RNLRlFOAAAATbK2tpb1TJ2h+ImHhZaXlx1sAAAANE50zM2bN2sPQSjFTywPzc7OOtwAAABorDgEIbqmuv2tFD9xTrYDDgAAgKaLlZ/om6I8fuINqfHm1KgkAACAJouuib6JzhnI46fb7aZr167lEwAAAE0WBx9E5wzk8RNLQltbW/kEAABAk0XfFLe+5fETVbS7u5tPAAAANNmzZ89Kx17n8RMvA3r9+nU+Ma7OpVaauv68ernG87R0sZWmN1NKm9OpdXEp9e4qXD8TnTTdOsvvAwAAmujVq1dZ5wzk8RMPA33+/DmfGNf48RN6oXMSPifXfjlWdpfSVGs6OaMOAAAoir6JzhnI46fdbucXT+N08VNH/AAAAJNR7JwJxE9v21mrP4pzz69P5ddbebBU4ieLmeJ9/dWi/L6ptDR4NCm2zxV+q3UpvvE3YwoAAPhnTDB+qs/bxN/9WKmu0Gx2huOnHz4n9/fDJ4uawX0RPIXvqX6v+AEAAPomFz+lgwx6YrUnm88ipbBqc/If/ViphlNd2IS6lSLxAwAADJtY/JS3tVW3o52s7MS1odWdyha5TE1MhVJwiR8AAGCEicVPFivFLWojFVd5yis/pQAaCpue+E0rPwAAwM/Uxk8cAffly5d8Ylw/fuanYHN6aLWnHD/xuRpAv/vMT+9z7/uKnwEAgH/dyKOu4+U/b968ySfGNXTaW2FrW+l0tsr1auCUV3KK7wI62RbXG/UrQfWnvYkfAAD4X0Xf1L7kdHFxMe3v7+cTAAAATba3t5d1zkAeP6urq2lnZyefAAAAaLLt7e2scwby+Ol2u+n27dv5BAAAQJPdunUr65yBPH6Ojo7S7OzsLx16AAAAcJ5E11y+fDnrnIE8fkIsCT169Kh4CQAAoHG2trZKW95CKX4ODg7S3Nxc+vTpU/EyAABAYxweHqYrV65kfVNUip+wsbGRlpeX0/HxcXUKAADgXIuOuXHjRtY1VUPxE+I4uPX19eplAACAc21tba10vHVRbfzE8lC8DOjJkyfVKQAAgHMp+iU6prrdbaA2fkK8EChu7HQ61SkAAIBzJXauRb9Ex4wyMn5CFFMsGa2srKT3799XpwEAAP6qd+/epbt372bdMmrFZ+CH8TMQDwu12+308OHD9PLly+o0AADAH/XixYv04MGDrFPqDjeoM1b8hKioOCd7ZmYmzc/PZyEUe+p2d3cdjQ0AAEzMx48fs+6I/rh//35aWFjIuiT65GerPUVjx89AvCG12+1mPxRLS7GvLn44isswDMMwDMMwDOOsR/RGdEf0R3RI9Eh0yWmdOn4AAACaSPwAAAD/he/yAnsU+9b85gAAAABJRU5ErkJggg==" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="Selector, Image" Version="V6" WaitForReadyArgument="None" />
+                                </uix:NTypeInto.Target>
+                              </uix:NTypeInto>
+                              <uix:NCheckState DisplayName="Check App State 'Label'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="678.4,2808.8" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Version="V5">
+                                <uix:NCheckState.IfExists>
+                                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="644.8,2230.4" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'DIV'" sap:VirtualizedContainerService.HintSize="582.4,107.2" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                      <ui:Click.CursorPosition>
+                                        <ui:CursorPosition Position="Center">
+                                          <ui:CursorPosition.OffsetX>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:CursorPosition.OffsetX>
+                                          <ui:CursorPosition.OffsetY>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:CursorPosition.OffsetY>
+                                        </ui:CursorPosition>
+                                      </ui:Click.CursorPosition>
+                                      <ui:Click.Target>
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2fcb7a72-37f5-46de-ae53-26f572333f09" InformativeScreenshot="14ac59483416844ca8a172d26a74db3c" Selector="[string.Format(&quot;&lt;webctrl id='apartment-search' tag='INPUT' /&gt;&lt;nav up='2' /&gt;&lt;webctrl parentid='searchRegisterTab' tabindex='0' tag='DIV' innertext='{0}' /&gt;&quot;, Apartaments)]">
+                                          <ui:Target.TimeoutMS>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:Target.TimeoutMS>
+                                          <ui:Target.WaitForReady>
+                                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                                          </ui:Target.WaitForReady>
+                                        </ui:Target>
+                                      </ui:Click.Target>
+                                    </ui:Click>
+                                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Ieškoti'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="582,52" sap2010:WorkflowViewState.IdRef="NClick_10" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Version="V4">
+                                      <uix:NClick.Target>
+                                        <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" CVScreenId="9fb844f1-a769-43bf-a7b0-90acf7599b02" CvElementArea="306, 718, 104, 41" CvTextArea="334, 731, 48, 15" CvTextArgument="leškoti" CvType="Button" DesignTimeRectangle="308, 720, 100, 38" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='resident-search' tag='BUTTON' /&gt;" Guid="2ee4ae10-875e-459c-bb2f-e7f78d526d9d" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGgAAAAqCAYAAABfjB7GAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIYSURBVHhe7ZsxbgIxEEU5Dk1uQYpcIqfIJTgCFwBFoqdLSwdNqgghUVKkYKm2msjGNrPj8RIRlh2UP9KTwNjG+k/2buMBoUzXQDagbFVD0Of3F71+vNHT+wsNZ8/gjrjMXfbOAa8kyP2QxExH2QSgY0LmzgGXlAQ5e9kg0AvORSbI7x7snP6ZjryLTFDWEfQKBBkHgowDQcaBIONAkHEgyDgQZBwIMs7jCVqtqarXNJaf43c60nKljPsr2x1RV3O30Lug8f5IxEP+BW5MtV/QshaBQdDtuUbQcDahZU1Eh0Wz/UaCrltTNzyooAIQdHvUMHzQrMROmR/4j0SbLR/HBS1o43vsaJ7Gx7ZYvH/Ymbzi2vwRx+e5D7HsCMpCbh5nWf/triBIOQaD+Go/Obf54Jlk7T9SPwjyu6MRoIOF43ePfPZEkqAgR4RcGivb5ZrkGuT4LjEmSDliUoVw0vGnPGuCoEqRE+fmOyXhwmf9IYihCVJDlISjqSEqHmH1UQmzZW4IKiPDkMdNO6fQ05HInkGnF4lmoKW5ZbtckweCQpvy0HbBb4KE+YGHVBZ06iskFV8SxHGpydDa7oA9QY50fMU6ByNfsRthl94As1dxXlro7FkY1/ZfBYF2IMg4EGQcCDIOBBkHgowDQcaBIONAkHEyQbh+YoTS9RNc4LKDeoELVyB75tIVyCgJl4j74eIlYpTNgiDj9QPtLxxayt9G6AAAAABJRU5ErkJggg==" InformativeScreenshot="f1903c73bcc52b01bd404a03efb9d161.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="Selector, Image, CV" Version="V6" WaitForReadyArgument="None" />
+                                      </uix:NClick.Target>
+                                      <uix:NClick.VerifyOptions>
+                                        <uix:VerifyExecutionOptions Mode="Appears">
+                                          <uix:VerifyExecutionOptions.Retry>
+                                            <InArgument x:TypeArguments="x:Boolean" />
+                                          </uix:VerifyExecutionOptions.Retry>
+                                          <uix:VerifyExecutionOptions.Timeout>
+                                            <InArgument x:TypeArguments="x:Double" />
+                                          </uix:VerifyExecutionOptions.Timeout>
+                                        </uix:VerifyExecutionOptions>
+                                      </uix:NClick.VerifyOptions>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </uix:NClick>
+                                    <uix:NCheckState DisplayName="Check App State 'Eksportuoti į PDF failą'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="582,1879" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Timeout="10" Version="V5">
+                                      <uix:NCheckState.IfExists>
+                                        <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="548,1395" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Eksportuoti į PDF failą'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486,271" sap2010:WorkflowViewState.IdRef="NClick_14" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Version="V5">
+                                            <uix:NClick.Target>
+                                              <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" CVScreenId="f16f88da-2a23-450a-8010-5e73dee86a97" DesignTimeRectangle="1047, 377, 204, 38" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='main' tag='BUTTON' type='submit' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='main' tag='BUTTON' type='submit' class='btn default-btn btn-info text-right' aaname='Eksportuoti į PDF failą' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Eksportuoti į PDF failą' /&gt;" Guid="76804fa1-4849-4f49-9882-ac13b0112aea" InformativeScreenshot="788c91ca8568f2bbf6b61999a7b51f0d.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V6" WaitForReadyArgument="Interactive" />
+                                            </uix:NClick.Target>
+                                            <uix:NClick.VerifyOptions>
+                                              <uix:VerifyExecutionOptions Mode="Appears">
+                                                <uix:VerifyExecutionOptions.Retry>
+                                                  <InArgument x:TypeArguments="x:Boolean" />
+                                                </uix:VerifyExecutionOptions.Retry>
+                                                <uix:VerifyExecutionOptions.Timeout>
+                                                  <InArgument x:TypeArguments="x:Double" />
+                                                </uix:VerifyExecutionOptions.Timeout>
+                                              </uix:VerifyExecutionOptions>
+                                            </uix:NClick.VerifyOptions>
+                                          </uix:NClick>
+                                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,345" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                                            <ui:CommentOut.Body>
+                                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,266" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <ui:SetValue AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="100" DelayBefore="100" DisplayName="Set Text 'Edit'" sap:VirtualizedContainerService.HintSize="388,155" sap2010:WorkflowViewState.IdRef="SetValue_1" Text="[&quot;C:\ROBOT\Data\Input\FamilyList&quot;+in_MR_AK+&quot;.pdf&quot;]">
+                                                  <ui:SetValue.Target>
+                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0821ecc2-c0f0-4ace-9459-25ab088997e9" InformativeScreenshot="c54911639064243ab39f5699719c9661" Selector="&lt;wnd app='chrome.exe' cls='#32770' title='Save As' /&gt;&lt;wnd aaname='Explorer Pane' cls='DirectUIHWND' /&gt;&lt;wnd aaname='File name:' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;">
+                                                      <ui:Target.TimeoutMS>
+                                                        <InArgument x:TypeArguments="x:Int32" />
+                                                      </ui:Target.TimeoutMS>
+                                                      <ui:Target.WaitForReady>
+                                                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                                                      </ui:Target.WaitForReady>
+                                                    </ui:Target>
+                                                  </ui:SetValue.Target>
+                                                </ui:SetValue>
+                                              </Sequence>
+                                            </ui:CommentOut.Body>
+                                          </ui:CommentOut>
+                                          <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" AlterIfDisabled="False" ClickBeforeTyping="True" DeselectAfter="False" DisplayName="Type Into 'dialog  Save As'" EmptyField="False" sap:VirtualizedContainerService.HintSize="486,155" sap2010:WorkflowViewState.IdRef="TypeInto_1" SendWindowMessages="True" SimulateType="False" Text="[&quot;C:\ROBOT\Data\Input\FamilyList&quot;+in_MR_AK+&quot;.pdf&quot;]">
+                                            <ui:TypeInto.Target>
+                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2756623a-dc28-4b8b-b384-4a966d523af4" InformativeScreenshot="1b7f9771f83d902180556945a62c6b41" Selector="&lt;wnd app='chrome.exe' cls='#32770' title='Save As' /&gt;&lt;wnd aaname='Explorer Pane' cls='DirectUIHWND' /&gt;&lt;wnd aaname='File name:' cls='ComboBox' /&gt;">
+                                                <ui:Target.TimeoutMS>
+                                                  <InArgument x:TypeArguments="x:Int32" />
+                                                </ui:Target.TimeoutMS>
+                                                <ui:Target.WaitForReady>
+                                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                                </ui:Target.WaitForReady>
+                                              </ui:Target>
+                                            </ui:TypeInto.Target>
+                                          </ui:TypeInto>
+                                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '&amp;Save'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486,271" sap2010:WorkflowViewState.IdRef="NClick_15" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="fafb04ef-21f7-4293-9e15-a9e55e0e6910" Version="V5">
+                                            <uix:NClick.Target>
+                                              <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" CVScreenId="64a248d6-3957-470f-9d02-b2add4bb8565" CvElementArea="987, 489, 88, 26" CvTextArea="1018, 495, 26, 12" CvTextArgument="Save" CvType="Button" DesignTimeRectangle="987, 489, 88, 26" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd ctrlid='1' title='&amp;amp;Save' /&gt;" Guid="2b3b9e7d-4112-4ef4-be4d-4f6dd9e145d0" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFwAAAAeCAYAAAChf3k/AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAG7SURBVGhD7ZlBrsIgEIa5FgfiPJyGjcYbaGJcGQ6g0bhwrSHz8tNiKVRNeE+kL7P4YuyAJt8MQ9IR1+uVmHqI9AHzWVh4ZTLhl8uF9vs97XY72m63TCHWWu8y9TsSjgUQfTwe6X6/k3OOKQDuTqeTd5lKHwlHVs7nc/YDTBmHw8F3i6fCcRRut1u2kSkDLlHlL4Wnm5jfAacsvCIsvDJtCzeKhBA9ikwanyHtCreaZCzZatJmYt3MaFc4qltqsunzmdOucGdICUFS2yxmVGgzgoQy5JwlLQWp+ATECfOnpY3W1LBw0ImEqJHMB0iKJG17wV5+F0NSuj3RGsSMmkxiLRoX3tNX6EP66DINMiE2VK8hNVnd8amY+J8KzEO4c2S17ESNLlOcgKF6sQbVGz793vTy/TLtCjd6aAN9a/ESs94ctQt8l4qUjAU/vwu+QbvCe1F5Gxj6uvByI+EhlraMtK2k8Yo0LPx/wsIrw8Irw8Ir81I4XpbzAOLvgMuXwjEOwlgo3ciUgbkmxpZPhYchMhZypZcDdyjct0PkIH2z2dByuaTFYsEUsFqtaL1eZ7InhTOfhYVXhoVX5geXRheeAC1JRgAAAABJRU5ErkJggg==" InformativeScreenshot="74e80ab06fb5bc5a1644b6062d354d29.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='#32770' title='Save As' /&gt;" SearchSteps="Selector, Image, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                                            </uix:NClick.Target>
+                                            <uix:NClick.VerifyOptions>
+                                              <uix:VerifyExecutionOptions Mode="Appears">
+                                                <uix:VerifyExecutionOptions.Retry>
+                                                  <InArgument x:TypeArguments="x:Boolean" />
+                                                </uix:VerifyExecutionOptions.Retry>
+                                                <uix:VerifyExecutionOptions.Timeout>
+                                                  <InArgument x:TypeArguments="x:Double" />
+                                                </uix:VerifyExecutionOptions.Timeout>
+                                              </uix:VerifyExecutionOptions>
+                                            </uix:NClick.VerifyOptions>
+                                          </uix:NClick>
+                                          <Assign DisplayName="Status - nerastas buto numeris" sap:VirtualizedContainerService.HintSize="486,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[Out_Status]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">OK</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                        </Sequence>
+                                      </uix:NCheckState.IfExists>
+                                      <uix:NCheckState.IfNotExists>
+                                        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,103" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </Sequence>
+                                      </uix:NCheckState.IfNotExists>
+                                      <uix:NCheckState.Target>
+                                        <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" CVScreenId="f16f88da-2a23-450a-8010-5e73dee86a97" DesignTimeRectangle="1047, 377, 204, 38" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl parentid='main' tag='BUTTON' type='submit' class='btn default-btn btn-info text-right' aaname='Eksportuoti į PDF failą' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Eksportuoti į PDF failą' /&gt;" Guid="44bbc6f8-27ef-4a3c-ae93-c4dd5a5fc1a5" InformativeScreenshot="a53420294e270d39fc2da0e82db19870.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive" />
+                                      </uix:NCheckState.Target>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </uix:NCheckState>
+                                  </Sequence>
+                                </uix:NCheckState.IfExists>
+                                <uix:NCheckState.IfNotExists>
+                                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <Assign DisplayName="Status - nerastas buto numeris" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[Out_Status]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">["Nerastas buto numeris (" + in_Address +")"]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                </uix:NCheckState.IfNotExists>
+                                <uix:NCheckState.Target>
+                                  <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" DesignTimeRectangle="374, 629, 9, 24" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="[string.Format(&quot;&lt;webctrl aaname='{0}' class='hs-selected:font-semibold' parentid='searchRegisterTab' tag='DIV' /&gt;&quot;, Apartaments)]" Guid="6b80a15e-66bf-4a53-b296-f7a6cc82ddf6" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+                                </uix:NCheckState.Target>
+                              </uix:NCheckState>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="592,89" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign DisplayName="Status - nerastas namo numeris" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[Out_Status]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">["Nerastas namo numeris (" + Street + " " +Block(0)+")"]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" CVScreenId="616e5038-d90b-43e9-aea7-47215cb15533" DesignTimeRectangle="374, 657, 26, 24" ElementVisibilityArgument="Interactive" FullSelectorArgument="[string.Format(&quot;&lt;webctrl aaname='{0}' class='hs-selected:font-semibold' parentid='searchRegisterTab' tag='DIV' /&gt;&quot;, Building)]" Guid="8c8c6be8-3c21-4b0e-9e08-b4dff11a09ac" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NCheckState.Target>
+                  </uix:NCheckState>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="darboviete.vilnius.lt/registers/residents" CVScreenId="ef311d84-d22b-44e7-9baa-d4b7dc455329" DesignTimeRectangle="358, 649, 523, 36" ElementType="ListItem" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='Kraunama' parentid='searchRegisterTab' tag='DIV' /&gt;" Guid="8ce11c24-763c-4a4e-accf-2d1d367907a9" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NCheckState.Target>
+            </uix:NCheckState>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.OCREngine>
+        <ActivityFunc x:TypeArguments="sd1:Image, scg:IEnumerable(scg:KeyValuePair(sd2:Rectangle, x:String))">
+          <ActivityFunc.Argument>
+            <DelegateInArgument x:TypeArguments="sd1:Image" Name="Image" />
+          </ActivityFunc.Argument>
+        </ActivityFunc>
+      </uix:NApplicationCard.OCREngine>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="139, 42, 1294, 1039" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAc7SURBVFhHnZZ7bJPXGcb9TwesBQKFlhVInBs4cRx/cZI2kOBbaBKgEMp/07oRaZom7fLXpk6l3P6ZNG0aDoEQCBAHkq6jqLu10tQtsZ17WLuhoRFStM2UJM6lYKfQrpDv+H2m95zPjhNCSznST8/zntjvc94Tf7JNpkdcYbeWNuV11E15S/1T3tLLH1eWxKYqSzHpLcGUl31JcMpb7J+sLN7Lr53//sde4zWaeaKytJ5DjDCa8BRj0lOCSU8xMVw/gLvYP+7WzPP7PfJSE5f4OFQGuVVYMtBdTBNuB4272TtowlCux90OhcuBcafj0PzeX7r45BOe4rARZDR2SD8nwCDCQQzXziKKuIrUHntFeLzsEW9j0lNkH3c7wvND1ERFxKhAFWSEIOLUkjrmLMLYFk3BXtVffgienMMTEyg1MILGnKppZIsRlBq2RcNoggo7xirsNCpR9Ui5PTxeZln4EPw/j7iKwioopXkyTDWWB2Ct0EjWHGAEqiDpaUTWSkfKCxlSag8v+JSMOjVfMkRBqRMZ0xhBynNDWXNzNSFulhdKjFDc3DwfG93cZPPNCdfe3G1u+qFrNoRDywuTgXIaI2TqR9/F3bfaoUfGkFj02YegqXcgLu+EuFTMEGucddABySUHMXH++6ADGEj5PBS/uce/xV+L4coiNZVxXVI325SvLsfdC+3J0EiMEBqeQWhYx/Xx+Oxhxn8D8YEL+mARhEQjMaghfkkjMaCpekDW6hY0/+40xxsvgzn0M2/yqjiY9aNNNoxUbcb968My4O9hHd/3f4rSw9MoPWRweBq7fHcQvDZj3MgwxPsVEIN2DlQ6wJ61EGKwkMRAYQyXtTST9sbuOq19N4rad4M1tKtEhjI3N9mI9c5v22TjU8F7KDk0PcvBFG/QHLynDhFpU2EDNoOCFGWsNNObX2fS2mr9Wlst7G27SGuvpVd+UYUbZQX4qMxKzOjL1bIhT1d8MCZxGDrL9Jz9D8K6fE/86l4S/Vbo/fkQCxAfyPeb7G21Qfv5WtjP7zKoxTt7SnCjzIrwC1bcfff3stmOI5+g6EBsloMpmvBG/b2Wu8bn4Tzp/XkQc7CQ6Lcg3m+heF/eZVPhuV2xwnM7kcDWuhNbj23Dv5w2hJ/Pp/vXr2E4IqAdiC1A9CHEMBaLA/dGIfo3UJI+CRi9bwPi/blRk83/EmytEpLeqH/+g3KES/OIJwkMzcC+P7owB2Lz6igK90cRMD6Qoi8Xem8OBNOXC9FnqKyzyVTQsgMF/pdQ4N9BUluVvtC0DVcqrLJJ59B92PZHH4CDUjV1v3PIOEBvNkRfFoneLBJ92dB7syBS4APErC3bSbED1pbtMJR+/KqT9MgoxqJxFLx++ytxLSJAn16F6M2E3pMJ0Wsm0WuWtfIZXEdN+We3/yP/zDYotiP/7Hbpraxnt1FP6IKcpO7MHVhfvw3rvttKv4CqX02rp2DyIlRQOuk96RCSDIie9cRe71kfNFnO1PjzTm/DLDXyAJbTNcT+O+++Kpv97b8zyN93G3n7bht6S/rZena/Y+i+uv73N0HvXg+9ex1EzzpiNTwEa/dav8nSXFNnaa5JBjKybq4mS3M1K85dUY/i8c7PYHntFiz7bimdz75bON7xP/na6ZEW0rvXQvSsJdHzHOndzyGBSGjX2r0ms9+dlneqOrbxVDVSsbA2VxFT0rqHrn38b9n4r1fvw/vLGDa+dmsO3z79CS79R33wRqMfItqTD73rGwZrILrXUEJF97PSI5imvpY3nqyu33iyChsMpD9VRYl6w8kqKvHvodYrv5MBvIbGhDwMMxqd/TLi17T8aRNE1xroXc8mEayhZ6SKrtUkQqv9yW9DS1ONeUPTi2ByDU34FCinaSu521/B29few5BxI7xG7kzA/8+38a0//BSuM07oodWKLkNDq6QXXatI+tAqnn7uL6Pcxsr63BNbkSCnkfVFcGjOCQmUVhL/LanzuPjHXNJDT6tQqStJKIUIrSTWeNfKB38pm33utOwTleHsRtU4+3glco5XSuU9qbzXOLdO5Zutz5MIrSA9uAJ6aAWkBldAGF6E0kgE08Lzs5PL7HObsxu94UTDrGNeZB/zIuu4lyTsjXqh/Rt/eQYiuJz04DLSg8shQstJsAaXkUH4gaufv/gQWQ2esGza4EHmMQ8x7BNksh7zSpW+wYuftBVCDyyFHlymNLAUIvgUMexnAkvDCC7+4vDE4kNkHvWEM496YG5wU+ZRt1TpGzwwH1U+QUXTZtx472nogac4FHrgyTmIwJPhzx81PHWZfe7D5no3Ho4L5qMuOvNWFvTOJRCBr0v0wGLiWg8s4X1f8nl/nMW3ke5z+TN8LmTUuyj9iJPYp/ucsi5vLIPeudhgEfSORdADi2J6x5L6z//8GFM/bPFTsv7XW+rSjzhbM3yuYPoRZyz9iBMXLq6DCDwRjXd87XK8Y7F/pvOJuq8y8f8BmWZYCb9aOw0AAAAASUVORK5CYII=" InformativeScreenshot="d76f8b84ebc8983d6ccca5ba2990fc63.jpg" Selector="&lt;html app='chrome.exe' title='Darbovietė' /&gt;" Url="https://darboviete.vilnius.lt/registers/residents" Version="V2">
+          <uix:TargetApp.Arguments>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.Arguments>
+          <uix:TargetApp.WorkingDirectory>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.WorkingDirectory>
+        </uix:TargetApp>
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>
