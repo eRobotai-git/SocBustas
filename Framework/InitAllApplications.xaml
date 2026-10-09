@@ -247,22 +247,6 @@
         </sap:WorkflowViewStateService.ViewState>
       </Sequence>
       <ui:LogMessage DisplayName="Log message (Initialize applications)" sap:VirtualizedContainerService.HintSize="656,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Opening applications...&quot;]" />
-      <ui:CopyFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="C:\Users\rpa\AppData\Roaming\Tabula\pdfs" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="656,190.4" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="C:\Users\rpa\Documents\tabula\workspace.json">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </ui:CopyFile>
-      <ui:StartProcess Arguments="{x:Null}" DisplayName="Start Tabula Process" FileName="C:\Users\rpa\Documents\tabula\tabula.exe" sap:VirtualizedContainerService.HintSize="656,52.8" sap2010:WorkflowViewState.IdRef="StartProcess_1" WorkingDirectory="C:\Users\rpa\Documents\tabula\">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </ui:StartProcess>
       <Delay Duration="00:00:15" sap:VirtualizedContainerService.HintSize="656,90.4" sap2010:WorkflowViewState.IdRef="Delay_2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -271,29 +255,6 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Delay>
-      <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe Import'" sap:VirtualizedContainerService.HintSize="656,52.8" sap2010:WorkflowViewState.IdRef="BrowserScope_6" InformativeScreenshot="bace9d37e519bd6492ee9f735e25b4a6" Selector="&lt;html app='chrome.exe' title='Import | Tabula' /&gt;">
-        <ui:BrowserScope.Body>
-          <ActivityAction x:TypeArguments="x:Object">
-            <ActivityAction.Argument>
-              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-            </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,136.8" sap2010:WorkflowViewState.IdRef="Sequence_70">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize Window" sap:VirtualizedContainerService.HintSize="387.2,24.8" sap2010:WorkflowViewState.IdRef="MaximizeWindow_6" />
-            </Sequence>
-          </ActivityAction>
-        </ui:BrowserScope.Body>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </ui:BrowserScope>
       <ui:RetryScope LogRetriedExceptions="{x:Null}" RetriedExceptionsLogLevel="{x:Null}" DisplayName="Retry Scope Vilnius LT" sap:VirtualizedContainerService.HintSize="656,52.8" sap2010:WorkflowViewState.IdRef="RetryScope_2">
         <ui:RetryScope.ActivityBody>
           <ActivityAction>
