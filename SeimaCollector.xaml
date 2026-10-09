@@ -151,6 +151,7 @@
       <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
       <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
       <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.Process</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -165,6 +166,7 @@
       <Variable x:TypeArguments="x:String" Name="ParentIdAttribute" />
       <Variable x:TypeArguments="s:String[]" Name="SeimaArray" />
       <Variable x:TypeArguments="x:String" Name="PDFText" />
+      <Variable x:TypeArguments="x:String" Name="JavaUsedFamily" />
       <Variable x:TypeArguments="x:Int32" Name="output" />
       <Variable x:TypeArguments="s:String[]" Name="SplitBySpace" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_SeimosTable" />
@@ -284,7 +286,14 @@
               <InArgument x:TypeArguments="s:String[]">[{ "Vardas", "Pavardė", "Lytis", "Gimimo data", "Šeimyninė padėtis", "Adresas", "Deklaruota nuo", "Deklaruota iki", "Gimimo šalis", "Seniūnija"}]</InArgument>
             </Assign.Value>
           </Assign>
-          <ui:StartProcess WorkingDirectory="{x:Null}" Arguments="[&quot;/c java -Dfile.encoding=UTF-8 -jar &quot;&quot;C:\Users\rpa\Documents\tabula\tabula-1.0.5-jar-with-dependencies.jar&quot;&quot; --stream --pages all -f CSV -o &quot;&quot;&quot; &amp;&#xA;&quot;C:\ROBOT\Data\Output\temp.csv&quot; &amp;&#xA;&quot;&quot;&quot; &quot;&quot;&quot; &amp;&#xA;&quot;C:\ROBOT\Data\Input\FamilyList&quot; &amp; MR_AK &amp; &quot;.pdf&quot; &amp;&#xA;&quot;&quot;&quot; &amp;&amp; powershell -Command &quot;&quot;Get-Content '&quot; &amp;&#xA;&quot;C:\ROBOT\Data\Output\temp.csv&quot; &amp;&#xA;&quot;' -Encoding UTF8 | Out-File '&quot; &amp;&#xA;&quot;C:\ROBOT\Data\Output\output_utf8.csv&quot; &amp;&#xA;&quot;' -Encoding UTF8&quot;&quot;&quot;]" DisplayName="Start Process" FileName="cmd.exe" sap:VirtualizedContainerService.HintSize="783.2,88" sap2010:WorkflowViewState.IdRef="StartProcess_1" />
+          <ui:InvokeCode Code="' ============================================================================&#xA;' Invoke Code: Vilnius.lt šeimos sąrašo PDF -&gt; tekstas (CSV be kabučių)&#xA;' Pakeičia &quot;cmd /c java ... --stream ... &amp;&amp; powershell ...&quot; + Delay 5 s:&#xA;' tabula-java paleidžiama ir LAUKIAMA kol baigs, rezultatas skaitomas UTF-8.&#xA;'&#xA;' Argumentai:&#xA;'   in_Path        In   String   PDF kelias (C:\ROBOT\Data\Input\FamilyList&lt;AK&gt;.pdf)&#xA;'   in_JavaPath    In   String   neprivaloma&#xA;'   out_Text       Out  String   CSV tekstas be kabučių (kaip anksčiau output_utf8.csv)&#xA;'   out_JavaUsed   Out  String&#xA;' ============================================================================&#xA;&#xA;' ---------- 1. java.exe paieška ----------&#xA;Dim javaExe As String = &quot;&quot;&#xA;Dim jarPath As String = System.IO.Path.Combine(System.Environment.CurrentDirectory, &quot;Data&quot;, &quot;Tools&quot;, &quot;tabula-1.0.5-jar-with-dependencies.jar&quot;)&#xA;If Not System.IO.File.Exists(jarPath) Then&#xA;    Throw New System.Exception(&quot;Nerastas tabula jar failas: &quot; &amp; jarPath)&#xA;End If&#xA;If Not String.IsNullOrWhiteSpace(in_JavaPath) AndAlso System.IO.File.Exists(in_JavaPath.Trim()) Then&#xA;    javaExe = in_JavaPath.Trim()&#xA;End If&#xA;If javaExe = &quot;&quot; Then&#xA;    Dim searchRoots As New System.Collections.Generic.List(Of String)()&#xA;    searchRoots.Add(System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile), &quot;Documents&quot;, &quot;tabula&quot;))&#xA;    Dim javaHome As String = System.Environment.GetEnvironmentVariable(&quot;JAVA_HOME&quot;)&#xA;    If Not String.IsNullOrWhiteSpace(javaHome) Then searchRoots.Add(javaHome)&#xA;    searchRoots.Add(System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles), &quot;Java&quot;))&#xA;    searchRoots.Add(System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles), &quot;Eclipse Adoptium&quot;))&#xA;    searchRoots.Add(System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles), &quot;Microsoft&quot;))&#xA;    searchRoots.Add(System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFilesX86), &quot;Java&quot;))&#xA;    searchRoots.Add(System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFilesX86), &quot;Common Files&quot;, &quot;Oracle&quot;, &quot;Java&quot;))&#xA;    For Each rootDir As String In searchRoots&#xA;        If javaExe &lt;&gt; &quot;&quot; Then Exit For&#xA;        If Not System.IO.Directory.Exists(rootDir) Then Continue For&#xA;        Try&#xA;            Dim found As String() = System.IO.Directory.GetFiles(rootDir, &quot;java.exe&quot;, System.IO.SearchOption.AllDirectories)&#xA;            If found.Length &gt; 0 Then javaExe = found(0)&#xA;        Catch exSearch As System.Exception&#xA;        End Try&#xA;    Next&#xA;End If&#xA;If javaExe = &quot;&quot; Then&#xA;    For Each pathDir As String In (If(System.Environment.GetEnvironmentVariable(&quot;PATH&quot;), &quot;&quot;)).Split(&quot;;&quot;c)&#xA;        Dim cand As String = System.IO.Path.Combine(pathDir.Trim().Trim(&quot;&quot;&quot;&quot;c), &quot;java.exe&quot;)&#xA;        If pathDir.Trim() &lt;&gt; &quot;&quot; AndAlso System.IO.File.Exists(cand) Then&#xA;            javaExe = cand&#xA;            Exit For&#xA;        End If&#xA;    Next&#xA;End If&#xA;If javaExe = &quot;&quot; Then&#xA;    Throw New System.Exception(&quot;Nerastas java.exe (ieškota Documents\tabula, JAVA_HOME, Program Files, PATH). Nurodykite java.exe kelią argumentu in_JavaPath.&quot;)&#xA;End If&#xA;out_JavaUsed = javaExe&#xA;&#xA;' ---------- 2. tabula-java: PDF -&gt; CSV (stream, visi puslapiai) ----------&#xA;If Not System.IO.File.Exists(in_Path) Then&#xA;    Throw New System.Exception(&quot;Nerastas PDF failas: &quot; &amp; in_Path)&#xA;End If&#xA;Dim jsonFile As String = System.IO.Path.Combine(System.IO.Path.GetTempPath(), &quot;tabula_&quot; &amp; System.Guid.NewGuid().ToString(&quot;N&quot;) &amp; &quot;.csv&quot;)&#xA;Dim psi As New System.Diagnostics.ProcessStartInfo()&#xA;psi.FileName = javaExe&#xA;psi.Arguments = &quot;-Dfile.encoding=UTF-8 -jar &quot;&quot;&quot; &amp; jarPath &amp; &quot;&quot;&quot; -t -p all -f CSV -o &quot;&quot;&quot; &amp; jsonFile &amp; &quot;&quot;&quot; &quot;&quot;&quot; &amp; in_Path &amp; &quot;&quot;&quot;&quot;&#xA;psi.UseShellExecute = False&#xA;psi.CreateNoWindow = True&#xA;psi.RedirectStandardError = True&#xA;psi.RedirectStandardOutput = False&#xA;Dim errText As String = &quot;&quot;&#xA;Dim exitCode As Integer = -1&#xA;Using proc As System.Diagnostics.Process = System.Diagnostics.Process.Start(psi)&#xA;    errText = proc.StandardError.ReadToEnd()&#xA;    If Not proc.WaitForExit(120000) Then&#xA;        Try&#xA;            proc.Kill()&#xA;        Catch exKill As System.Exception&#xA;        End Try&#xA;        Throw New System.Exception(&quot;tabula-java neatsakė per 120 s: &quot; &amp; in_Path)&#xA;    End If&#xA;    exitCode = proc.ExitCode&#xA;End Using&#xA;If exitCode &lt;&gt; 0 OrElse Not System.IO.File.Exists(jsonFile) Then&#xA;    Throw New System.Exception(&quot;tabula-java klaida (kodas &quot; &amp; exitCode.ToString() &amp; &quot;): &quot; &amp; errText)&#xA;End If&#xA;Dim jsonText As String = System.IO.File.ReadAllText(jsonFile, System.Text.Encoding.UTF8)&#xA;Try&#xA;    System.IO.File.Delete(jsonFile)&#xA;Catch exDel As System.Exception&#xA;End Try&#xA;&#xA;&#xA;out_Text = jsonText.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)&#xA;" ContinueOnError="{x:Null}" DisplayName="Tabula: šeimos sąrašo PDF -> tekstas (laukiama pabaigos)" Language="VBNet">
+              <ui:InvokeCode.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Path">[&quot;C:\ROBOT\Data\Input\FamilyList&quot; &amp; MR_AK &amp; &quot;.pdf&quot;]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_JavaPath">[&quot;&quot;]</InArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="out_Text">[PDFText]</OutArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="out_JavaUsed">[JavaUsedFamily]</OutArgument>
+              </ui:InvokeCode.Arguments>
+            </ui:InvokeCode>
           <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="783.2,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_3">
             <ui:CommentOut.Body>
               <Sequence sap:VirtualizedContainerService.HintSize="484,400" sap2010:WorkflowViewState.IdRef="Sequence_54">
@@ -325,15 +334,6 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:CommentOut>
-          <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="783.2,90.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
-          <Assign sap:VirtualizedContainerService.HintSize="783.2,80.8" sap2010:WorkflowViewState.IdRef="Assign_40">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[PDFText]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[System.IO.File.ReadAllText("C:\ROBOT\Data\Output\output_utf8.csv").Replace("""", "")]</InArgument>
-            </Assign.Value>
-          </Assign>
           <Assign DisplayName="Split Text by Šeima" sap:VirtualizedContainerService.HintSize="783,81" sap2010:WorkflowViewState.IdRef="Assign_2">
             <Assign.To>
               <OutArgument x:TypeArguments="s:String[]">[SeimaArray]</OutArgument>
@@ -767,7 +767,7 @@
                                 </If.Else>
                               </If>
                               <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[io_dt_AllRows]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="479,116" sap2010:WorkflowViewState.IdRef="WriteRange_7" SheetName="Sheet1" WorkbookPath="[in_WorkFilesList(0)]" />
-                              <ui:Break sap:VirtualizedContainerService.HintSize="479,25" sap2010:WorkflowViewState.IdRef="Break_6" />
+                              <Throw DisplayName="Throw BusinessRuleException" Exception="[New UiPath.Core.BusinessRuleException(io_MainRenterRow(107).ToString)]" />
                             </Sequence>
                           </If.Then>
                           <If.Else>
@@ -877,7 +877,7 @@
                           </If.Else>
                         </If>
                         <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[io_dt_AllRows]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="479,116" sap2010:WorkflowViewState.IdRef="WriteRange_9" SheetName="Sheet1" WorkbookPath="[in_WorkFilesList(0)]" />
-                        <ui:Break sap:VirtualizedContainerService.HintSize="479,25" sap2010:WorkflowViewState.IdRef="Break_8" />
+                        <Throw DisplayName="Throw BusinessRuleException" Exception="[New UiPath.Core.BusinessRuleException(io_MainRenterRow(107).ToString)]" />
                       </Sequence>
                     </If.Else>
                   </If>
@@ -932,7 +932,7 @@
                                   <OutArgument x:TypeArguments="x:Object">[io_MainRenterRow(107)]</OutArgument>
                                 </ui:AssignOperation.To>
                                 <ui:AssignOperation.Value>
-                                  <InArgument x:TypeArguments="x:Object">["Neatpažinta šeima Vilnius.l"]</InArgument>
+                                  <InArgument x:TypeArguments="x:Object">["Neatpažinta šeima Vilnius.lt"]</InArgument>
                                 </ui:AssignOperation.Value>
                               </ui:AssignOperation>
                               <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_12">
@@ -1012,7 +1012,7 @@
                           </If.Else>
                         </If>
                         <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[io_dt_AllRows]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="510,116" sap2010:WorkflowViewState.IdRef="WriteRange_4" SheetName="Sheet1" WorkbookPath="[in_WorkFilesList(0)]" />
-                        <ui:Break sap:VirtualizedContainerService.HintSize="510,25" sap2010:WorkflowViewState.IdRef="Break_2" />
+                        <Throw DisplayName="Throw BusinessRuleException" Exception="[New UiPath.Core.BusinessRuleException(io_MainRenterRow(107).ToString)]" />
                       </Sequence>
                     </If.Then>
                     <If.Else>
@@ -1450,7 +1450,7 @@
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
                                     </ui:WriteRange>
-                                    <ui:Break sap:VirtualizedContainerService.HintSize="479,25" sap2010:WorkflowViewState.IdRef="Break_4" />
+                                    <Throw DisplayName="Throw BusinessRuleException" Exception="[New UiPath.Core.BusinessRuleException(io_MainRenterRow(107).ToString)]" />
                                   </Sequence>
                                 </If.Else>
                               </If>
@@ -1619,7 +1619,7 @@
                                 </If.Else>
                               </If>
                               <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[io_dt_AllRows]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="510.4,116" sap2010:WorkflowViewState.IdRef="WriteRange_6" SheetName="Sheet1" WorkbookPath="[in_WorkFilesList(0)]" />
-                              <ui:Break sap:VirtualizedContainerService.HintSize="510.4,24.8" sap2010:WorkflowViewState.IdRef="Break_5" />
+                              <Throw DisplayName="Throw BusinessRuleException" Exception="[New UiPath.Core.BusinessRuleException(io_MainRenterRow(107).ToString)]" />
                             </Sequence>
                           </If.Then>
                           <If.Else>
@@ -1807,7 +1807,7 @@
                                 </If.Else>
                               </If>
                               <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[io_dt_AllRows]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="510.4,116" sap2010:WorkflowViewState.IdRef="WriteRange_8" SheetName="Sheet1" WorkbookPath="[in_WorkFilesList(0)]" />
-                              <ui:Break sap:VirtualizedContainerService.HintSize="510.4,24.8" sap2010:WorkflowViewState.IdRef="Break_7" />
+                              <Throw DisplayName="Throw BusinessRuleException" Exception="[New UiPath.Core.BusinessRuleException(io_MainRenterRow(107).ToString)]" />
                             </Sequence>
                           </If.Then>
                           <If.Else>

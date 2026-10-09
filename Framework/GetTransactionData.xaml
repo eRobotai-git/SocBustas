@@ -334,7 +334,7 @@
         </Sequence>
       </If.Else>
     </If>
-    <If Condition="[in_TransactionNumber &gt; (io_TransactionData.Rows.Count-0) and io_TransactionData is Nothing]" sap:VirtualizedContainerService.HintSize="468,346" sap2010:WorkflowViewState.IdRef="If_4">
+    <If Condition="[io_TransactionData Is Nothing OrElse in_TransactionNumber &gt; io_TransactionData.Rows.Count]" sap:VirtualizedContainerService.HintSize="468,346" sap2010:WorkflowViewState.IdRef="If_4">
       <If.Then>
         <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_12">
           <Assign.To>

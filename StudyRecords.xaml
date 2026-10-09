@@ -1,29 +1,22 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="StudyRecords" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="StudyRecords" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="out_Studentas" Type="OutArgument(x:Boolean)" />
     <x:Property Name="in_Path" Type="InArgument(x:String)" />
+    <x:Property Name="in_JavaPath" Type="InArgument(x:String)" />
   </x:Members>
-  <VisualBasic.Settings>
-    <x:Null />
-  </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>2746,7224</sap:VirtualizedContainerService.HintSize>
-  <sap2010:WorkflowViewState.IdRef>StudyRecords_1</sap2010:WorkflowViewState.IdRef>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <sco:Collection x:TypeArguments="x:String">
+    <scg:List x:TypeArguments="x:String" Capacity="64">
       <x:String>Microsoft.VisualBasic</x:String>
-      <x:String>Microsoft.VisualBasic.Activities</x:String>
       <x:String>System</x:String>
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Expressions</x:String>
       <x:String>System.Activities.Statements</x:String>
-      <x:String>System.Activities.Validation</x:String>
-      <x:String>System.Activities.XamlIntegration</x:String>
       <x:String>System.Collections</x:String>
       <x:String>System.Collections.Generic</x:String>
       <x:String>System.Collections.ObjectModel</x:String>
       <x:String>System.ComponentModel</x:String>
       <x:String>System.Data</x:String>
-      <x:String>System.Diagnostics</x:String>
       <x:String>System.Drawing</x:String>
       <x:String>System.IO</x:String>
       <x:String>System.Linq</x:String>
@@ -31,27 +24,31 @@
       <x:String>System.Reflection</x:String>
       <x:String>System.Runtime.InteropServices</x:String>
       <x:String>System.Runtime.Serialization</x:String>
-      <x:String>System.Windows.Markup</x:String>
       <x:String>System.Xml</x:String>
       <x:String>System.Xml.Linq</x:String>
       <x:String>System.Xml.Serialization</x:String>
       <x:String>UiPath.Core</x:String>
       <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
       <x:String>UiPath.Platform.SyncObjects</x:String>
-      <x:String>UiPath.Shared.Activities.Business</x:String>
       <x:String>UiPath.UIAutomationCore.Contracts</x:String>
       <x:String>UiPath.UIAutomationNext.Enums</x:String>
       <x:String>GlobalVariablesNamespace</x:String>
       <x:String>GlobalConstantsNamespace</x:String>
-    </sco:Collection>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>System.Net</x:String>
+    </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <sco:Collection x:TypeArguments="AssemblyReference">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="128">
       <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
       <AssemblyReference>NPOI</AssemblyReference>
-      <AssemblyReference>PresentationCore</AssemblyReference>
       <AssemblyReference>PresentationFramework</AssemblyReference>
       <AssemblyReference>System</AssemblyReference>
       <AssemblyReference>System.Activities</AssemblyReference>
@@ -73,20 +70,16 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
       <AssemblyReference>System.ObjectModel</AssemblyReference>
       <AssemblyReference>System.Private.CoreLib</AssemblyReference>
-      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
-      <AssemblyReference>System.Xaml</AssemblyReference>
       <AssemblyReference>System.Xml</AssemblyReference>
       <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
-      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.Platform</AssemblyReference>
       <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
@@ -94,677 +87,53 @@
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
-      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
-    </sco:Collection>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Net.Primitives</AssemblyReference>
+      <AssemblyReference>System.Net.HttpListener</AssemblyReference>
+      <AssemblyReference>System.Net.WebProxy</AssemblyReference>
+      <AssemblyReference>System.Net.NameResolution</AssemblyReference>
+      <AssemblyReference>System.Net.WebClient</AssemblyReference>
+      <AssemblyReference>System.Net.Requests</AssemblyReference>
+      <AssemblyReference>System.Net.ServicePoint</AssemblyReference>
+      <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.Process</AssemblyReference>
+      <AssemblyReference>System.Text.Json</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+    </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="StudyRecords" sap:VirtualizedContainerService.HintSize="1861,6960" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="StudyRecords (be Tabula UI)">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="ParentIdAttribute" />
-      <Variable x:TypeArguments="x:Int32" Name="Result" />
-      <Variable x:TypeArguments="sd:DataTable" Name="dt_StudyEnd" />
-      <Variable x:TypeArguments="x:Boolean" Name="Disabled" />
-      <Variable x:TypeArguments="x:String" Name="Counter" />
-      <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="tableElements" />
-      <Variable x:TypeArguments="ui:UiElement" Name="Element" />
-      <Variable x:TypeArguments="sd:DataTable" Name="dt_OneTable" />
+      <Variable x:TypeArguments="x:String" Name="javaUsed" />
+      <Variable x:TypeArguments="x:Int32" Name="tableCount" />
+      <Variable x:TypeArguments="x:String" Name="reason" />
     </Sequence.Variables>
-    <sap:WorkflowViewStateService.ViewState>
-      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-      </scg:Dictionary>
-    </sap:WorkflowViewStateService.ViewState>
-    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A'" sap:VirtualizedContainerService.HintSize="687,139" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT">
-      <ui:Click.CursorPosition>
-        <ui:CursorPosition Position="Center">
-          <ui:CursorPosition.OffsetX>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:CursorPosition.OffsetX>
-          <ui:CursorPosition.OffsetY>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:CursorPosition.OffsetY>
-        </ui:CursorPosition>
-      </ui:Click.CursorPosition>
-      <ui:Click.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="3db31366-b010-4694-9170-647a28202772" InformativeScreenshot="4b87ec1872432e61eb8c17e05551f126" Selector="&lt;html app='chrome.exe' title='*| Tabula' /&gt;&lt;webctrl tag='A' aaname='Tabula' /&gt;">
-          <ui:Target.TimeoutMS>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:Target.TimeoutMS>
-          <ui:Target.WaitForReady>
-            <InArgument x:TypeArguments="ui:WaitForReady" />
-          </ui:Target.WaitForReady>
-        </ui:Target>
-      </ui:Click.Target>
-    </ui:Click>
-    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Browse'" sap:VirtualizedContainerService.HintSize="687,139" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False" UnblockInput="False">
-      <ui:Click.CursorPosition>
-        <ui:CursorPosition Position="Center">
-          <ui:CursorPosition.OffsetX>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:CursorPosition.OffsetX>
-          <ui:CursorPosition.OffsetY>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:CursorPosition.OffsetY>
-        </ui:CursorPosition>
-      </ui:Click.CursorPosition>
-      <ui:Click.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="22cdd59e-2866-48ed-af46-787215b6d7af" InformativeScreenshot="32c999c150c7d425a0042a3bb3e28506" Selector="&lt;html app='chrome.exe' title='Import | Tabula' /&gt;&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;span&amp;gt;span' tag='SPAN' /&gt;">
-          <ui:Target.TimeoutMS>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:Target.TimeoutMS>
-          <ui:Target.WaitForReady>
-            <InArgument x:TypeArguments="ui:WaitForReady" />
-          </ui:Target.WaitForReady>
-        </ui:Target>
-      </ui:Click.Target>
-    </ui:Click>
-    <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" AlterIfDisabled="False" ClickBeforeTyping="True" DeselectAfter="False" DisplayName="Type Into 'dialog  Save As'" EmptyField="False" sap:VirtualizedContainerService.HintSize="687,187" sap2010:WorkflowViewState.IdRef="TypeInto_1" SendWindowMessages="False" SimulateType="False" Text="[in_Path]">
-      <ui:TypeInto.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2756623a-dc28-4b8b-b384-4a966d523af4" InformativeScreenshot="1b7f9771f83d902180556945a62c6b41" Selector="&lt;wnd app='chrome.exe' cls='#32770' /&gt;&lt;wnd aaname='File name:' cls='ComboBox' /&gt;">
-          <ui:Target.TimeoutMS>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:Target.TimeoutMS>
-          <ui:Target.WaitForReady>
-            <InArgument x:TypeArguments="ui:WaitForReady" />
-          </ui:Target.WaitForReady>
-        </ui:Target>
-      </ui:TypeInto.Target>
-    </ui:TypeInto>
-    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Button'" sap:VirtualizedContainerService.HintSize="687,139" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT">
-      <ui:Click.CursorPosition>
-        <ui:CursorPosition Position="Center">
-          <ui:CursorPosition.OffsetX>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:CursorPosition.OffsetX>
-          <ui:CursorPosition.OffsetY>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:CursorPosition.OffsetY>
-        </ui:CursorPosition>
-      </ui:Click.CursorPosition>
-      <ui:Click.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="31107a23-e78e-4a55-bad1-87b0148c0e52" InformativeScreenshot="ef41ed18b0b0336c39ead537a7ab9e11" Selector="&lt;wnd app='chrome.exe' cls='#32770' title='Open' /&gt;&lt;wnd title='&amp;amp;Open' aaname='Open' cls='Button' /&gt;">
-          <ui:Target.TimeoutMS>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:Target.TimeoutMS>
-          <ui:Target.WaitForReady>
-            <InArgument x:TypeArguments="ui:WaitForReady" />
-          </ui:Target.WaitForReady>
-        </ui:Target>
-      </ui:Click.Target>
-    </ui:Click>
-    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Import'" sap:VirtualizedContainerService.HintSize="687,139" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False" UnblockInput="False">
-      <ui:Click.CursorPosition>
-        <ui:CursorPosition Position="Center">
-          <ui:CursorPosition.OffsetX>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:CursorPosition.OffsetX>
-          <ui:CursorPosition.OffsetY>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:CursorPosition.OffsetY>
-        </ui:CursorPosition>
-      </ui:Click.CursorPosition>
-      <ui:Click.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="22cdd59e-2866-48ed-af46-787215b6d7af" InformativeScreenshot="2618e5ce901bc95b9cfc61aa0ffcbafb" Selector="&lt;html app='chrome.exe' title='Import | Tabula' /&gt;&lt;webctrl tag='BUTTON' aaname='Import' innertext='Import' /&gt;">
-          <ui:Target.TimeoutMS>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:Target.TimeoutMS>
-          <ui:Target.WaitForReady>
-            <InArgument x:TypeArguments="ui:WaitForReady" />
-          </ui:Target.WaitForReady>
-        </ui:Target>
-      </ui:Click.Target>
-    </ui:Click>
-    <ui:WaitUiElementVanish WaitNotActive="{x:Null}" WaitNotVisible="{x:Null}" DisplayName="Wait Element Vanish 'BUTTON  #'" sap:VirtualizedContainerService.HintSize="687,139" sap2010:WorkflowViewState.IdRef="WaitUiElementVanish_1">
-      <ui:WaitUiElementVanish.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a0f95251-5d95-4f26-92fb-25f8a0c02949" InformativeScreenshot="c8deaf7d1503482b0f93395c16e5f624" Selector="&lt;html app='chrome.exe' title='Select Tables | Tabula' /&gt;&lt;webctrl tag='BUTTON' /&gt;">
-          <ui:Target.TimeoutMS>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:Target.TimeoutMS>
-          <ui:Target.WaitForReady>
-            <InArgument x:TypeArguments="ui:WaitForReady" />
-          </ui:Target.WaitForReady>
-        </ui:Target>
-      </ui:WaitUiElementVanish.Target>
-    </ui:WaitUiElementVanish>
-    <ui:WaitUiElementAppear DisplayName="Find Element 'BUTTON  restore-detecte...'" FoundElement="[Element]" sap:VirtualizedContainerService.HintSize="687,139" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_1" WaitActive="False" WaitVisible="False">
-      <ui:WaitUiElementAppear.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2b75b505-5039-42a8-8db2-f95cdc236baf" InformativeScreenshot="eb7935150ce64dee555d6d1f2df5e1f8" Selector="&lt;html app='chrome.exe' title='Select Tables | Tabula' /&gt;&lt;webctrl id='restore-detected-tables' tag='BUTTON' /&gt;" TimeoutMS="30000">
-          <ui:Target.WaitForReady>
-            <InArgument x:TypeArguments="ui:WaitForReady" />
-          </ui:Target.WaitForReady>
-        </ui:Target>
-      </ui:WaitUiElementAppear.Target>
-    </ui:WaitUiElementAppear>
-    <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="disabled" DisplayName="Get Attribute 'BUTTON  restore-detecte...'" sap:VirtualizedContainerService.HintSize="687,235" sap2010:WorkflowViewState.IdRef="GetAttribute_1">
-      <ui:GetAttribute.Result>
-        <OutArgument x:TypeArguments="x:Boolean">[Disabled]</OutArgument>
-      </ui:GetAttribute.Result>
-      <ui:GetAttribute.Target>
-        <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" Element="[Element]" Id="5119a34a-fa7e-4917-a6fe-be753524303c" InformativeScreenshot="88c5c105358526bdab23ab7d2ae1cbfb" WaitForReady="COMPLETE">
-          <ui:Target.TimeoutMS>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:Target.TimeoutMS>
-        </ui:Target>
-      </ui:GetAttribute.Target>
-    </ui:GetAttribute>
-    <If Condition="[not Disabled]" DisplayName="If Table found" sap:VirtualizedContainerService.HintSize="687,5681" sap2010:WorkflowViewState.IdRef="If_5">
-      <If.Then>
-        <Sequence DisplayName="DO if found" sap:VirtualizedContainerService.HintSize="685,5448" sap2010:WorkflowViewState.IdRef="Sequence_11">
-          <Sequence.Variables>
-            <Variable x:TypeArguments="sd:DataTable" Name="dt_AllTables" />
-          </Sequence.Variables>
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Templates'" sap:VirtualizedContainerService.HintSize="651,139" sap2010:WorkflowViewState.IdRef="Click_9" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False" UnblockInput="False">
-            <ui:Click.CursorPosition>
-              <ui:CursorPosition Position="Center">
-                <ui:CursorPosition.OffsetX>
-                  <InArgument x:TypeArguments="x:Int32" />
-                </ui:CursorPosition.OffsetX>
-                <ui:CursorPosition.OffsetY>
-                  <InArgument x:TypeArguments="x:Int32" />
-                </ui:CursorPosition.OffsetY>
-              </ui:CursorPosition>
-            </ui:Click.CursorPosition>
-            <ui:Click.Target>
-              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="22cdd59e-2866-48ed-af46-787215b6d7af" InformativeScreenshot="4ac4a498a0dc537302c55663dbc3adac" Selector="&lt;html app='chrome.exe' title='Select Tables | Tabula' /&gt;&lt;webctrl tag='BUTTON' /&gt;">
-                <ui:Target.TimeoutMS>
-                  <InArgument x:TypeArguments="x:Int32" />
-                </ui:Target.TimeoutMS>
-                <ui:Target.WaitForReady>
-                  <InArgument x:TypeArguments="ui:WaitForReady" />
-                </ui:Target.WaitForReady>
-              </ui:Target>
-            </ui:Click.Target>
-          </ui:Click>
-          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Select Template" sap:VirtualizedContainerService.HintSize="651,139" sap2010:WorkflowViewState.IdRef="Click_10" KeyModifiers="None" MouseButton="BTN_LEFT">
-            <ui:Click.CursorPosition>
-              <ui:CursorPosition Position="Center">
-                <ui:CursorPosition.OffsetX>
-                  <InArgument x:TypeArguments="x:Int32" />
-                </ui:CursorPosition.OffsetX>
-                <ui:CursorPosition.OffsetY>
-                  <InArgument x:TypeArguments="x:Int32" />
-                </ui:CursorPosition.OffsetY>
-              </ui:CursorPosition>
-            </ui:Click.CursorPosition>
-            <ui:Click.Target>
-              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="10b83cfe-d385-4cb1-b761-18b7d409df36" InformativeScreenshot="6a0bd2073d9ef16ded35efeabc1edcce" Selector="&lt;html app='chrome.exe' title='Select Tables | Tabula' /&gt;&lt;webctrl parentid='template-dropdown-templates-list-container' tag='A' aaname='FullPage' /&gt;">
-                <ui:Target.TimeoutMS>
-                  <InArgument x:TypeArguments="x:Int32" />
-                </ui:Target.TimeoutMS>
-                <ui:Target.WaitForReady>
-                  <InArgument x:TypeArguments="ui:WaitForReady" />
-                </ui:Target.WaitForReady>
-              </ui:Target>
-            </ui:Click.Target>
-          </ui:Click>
-          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON  all-data'" sap:VirtualizedContainerService.HintSize="651,139" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
-            <ui:Click.CursorPosition>
-              <ui:CursorPosition Position="Center">
-                <ui:CursorPosition.OffsetX>
-                  <InArgument x:TypeArguments="x:Int32" />
-                </ui:CursorPosition.OffsetX>
-                <ui:CursorPosition.OffsetY>
-                  <InArgument x:TypeArguments="x:Int32" />
-                </ui:CursorPosition.OffsetY>
-              </ui:CursorPosition>
-            </ui:Click.CursorPosition>
-            <ui:Click.Target>
-              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="07863c28-7905-4208-9e19-d509a7e74839" InformativeScreenshot="9faf994bcba0e9fb3daba3434bc7cd01" Selector="&lt;html app='chrome.exe' title='Select Tables | Tabula' /&gt;&lt;webctrl id='all-data' tag='BUTTON' aaname=' Preview &amp;amp; Export Extracted Data' /&gt;">
-                <ui:Target.TimeoutMS>
-                  <InArgument x:TypeArguments="x:Int32" />
-                </ui:Target.TimeoutMS>
-                <ui:Target.WaitForReady>
-                  <InArgument x:TypeArguments="ui:WaitForReady" />
-                </ui:Target.WaitForReady>
-              </ui:Target>
-            </ui:Click.Target>
-          </ui:Click>
-          <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" SimulateClick="{x:Null}" DataTable="[dt_OneTable]" DisplayName="Extract Structured Data 'TD'" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='Column-0' attr='fulltext' /&gt;&lt;column name='Column-1' attr='fulltext' /&gt;&lt;column name='Column-2' attr='fulltext' /&gt;&lt;column name='Column-3' attr='fulltext' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="651,139" sap2010:WorkflowViewState.IdRef="ExtractData_2" MaxNumberOfResults="100">
-            <ui:ExtractData.Target>
-              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="851ce10c-9eda-428d-9c42-fe82306892da" InformativeScreenshot="e909a55e65b952872705d91461cf3a1c" Selector="&lt;html app='chrome.exe' title='Export Data | Tabula' /&gt;&lt;webctrl tag='TABLE' /&gt;">
-                <ui:Target.TimeoutMS>
-                  <InArgument x:TypeArguments="x:Int32" />
-                </ui:Target.TimeoutMS>
-                <ui:Target.WaitForReady>
-                  <InArgument x:TypeArguments="ui:WaitForReady" />
-                </ui:Target.WaitForReady>
-              </ui:Target>
-            </ui:ExtractData.Target>
-          </ui:ExtractData>
-          <If Condition="[dt_OneTable.ColumnCount = 1]" DisplayName="Extraction Corrector" sap:VirtualizedContainerService.HintSize="651,834" sap2010:WorkflowViewState.IdRef="If_7">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,607" sap2010:WorkflowViewState.IdRef="Sequence_15">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  Back'" sap:VirtualizedContainerService.HintSize="382,139" sap2010:WorkflowViewState.IdRef="Click_12" KeyModifiers="None" MouseButton="BTN_LEFT">
-                  <ui:Click.CursorPosition>
-                    <ui:CursorPosition Position="Center">
-                      <ui:CursorPosition.OffsetX>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:CursorPosition.OffsetX>
-                      <ui:CursorPosition.OffsetY>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:CursorPosition.OffsetY>
-                    </ui:CursorPosition>
-                  </ui:Click.CursorPosition>
-                  <ui:Click.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="312843a7-7dac-49d5-8206-0cd34ae93770" InformativeScreenshot="eadd044786ba33684b097f718f105b40" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='Export Data | Tabula - Google Chrome' /&gt;&lt;ctrl name='Export Data | Tabula - Google Chrome' role='pane' /&gt;&lt;ctrl name='Back' role='push button' /&gt;">
-                      <ui:Target.TimeoutMS>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:Target.TimeoutMS>
-                      <ui:Target.WaitForReady>
-                        <InArgument x:TypeArguments="ui:WaitForReady" />
-                      </ui:Target.WaitForReady>
-                    </ui:Target>
-                  </ui:Click.Target>
-                </ui:Click>
-                <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON  clear-all-selec...'" sap:VirtualizedContainerService.HintSize="382,139" sap2010:WorkflowViewState.IdRef="Click_13" KeyModifiers="None" MouseButton="BTN_LEFT">
-                  <ui:Click.CursorPosition>
-                    <ui:CursorPosition Position="Center">
-                      <ui:CursorPosition.OffsetX>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:CursorPosition.OffsetX>
-                      <ui:CursorPosition.OffsetY>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:CursorPosition.OffsetY>
-                    </ui:CursorPosition>
-                  </ui:Click.CursorPosition>
-                  <ui:Click.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="152a218b-7fdf-46f0-9f96-039cf438dce1" InformativeScreenshot="6a9c75c2f1636b7318b85623258c50b4" Selector="&lt;html app='chrome.exe' title='*Tabula' /&gt;&lt;webctrl id='clear-all-selections' tag='BUTTON' /&gt;">
-                      <ui:Target.TimeoutMS>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:Target.TimeoutMS>
-                      <ui:Target.WaitForReady>
-                        <InArgument x:TypeArguments="ui:WaitForReady" />
-                      </ui:Target.WaitForReady>
-                    </ui:Target>
-                  </ui:Click.Target>
-                </ui:Click>
-                <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON  restore-detecte...'" sap:VirtualizedContainerService.HintSize="382,139" sap2010:WorkflowViewState.IdRef="Click_14" KeyModifiers="None" MouseButton="BTN_LEFT">
-                  <ui:Click.CursorPosition>
-                    <ui:CursorPosition Position="Center">
-                      <ui:CursorPosition.OffsetX>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:CursorPosition.OffsetX>
-                      <ui:CursorPosition.OffsetY>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:CursorPosition.OffsetY>
-                    </ui:CursorPosition>
-                  </ui:Click.CursorPosition>
-                  <ui:Click.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a7c6f36c-750a-427d-80eb-ea3ed8d35958" InformativeScreenshot="eb7935150ce64dee555d6d1f2df5e1f8" Selector="&lt;html app='chrome.exe' title='Select Tables | Tabula' /&gt;&lt;webctrl id='restore-detected-tables' tag='BUTTON' /&gt;">
-                      <ui:Target.TimeoutMS>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:Target.TimeoutMS>
-                      <ui:Target.WaitForReady>
-                        <InArgument x:TypeArguments="ui:WaitForReady" />
-                      </ui:Target.WaitForReady>
-                    </ui:Target>
-                  </ui:Click.Target>
-                </ui:Click>
-                <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON  all-data'" sap:VirtualizedContainerService.HintSize="382,130" sap2010:WorkflowViewState.IdRef="Click_15" KeyModifiers="None" MouseButton="BTN_LEFT">
-                  <ui:Click.CursorPosition>
-                    <ui:CursorPosition Position="Center">
-                      <ui:CursorPosition.OffsetX>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:CursorPosition.OffsetX>
-                      <ui:CursorPosition.OffsetY>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:CursorPosition.OffsetY>
-                    </ui:CursorPosition>
-                  </ui:Click.CursorPosition>
-                  <ui:Click.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4a15e238-15e5-49cf-b826-a61898d709b4" InformativeScreenshot="76e918dbde222a7cbf98c8bcbf7a3ca2" Selector="&lt;html app='chrome.exe' title='*Tabula' /&gt;&lt;webctrl id='all-data' tag='BUTTON' /&gt;">
-                      <ui:Target.TimeoutMS>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:Target.TimeoutMS>
-                      <ui:Target.WaitForReady>
-                        <InArgument x:TypeArguments="ui:WaitForReady" />
-                      </ui:Target.WaitForReady>
-                    </ui:Target>
-                  </ui:Click.Target>
-                </ui:Click>
-              </Sequence>
-            </If.Then>
-            <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_16">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-              </Sequence>
-            </If.Else>
-          </If>
-          <ui:FindChildren Children="[tableElements]" DisplayName="Find Children 'DIV  main-pane'" Filter="&lt;webctrl tag='TABLE' /&gt;" sap:VirtualizedContainerService.HintSize="651,139" sap2010:WorkflowViewState.IdRef="FindChildren_1" Scope="FIND_CHILDREN">
-            <ui:FindChildren.Target>
-              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5dc1c0eb-dee7-499b-b444-84d8f4608147" InformativeScreenshot="7c8f71fe4f05b50d8c576c608ff5fe89" Selector="&lt;html app='chrome.exe' title='Export Data | Tabula' /&gt;&lt;webctrl id='table-container' tag='DIV' /&gt;">
-                <ui:Target.TimeoutMS>
-                  <InArgument x:TypeArguments="x:Int32" />
-                </ui:Target.TimeoutMS>
-                <ui:Target.WaitForReady>
-                  <InArgument x:TypeArguments="ui:WaitForReady" />
-                </ui:Target.WaitForReady>
-              </ui:Target>
-            </ui:FindChildren.Target>
-          </ui:FindChildren>
-          <Assign DisplayName="Set tables Count" sap:VirtualizedContainerService.HintSize="651,114" sap2010:WorkflowViewState.IdRef="Assign_1">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:Int32">[Result]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:Int32">[tableElements.count]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <ui:BuildDataTable DataTable="[dt_OneTable]" DisplayName="Build Data Table dt_OneTable" sap:VirtualizedContainerService.HintSize="651,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Column-0&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Column-1&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-          <Assign DisplayName="Create dt_AllTables" sap:VirtualizedContainerService.HintSize="651,114" sap2010:WorkflowViewState.IdRef="Assign_2">
-            <Assign.To>
-              <OutArgument x:TypeArguments="sd:DataTable">[dt_AllTables]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="sd:DataTable">[dt_OneTable.Clone]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'ExportDat Page'" sap:VirtualizedContainerService.HintSize="651,3539" sap2010:WorkflowViewState.IdRef="BrowserScope_2" InformativeScreenshot="6440d9eab9d2c77e9792206dd6802b9b" Selector="&lt;html app='chrome.exe' title='*Tabula' /&gt;">
-            <ui:BrowserScope.Body>
-              <ActivityAction x:TypeArguments="x:Object">
-                <ActivityAction.Argument>
-                  <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                </ActivityAction.Argument>
-                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="617,3369" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                  <Sequence.Variables>
-                    <Variable x:TypeArguments="sd:DataTable" Name="dt_StudyStart" />
-                  </Sequence.Variables>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:RepeatNumberOfTimesX DisplayName="Repeat Number of Times" sap:VirtualizedContainerService.HintSize="583,1236" sap2010:WorkflowViewState.IdRef="RepeatNumberOfTimesX_1" NumberOfTimes="[Result]" StartAt="1">
-                    <ui:RepeatNumberOfTimesX.Body>
-                      <ActivityAction x:TypeArguments="x:Int32">
-                        <ActivityAction.Argument>
-                          <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentItem" />
-                        </ActivityAction.Argument>
-                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="549,1040" sap2010:WorkflowViewState.IdRef="Sequence_8">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[dt_OneTable]" DisplayName="Extract Structured Data 'TABLE'" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='Column-0' attr='fulltext' /&gt;&lt;column name='Column-1' attr='fulltext' /&gt;&lt;column name='Column-2' attr='fulltext' /&gt;&lt;column name='Column-3' attr='fulltext' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="515,139" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="100" SimulateClick="True">
-                            <ui:ExtractData.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d1e87ca4-243a-4ccf-bdc1-8377239b6589" InformativeScreenshot="9a820c211e3a78d4c73229cf6adaed12" Selector="[string.Format(&quot;&lt;webctrl tag='TABLE' isleaf='0' idx='{0}' /&gt;&quot;, CurrentItem)]" WaitForReady="COMPLETE">
-                                <ui:Target.TimeoutMS>
-                                  <InArgument x:TypeArguments="x:Int32" />
-                                </ui:Target.TimeoutMS>
-                              </ui:Target>
-                            </ui:ExtractData.Target>
-                          </ui:ExtractData>
-                          <If Condition="[dt_OneTable.Rows.Count &gt; 0 AndAlso &#xA;dt_OneTable.Rows(0).ItemArray.Any(Function(value) value.ToString().ToLower().Contains(&quot;nuo&quot;)) And&#xA;dt_OneTable.Rows(0).ItemArray.Any(Function(value) value.ToString().ToLower().Contains(&quot;iki&quot;))]" DisplayName="If 4 columns found" sap:VirtualizedContainerService.HintSize="515,736" sap2010:WorkflowViewState.IdRef="If_1">
-                            <If.Then>
-                              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="513,509" sap2010:WorkflowViewState.IdRef="Sequence_12">
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                                <Assign sap:VirtualizedContainerService.HintSize="479,114" sap2010:WorkflowViewState.IdRef="Assign_10">
-                                  <Assign.To>
-                                    <OutArgument x:TypeArguments="sd:DataTable">[dt_OneTable]</OutArgument>
-                                  </Assign.To>
-                                  <Assign.Value>
-                                    <InArgument x:TypeArguments="sd:DataTable">[dt_OneTable.DefaultView.ToTable(False, dt_OneTable.Columns.Cast(Of DataColumn).Skip((dt_OneTable.Columns.Count)- 2).Select(Function(c) c.ColumnName).ToArray())]</InArgument>
-                                  </Assign.Value>
-                                </Assign>
-                                <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,179" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
-                                  <ui:MultipleAssign.AssignOperations>
-                                    <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-                                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
-                                        <ui:AssignOperation.To>
-                                          <OutArgument x:TypeArguments="x:String">[dt_OneTable.Columns(0).ColumnName]</OutArgument>
-                                        </ui:AssignOperation.To>
-                                        <ui:AssignOperation.Value>
-                                          <InArgument x:TypeArguments="x:String">Column-0</InArgument>
-                                        </ui:AssignOperation.Value>
-                                      </ui:AssignOperation>
-                                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
-                                        <ui:AssignOperation.To>
-                                          <OutArgument x:TypeArguments="x:String">[dt_OneTable.Columns(1).ColumnName]</OutArgument>
-                                        </ui:AssignOperation.To>
-                                        <ui:AssignOperation.Value>
-                                          <InArgument x:TypeArguments="x:String">Column-1</InArgument>
-                                        </ui:AssignOperation.Value>
-                                      </ui:AssignOperation>
-                                    </scg:List>
-                                  </ui:MultipleAssign.AssignOperations>
-                                </ui:MultipleAssign>
-                                <ui:MergeDataTable Destination="[dt_AllTables]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="479,156" sap2010:WorkflowViewState.IdRef="MergeDataTable_2" MissingSchemaAction="Add" Source="[dt_OneTable]" />
-                              </Sequence>
-                            </If.Then>
-                            <If.Else>
-                              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="513,89" sap2010:WorkflowViewState.IdRef="Sequence_7">
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                              </Sequence>
-                            </If.Else>
-                          </If>
-                          <Assign DisplayName="Reset dt_OneTable" sap:VirtualizedContainerService.HintSize="515,105" sap2010:WorkflowViewState.IdRef="Assign_3">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="sd:DataTable">[dt_OneTable]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="sd:DataTable">[dt_OneTable.Clone]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                        </Sequence>
-                      </ActivityAction>
-                    </ui:RepeatNumberOfTimesX.Body>
-                  </ui:RepeatNumberOfTimesX>
-                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A'" sap:VirtualizedContainerService.HintSize="583,139" sap2010:WorkflowViewState.IdRef="Click_7" KeyModifiers="None" MouseButton="BTN_LEFT">
-                    <ui:Click.CursorPosition>
-                      <ui:CursorPosition Position="Center">
-                        <ui:CursorPosition.OffsetX>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:CursorPosition.OffsetX>
-                        <ui:CursorPosition.OffsetY>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:CursorPosition.OffsetY>
-                      </ui:CursorPosition>
-                    </ui:Click.CursorPosition>
-                    <ui:Click.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="10b83cfe-d385-4cb1-b761-18b7d409df36" InformativeScreenshot="722220b2ff648ce2e8d1c7743743f538" Selector="&lt;html app='chrome.exe' title='* | Tabula' /&gt;&lt;webctrl id='upload-nav' tag='A' /&gt;">
-                        <ui:Target.TimeoutMS>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:Target.TimeoutMS>
-                        <ui:Target.WaitForReady>
-                          <InArgument x:TypeArguments="ui:WaitForReady" />
-                        </ui:Target.WaitForReady>
-                      </ui:Target>
-                    </ui:Click.Target>
-                  </ui:Click>
-                  <ui:CopyFile ContinueOnError="{x:Null}" Destination="C:\Users\rpa\AppData\Roaming\Tabula\pdfs" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="583,186" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="C:\Users\rpa\Documents\tabula\workspace.json" />
-                  <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey 'chrome.exe SPIS'" sap:VirtualizedContainerService.HintSize="583,185" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="enter" KeyModifiers="None" SpecialKey="True">
-                    <ui:SendHotkey.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6afa7048-6857-486b-ac0b-a9857ddccc29" InformativeScreenshot="f6ede69325b70ccf907e963516174ac0" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='*Tabula*' /&gt;">
-                        <ui:Target.TimeoutMS>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:Target.TimeoutMS>
-                        <ui:Target.WaitForReady>
-                          <InArgument x:TypeArguments="ui:WaitForReady" />
-                        </ui:Target.WaitForReady>
-                      </ui:Target>
-                    </ui:SendHotkey.Target>
-                  </ui:SendHotkey>
-                  <ui:FilterDataTable DataTable="[dt_AllTables]" DisplayName="Filter dt_StudyStart" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="583,193" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dt_StudyStart]" SelectColumnsMode="Remove">
-                    <ui:FilterDataTable.Filters>
-                      <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
-                        <ui:FilterOperationArgument BooleanOperator="And" Operator="STARTSWITH">
-                          <ui:FilterOperationArgument.Column>
-                            <InArgument x:TypeArguments="x:Int32">[0]</InArgument>
-                          </ui:FilterOperationArgument.Column>
-                          <ui:FilterOperationArgument.Operand>
-                            <InArgument x:TypeArguments="x:String">["20"]</InArgument>
-                          </ui:FilterOperationArgument.Operand>
-                        </ui:FilterOperationArgument>
-                      </scg:List>
-                    </ui:FilterDataTable.Filters>
-                    <ui:FilterDataTable.SelectColumns>
-                      <scg:List x:TypeArguments="InArgument" Capacity="4">
-                        <x:Null />
-                      </scg:List>
-                    </ui:FilterDataTable.SelectColumns>
-                  </ui:FilterDataTable>
-                  <If Condition="[dt_StudyStart.RowCount &gt;0]" sap:VirtualizedContainerService.HintSize="583,1370" sap2010:WorkflowViewState.IdRef="If_4">
-                    <If.Then>
-                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="506,1076" sap2010:WorkflowViewState.IdRef="Sequence_4">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:FilterDataTable DataTable="[dt_StudyStart]" DisplayName="Filter dt_StudyEnd" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="472,193" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[dt_StudyEnd]" SelectColumnsMode="Remove">
-                          <ui:FilterDataTable.Filters>
-                            <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
-                              <ui:FilterOperationArgument BooleanOperator="And" Operator="STARTSWITH">
-                                <ui:FilterOperationArgument.Column>
-                                  <InArgument x:TypeArguments="x:Int32">[1]</InArgument>
-                                </ui:FilterOperationArgument.Column>
-                                <ui:FilterOperationArgument.Operand>
-                                  <InArgument x:TypeArguments="x:String">["20"]</InArgument>
-                                </ui:FilterOperationArgument.Operand>
-                              </ui:FilterOperationArgument>
-                            </scg:List>
-                          </ui:FilterDataTable.Filters>
-                          <ui:FilterDataTable.SelectColumns>
-                            <scg:List x:TypeArguments="InArgument" Capacity="4">
-                              <x:Null />
-                            </scg:List>
-                          </ui:FilterDataTable.SelectColumns>
-                        </ui:FilterDataTable>
-                        <If Condition="[dt_StudyStart.RowCount &lt;&gt; dt_StudyEnd.RowCount]" DisplayName="Compare dt_StudyStart dt_StudyStart" sap:VirtualizedContainerService.HintSize="472,823" sap2010:WorkflowViewState.IdRef="If_3">
-                          <If.Then>
-                            <Assign DisplayName="Studento statusas2" sap:VirtualizedContainerService.HintSize="470,82" sap2010:WorkflowViewState.IdRef="Assign_4">
-                              <Assign.To>
-                                <OutArgument x:TypeArguments="x:Boolean">[out_Studentas]</OutArgument>
-                              </Assign.To>
-                              <Assign.Value>
-                                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
-                              </Assign.Value>
-                            </Assign>
-                          </If.Then>
-                          <If.Else>
-                            <Sequence DisplayName="Final Status" sap:VirtualizedContainerService.HintSize="470,590" sap2010:WorkflowViewState.IdRef="Sequence_5">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <ui:FilterDataTable DataTable="[dt_StudyEnd]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="436,193" sap2010:WorkflowViewState.IdRef="FilterDataTable_3" OutputDataTable="[dt_StudyEnd]" SelectColumnsMode="Remove">
-                                <ui:FilterDataTable.Filters>
-                                  <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
-                                    <ui:FilterOperationArgument BooleanOperator="And" Operator="GT">
-                                      <ui:FilterOperationArgument.Column>
-                                        <InArgument x:TypeArguments="x:Int32">[1]</InArgument>
-                                      </ui:FilterOperationArgument.Column>
-                                      <ui:FilterOperationArgument.Operand>
-                                        <InArgument x:TypeArguments="x:String">[DateTime.Now.ToString("yyyy-MM-dd")]</InArgument>
-                                      </ui:FilterOperationArgument.Operand>
-                                    </ui:FilterOperationArgument>
-                                  </scg:List>
-                                </ui:FilterDataTable.Filters>
-                                <ui:FilterDataTable.SelectColumns>
-                                  <scg:List x:TypeArguments="InArgument" Capacity="4">
-                                    <x:Null />
-                                  </scg:List>
-                                </ui:FilterDataTable.SelectColumns>
-                              </ui:FilterDataTable>
-                              <If Condition="[dt_StudyEnd.RowCount&gt;0]" sap:VirtualizedContainerService.HintSize="436,337" sap2010:WorkflowViewState.IdRef="If_2">
-                                <If.Then>
-                                  <Assign DisplayName="Studento statusas2" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_5">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="x:Boolean">[out_Studentas]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="x:Boolean">True</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Then>
-                                <If.Else>
-                                  <Assign DisplayName="Studento statusas2" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_6">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="x:Boolean">[out_Studentas]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="x:Boolean">False</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Else>
-                              </If>
-                            </Sequence>
-                          </If.Else>
-                        </If>
-                      </Sequence>
-                    </If.Then>
-                    <If.Else>
-                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="506,165" sap2010:WorkflowViewState.IdRef="Sequence_9">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <Assign DisplayName="Studento statusas2" sap:VirtualizedContainerService.HintSize="472,105" sap2010:WorkflowViewState.IdRef="Assign_7">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:Boolean">[out_Studentas]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:Boolean">False</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                      </Sequence>
-                    </If.Else>
-                  </If>
-                </Sequence>
-              </ActivityAction>
-            </ui:BrowserScope.Body>
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </ui:BrowserScope>
-        </Sequence>
-      </If.Then>
-      <If.Else>
-        <Assign DisplayName="Studento statusas" sap:VirtualizedContainerService.HintSize="685,82" sap2010:WorkflowViewState.IdRef="Assign_9">
-          <Assign.To>
-            <OutArgument x:TypeArguments="x:Boolean">[out_Studentas]</OutArgument>
-          </Assign.To>
-          <Assign.Value>
-            <InArgument x:TypeArguments="x:Boolean">False</InArgument>
-          </Assign.Value>
-        </Assign>
-      </If.Else>
-    </If>
+    <ui:InvokeCode Code="' ============================================================================&#xA;' Invoke Code: Studentų / Mokinių registro išrašas (PDF) -&gt; out_Studentas  (pakeičia Tabula UI)&#xA;' Taisyklė (kaip ankstesnėje StudyRecords.xaml): lentelėse, kurių antraštėje yra &quot;nuo&quot; ir &quot;iki&quot;,&#xA;' imami du paskutiniai stulpeliai (pradžia, pabaiga). Mokosi = True, jei yra eilutė su pradžios data&#xA;' (prasideda &quot;20&quot;) ir be pabaigos datos, ARBA pabaigos data vėlesnė nei šiandien.&#xA;' Eilutės be pradžios datos (pvz. neformalusis ugdymas) ir &quot;Nėra duomenų&quot; neįskaitomos.&#xA;'&#xA;' Argumentai:&#xA;'   in_Path          In   String&#xA;'   in_JavaPath      In   String      neprivaloma&#xA;'   out_Studentas    Out  Boolean&#xA;'   out_JavaUsed     Out  String&#xA;'   out_TableCount   Out  Int32&#xA;'   out_Reason       Out  String      kuri eilutė lėmė True (log), be asmens duomenų&#xA;' ============================================================================&#xA;&#xA;' ---------- 1. java.exe paieška ----------&#xA;Dim javaExe As String = &quot;&quot;&#xA;Dim jarPath As String = System.IO.Path.Combine(System.Environment.CurrentDirectory, &quot;Data&quot;, &quot;Tools&quot;, &quot;tabula-1.0.5-jar-with-dependencies.jar&quot;)&#xA;If Not System.IO.File.Exists(jarPath) Then&#xA;    Throw New System.Exception(&quot;Nerastas tabula jar failas: &quot; &amp; jarPath)&#xA;End If&#xA;If Not String.IsNullOrWhiteSpace(in_JavaPath) AndAlso System.IO.File.Exists(in_JavaPath.Trim()) Then&#xA;    javaExe = in_JavaPath.Trim()&#xA;End If&#xA;If javaExe = &quot;&quot; Then&#xA;    Dim searchRoots As New System.Collections.Generic.List(Of String)()&#xA;    searchRoots.Add(System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile), &quot;Documents&quot;, &quot;tabula&quot;))&#xA;    Dim javaHome As String = System.Environment.GetEnvironmentVariable(&quot;JAVA_HOME&quot;)&#xA;    If Not String.IsNullOrWhiteSpace(javaHome) Then searchRoots.Add(javaHome)&#xA;    searchRoots.Add(System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles), &quot;Java&quot;))&#xA;    searchRoots.Add(System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles), &quot;Eclipse Adoptium&quot;))&#xA;    searchRoots.Add(System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles), &quot;Microsoft&quot;))&#xA;    searchRoots.Add(System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFilesX86), &quot;Java&quot;))&#xA;    searchRoots.Add(System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFilesX86), &quot;Common Files&quot;, &quot;Oracle&quot;, &quot;Java&quot;))&#xA;    For Each rootDir As String In searchRoots&#xA;        If javaExe &lt;&gt; &quot;&quot; Then Exit For&#xA;        If Not System.IO.Directory.Exists(rootDir) Then Continue For&#xA;        Try&#xA;            Dim found As String() = System.IO.Directory.GetFiles(rootDir, &quot;java.exe&quot;, System.IO.SearchOption.AllDirectories)&#xA;            If found.Length &gt; 0 Then javaExe = found(0)&#xA;        Catch exSearch As System.Exception&#xA;        End Try&#xA;    Next&#xA;End If&#xA;If javaExe = &quot;&quot; Then&#xA;    For Each pathDir As String In (If(System.Environment.GetEnvironmentVariable(&quot;PATH&quot;), &quot;&quot;)).Split(&quot;;&quot;c)&#xA;        Dim cand As String = System.IO.Path.Combine(pathDir.Trim().Trim(&quot;&quot;&quot;&quot;c), &quot;java.exe&quot;)&#xA;        If pathDir.Trim() &lt;&gt; &quot;&quot; AndAlso System.IO.File.Exists(cand) Then&#xA;            javaExe = cand&#xA;            Exit For&#xA;        End If&#xA;    Next&#xA;End If&#xA;If javaExe = &quot;&quot; Then&#xA;    Throw New System.Exception(&quot;Nerastas java.exe (ieškota Documents\tabula, JAVA_HOME, Program Files, PATH). Nurodykite java.exe kelią argumentu in_JavaPath.&quot;)&#xA;End If&#xA;out_JavaUsed = javaExe&#xA;&#xA;' ---------- 2. tabula-java: PDF -&gt; JSON (lattice, visi puslapiai) ----------&#xA;Dim pdfFull As String = System.IO.Path.GetFullPath(in_Path)&#xA;If Not System.IO.File.Exists(pdfFull) Then&#xA;    Throw New System.Exception(&quot;Nerastas PDF failas: &quot; &amp; pdfFull)&#xA;End If&#xA;Dim jsonFile As String = System.IO.Path.Combine(System.IO.Path.GetTempPath(), &quot;tabula_&quot; &amp; System.Guid.NewGuid().ToString(&quot;N&quot;) &amp; &quot;.json&quot;)&#xA;Dim psi As New System.Diagnostics.ProcessStartInfo()&#xA;psi.FileName = javaExe&#xA;psi.Arguments = &quot;-Dfile.encoding=UTF-8 -jar &quot;&quot;&quot; &amp; jarPath &amp; &quot;&quot;&quot; -l -p all -f JSON -o &quot;&quot;&quot; &amp; jsonFile &amp; &quot;&quot;&quot; &quot;&quot;&quot; &amp; pdfFull &amp; &quot;&quot;&quot;&quot;&#xA;psi.UseShellExecute = False&#xA;psi.CreateNoWindow = True&#xA;psi.RedirectStandardError = True&#xA;psi.RedirectStandardOutput = False&#xA;Dim errText As String = &quot;&quot;&#xA;Dim exitCode As Integer = -1&#xA;Using proc As System.Diagnostics.Process = System.Diagnostics.Process.Start(psi)&#xA;    errText = proc.StandardError.ReadToEnd()&#xA;    If Not proc.WaitForExit(120000) Then&#xA;        Try&#xA;            proc.Kill()&#xA;        Catch exKill As System.Exception&#xA;        End Try&#xA;        Throw New System.Exception(&quot;tabula-java neatsakė per 120 s: &quot; &amp; in_Path)&#xA;    End If&#xA;    exitCode = proc.ExitCode&#xA;End Using&#xA;If exitCode &lt;&gt; 0 OrElse Not System.IO.File.Exists(jsonFile) Then&#xA;    Throw New System.Exception(&quot;tabula-java klaida (kodas &quot; &amp; exitCode.ToString() &amp; &quot;): &quot; &amp; errText)&#xA;End If&#xA;Dim jsonText As String = System.IO.File.ReadAllText(jsonFile, System.Text.Encoding.UTF8)&#xA;Try&#xA;    System.IO.File.Delete(jsonFile)&#xA;Catch exDel As System.Exception&#xA;End Try&#xA;&#xA;' ---------- 3. JSON -&gt; lentelės (List of rows, row = String()) ----------&#xA;' langelių tekstas normalizuojamas: &quot;2024-11-\r11&quot; -&gt; &quot;2024-11-11&quot;, \r ir tarpai -&gt; vienas tarpas&#xA;Dim allTables As New System.Collections.Generic.List(Of System.Collections.Generic.List(Of String()))()&#xA;Using jdoc As System.Text.Json.JsonDocument = System.Text.Json.JsonDocument.Parse(jsonText)&#xA;    For Each jTable As System.Text.Json.JsonElement In jdoc.RootElement.EnumerateArray()&#xA;        Dim tRows As New System.Collections.Generic.List(Of String())()&#xA;        For Each jRow As System.Text.Json.JsonElement In jTable.GetProperty(&quot;data&quot;).EnumerateArray()&#xA;            Dim cellTexts As New System.Collections.Generic.List(Of String)()&#xA;            For Each jCell As System.Text.Json.JsonElement In jRow.EnumerateArray()&#xA;                Dim cellVal As String = &quot;&quot;&#xA;                Dim textProp As System.Text.Json.JsonElement&#xA;                If jCell.TryGetProperty(&quot;text&quot;, textProp) Then cellVal = If(textProp.GetString(), &quot;&quot;)&#xA;                cellVal = System.Text.RegularExpressions.Regex.Replace(cellVal, &quot;-[ \t]*[\r\n]+\s*&quot;, &quot;-&quot;)&#xA;                cellVal = System.Text.RegularExpressions.Regex.Replace(cellVal, &quot;\s+&quot;, &quot; &quot;).Trim()&#xA;                cellTexts.Add(cellVal)&#xA;            Next&#xA;            tRows.Add(cellTexts.ToArray())&#xA;        Next&#xA;        allTables.Add(tRows)&#xA;    Next&#xA;End Using&#xA;out_TableCount = allTables.Count&#xA;&#xA;' ---------- 4. Ar mokosi ----------&#xA;Dim todayStr As String = System.DateTime.Now.ToString(&quot;yyyy-MM-dd&quot;)&#xA;out_Studentas = False&#xA;out_Reason = &quot;&quot;&#xA;For Each tblRows As System.Collections.Generic.List(Of String()) In allTables&#xA;    If tblRows.Count &lt; 2 Then Continue For&#xA;    Dim hdrText As String = String.Join(&quot; &quot;, tblRows(0)).ToLower()&#xA;    If Not (System.Text.RegularExpressions.Regex.IsMatch(hdrText, &quot;\bnuo\b&quot;) AndAlso System.Text.RegularExpressions.Regex.IsMatch(hdrText, &quot;\biki\b&quot;)) Then Continue For&#xA;    For rowIdx As Integer = 1 To tblRows.Count - 1&#xA;        Dim rc As String() = tblRows(rowIdx)&#xA;        If rc.Length &lt; 2 Then Continue For&#xA;        Dim startDate As String = rc(rc.Length - 2)&#xA;        Dim endDate As String = rc(rc.Length - 1)&#xA;        If Not startDate.StartsWith(&quot;20&quot;) Then Continue For&#xA;        If endDate = &quot;&quot; Then&#xA;            out_Studentas = True&#xA;            out_Reason = &quot;pradžia &quot; &amp; startDate &amp; &quot;, be pabaigos datos&quot;&#xA;            Exit For&#xA;        End If&#xA;        If endDate.StartsWith(&quot;20&quot;) AndAlso String.CompareOrdinal(endDate, todayStr) &gt; 0 Then&#xA;            out_Studentas = True&#xA;            out_Reason = &quot;pradžia &quot; &amp; startDate &amp; &quot;, pabaiga &quot; &amp; endDate &amp; &quot; &gt; šiandien&quot;&#xA;            Exit For&#xA;        End If&#xA;    Next&#xA;    If out_Studentas Then Exit For&#xA;Next&#xA;" ContinueOnError="{x:Null}" DisplayName="Tabula_Study: PDF -> ar mokosi (tabula-java)" Language="VBNet">
+        <ui:InvokeCode.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Path">[in_Path]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_JavaPath">[in_JavaPath]</InArgument>
+          <OutArgument x:TypeArguments="x:Boolean" x:Key="out_Studentas">[out_Studentas]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_JavaUsed">[javaUsed]</OutArgument>
+          <OutArgument x:TypeArguments="x:Int32" x:Key="out_TableCount">[tableCount]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_Reason">[reason]</OutArgument>
+        </ui:InvokeCode.Arguments>
+      </ui:InvokeCode>
+    <ui:LogMessage DisplayName="Log Studentas" Level="Info" Message="[&quot;Studijų/mokymosi išrašas: lentelių &quot; &amp; tableCount.ToString &amp; &quot;, mokosi = &quot; &amp; out_Studentas.ToString &amp; If(reason = &quot;&quot;, &quot;&quot;, &quot; (&quot; &amp; reason &amp; &quot;)&quot;)]" />
   </Sequence>
 </Activity>
