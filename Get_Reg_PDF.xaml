@@ -151,6 +151,7 @@
   </sap2010:WorkflowViewState.ViewStateManager>
   <Sequence DisplayName="Get_Reg_PDF" sap:VirtualizedContainerService.HintSize="649.6,2456" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="[If(String.IsNullOrEmpty(System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;)), System.IO.Path.Combine(System.Environment.CurrentDirectory, &quot;Data&quot;), System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;))]" Name="DataDir" />
       <Variable x:TypeArguments="x:String" Name="Prefix" />
       <Variable x:TypeArguments="x:String" Name="TbodyAsm" />
       <Variable x:TypeArguments="x:String" Name="TblAsm" />
@@ -243,7 +244,7 @@
                 <OutArgument x:TypeArguments="x:String">[out_Path]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">["C:\ROBOT"&amp; "\Data\Input\Gyv" &amp; in_AK &amp; ".pdf"]</InArgument>
+                <InArgument x:TypeArguments="x:String">[DataDir &amp; "\Input\Gyv" &amp; in_AK &amp; ".pdf"]</InArgument>
               </Assign.Value>
             </Assign>
             <ui:RetryScope DisplayName="Retry Scope" sap:VirtualizedContainerService.HintSize="491.2,657.6" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="3" RetryInterval="00:00:10">

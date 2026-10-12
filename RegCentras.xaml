@@ -135,6 +135,7 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="RegCentras" sap:VirtualizedContainerService.HintSize="918.4,8816" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="[If(String.IsNullOrEmpty(System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;)), System.IO.Path.Combine(System.Environment.CurrentDirectory, &quot;Data&quot;), System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;))]" Name="DataDir" />
       <Variable x:TypeArguments="x:Int32" Name="Counter">
         <Variable.Default>
           <Literal x:TypeArguments="x:Int32" />
@@ -266,8 +267,8 @@
                         </ui:Target>
                       </ui:Click.Target>
                     </ui:Click>
-                    <ui:WriteRange StartingCell="{x:Null}" AddHeaders="False" DataTable="[io_dt_FamilyList_Full]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="387.2,116" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="dt_FamilyList_Full" WorkbookPath="Data\Output\Seimos.xlsx" />
-                    <ui:ReadRange AddHeaders="False" DataTable="[io_dt_FamilyList_Full]" DisplayName="Read Range Registru Centras" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ReadRange_3" SheetName="dt_FamilyList_Full" WorkbookPath="Data\Output\Seimos.xlsx">
+                    <ui:WriteRange StartingCell="{x:Null}" AddHeaders="False" DataTable="[io_dt_FamilyList_Full]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="387.2,116" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="dt_FamilyList_Full" WorkbookPath="[DataDir &amp; &quot;\Output\Seimos.xlsx&quot;]" />
+                    <ui:ReadRange AddHeaders="False" DataTable="[io_dt_FamilyList_Full]" DisplayName="Read Range Registru Centras" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ReadRange_3" SheetName="dt_FamilyList_Full" WorkbookPath="[DataDir &amp; &quot;\Output\Seimos.xlsx&quot;]">
                       <ui:ReadRange.Range>
                         <InArgument x:TypeArguments="x:String">
                           <Literal x:TypeArguments="x:String" Value="" />

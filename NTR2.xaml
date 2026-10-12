@@ -137,6 +137,7 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="" DisplayName="NTR2" sap:VirtualizedContainerService.HintSize="961.6,13336" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="[If(String.IsNullOrEmpty(System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;)), System.IO.Path.Combine(System.Environment.CurrentDirectory, &quot;Data&quot;), System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;))]" Name="DataDir" />
       <Variable x:TypeArguments="x:String" Name="PageText" />
       <Variable x:TypeArguments="x:String" Name="thisCol" />
       <Variable x:TypeArguments="x:String" Name="NekilnojamiDaiktai" />
@@ -219,7 +220,7 @@
                 <OutArgument x:TypeArguments="x:String">[Path]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">["C:\ROBOT"+ "\Data\Input\NTR_"+RegDaiktas.Replace(":", "-").Trim+".pdf"]</InArgument>
+                <InArgument x:TypeArguments="x:String">[DataDir &amp; "\Input\NTR_"+RegDaiktas.Replace(":", "-").Trim+".pdf"]</InArgument>
               </Assign.Value>
             </Assign>
             <ui:FileExistsX DisplayName="File Exists" Exists="[Exists]" sap:VirtualizedContainerService.HintSize="433.6,134.4" sap2010:WorkflowViewState.IdRef="FileExistsX_2" Path="[Path]">
@@ -322,7 +323,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:ReadRange AddHeaders="False" DataTable="[in_dt_FamilyList_Full]" DisplayName="Read Range Registru Centras" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="dt_FamilyList_Full" WorkbookPath="Data\Output\Seimos.xlsx">
+          <ui:ReadRange AddHeaders="False" DataTable="[in_dt_FamilyList_Full]" DisplayName="Read Range Registru Centras" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="dt_FamilyList_Full" WorkbookPath="[DataDir &amp; &quot;\Output\Seimos.xlsx&quot;]">
             <ui:ReadRange.Range>
               <InArgument x:TypeArguments="x:String">
                 <Literal x:TypeArguments="x:String" Value="" />
@@ -598,7 +599,7 @@
                                       <OutArgument x:TypeArguments="x:String">[Path]</OutArgument>
                                     </Assign.To>
                                     <Assign.Value>
-                                      <InArgument x:TypeArguments="x:String">["C:\ROBOT"+ "\Data\Input\Vert_"+row(0).ToString.Trim.Replace(":", "-").Trim+".pdf"]</InArgument>
+                                      <InArgument x:TypeArguments="x:String">[DataDir &amp; "\Input\Vert_"+row(0).ToString.Trim.Replace(":", "-").Trim+".pdf"]</InArgument>
                                     </Assign.Value>
                                   </Assign>
                                   <ui:FileExistsX DisplayName="File Exists" Exists="[Exists]" sap:VirtualizedContainerService.HintSize="510,133" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[Path]">
@@ -622,7 +623,7 @@
                                             <OutArgument x:TypeArguments="x:String">[PngPath]</OutArgument>
                                           </Assign.To>
                                           <Assign.Value>
-                                            <InArgument x:TypeArguments="x:String">["C:\ROBOT"+ "\Data\Input\Vert_"+row(0).ToString.Trim.Replace(":", "-").Trim+".png"]</InArgument>
+                                            <InArgument x:TypeArguments="x:String">[DataDir &amp; "\Input\Vert_"+row(0).ToString.Trim.Replace(":", "-").Trim+".png"]</InArgument>
                                           </Assign.Value>
                                         </Assign>
                                         <uix:NTakeScreenshot DisplayName="Take Screenshot 'Unikalus daikto numeris…'" FileName="[PngPath]" FileNameMode="Index" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="434,309" sap2010:WorkflowViewState.IdRef="NTakeScreenshot_1" ScopeIdentifier="8f68c0db-86bd-497c-8f3b-f9f208f90bba" Version="V5">

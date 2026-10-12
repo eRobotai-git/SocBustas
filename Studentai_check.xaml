@@ -137,6 +137,7 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Studentai_check" sap:VirtualizedContainerService.HintSize="803.2,5598.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="[If(String.IsNullOrEmpty(System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;)), System.IO.Path.Combine(System.Environment.CurrentDirectory, &quot;Data&quot;), System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;))]" Name="DataDir" />
       <Variable x:TypeArguments="x:String" Name="Year" />
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="Spis" />
       <Variable x:TypeArguments="s:DateTime" Name="birthDate" />
@@ -163,7 +164,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:ReadRange AddHeaders="True" DataTable="[io_vaikai18m]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="416,111" sap2010:WorkflowViewState.IdRef="ReadRange_3" SheetName="Seimos" WorkbookPath="Data\Input\Ataskaitos VilniusLt.xlsx">
+          <ui:ReadRange AddHeaders="True" DataTable="[io_vaikai18m]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="416,111" sap2010:WorkflowViewState.IdRef="ReadRange_3" SheetName="Seimos" WorkbookPath="[DataDir &amp; &quot;\Input\Ataskaitos VilniusLt.xlsx&quot;]">
             <ui:ReadRange.Range>
               <InArgument x:TypeArguments="x:String">
                 <Literal x:TypeArguments="x:String" Value="" />
@@ -553,7 +554,7 @@
                       <OutArgument x:TypeArguments="x:String">[Path]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">["C:\ROBOT\Data\Input\Study" &amp; CurrentRow(0).ToString.Trim() &amp; ".pdf"]</InArgument>
+                      <InArgument x:TypeArguments="x:String">[DataDir &amp; "\Input\Study" &amp; CurrentRow(0).ToString.Trim() &amp; ".pdf"]</InArgument>
                     </Assign.Value>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -685,7 +686,7 @@
                                   <OutArgument x:TypeArguments="x:String">[Path]</OutArgument>
                                 </Assign.To>
                                 <Assign.Value>
-                                  <InArgument x:TypeArguments="x:String">["C:\ROBOT\Data\Input\Mok" &amp; CurrentRow(0).ToString.Trim() &amp; ".pdf"]</InArgument>
+                                  <InArgument x:TypeArguments="x:String">[DataDir &amp; "\Input\Mok" &amp; CurrentRow(0).ToString.Trim() &amp; ".pdf"]</InArgument>
                                 </Assign.Value>
                               </Assign>
                               <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RowButton - Invoke Workflow File (RowButton.xaml)" sap:VirtualizedContainerService.HintSize="433.6,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RowButton.xaml">

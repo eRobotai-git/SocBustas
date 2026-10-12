@@ -137,6 +137,7 @@
   </sap:WorkflowViewStateService.ViewState>
   <Sequence DisplayName="Get_Deklaracija" sap:VirtualizedContainerService.HintSize="728,10919.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="[If(String.IsNullOrEmpty(System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;)), System.IO.Path.Combine(System.Environment.CurrentDirectory, &quot;Data&quot;), System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;))]" Name="DataDir" />
       <Variable x:TypeArguments="x:String" Name="Person" />
       <Variable x:TypeArguments="x:String" Name="innerhtml" />
       <Variable x:TypeArguments="x:String" Name="vmi_sar_row" />
@@ -206,7 +207,7 @@
         <OutArgument x:TypeArguments="x:String">[Path]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">["C:\ROBOT"&amp; "\Data\Input\VMI" &amp; AK &amp; ".pdf"]</InArgument>
+        <InArgument x:TypeArguments="x:String">[DataDir &amp; "\Input\VMI" &amp; AK &amp; ".pdf"]</InArgument>
       </Assign.Value>
     </Assign>
     <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe  SPIS'" sap:VirtualizedContainerService.HintSize="665.6,2949.6" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="99b46f0617c78f52760f8edc492541bf" Selector="&lt;html app='chrome.exe' title='SPIS*' /&gt;">

@@ -137,6 +137,7 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="NDNT" sap:VirtualizedContainerService.HintSize="899.2,5021.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="[If(String.IsNullOrEmpty(System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;)), System.IO.Path.Combine(System.Environment.CurrentDirectory, &quot;Data&quot;), System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;))]" Name="DataDir" />
       <Variable x:TypeArguments="x:Boolean" Name="ElementExists" />
       <Variable x:TypeArguments="ui:Browser" Name="SPIS" />
       <Variable x:TypeArguments="x:String" Name="ANTAStatus" />
@@ -161,14 +162,14 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:ReadRange Range="{x:Null}" AddHeaders="False" DataTable="[in_dt_SeimosTableRegProcessed]" DisplayName="Read RangeTableRegProcessed" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="TableRegProcessed" WorkbookPath="Data\Output\Seimos.xlsx" />
-          <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[io_dt_AllRows]" DisplayName="Read Range From Input Workbook" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ReadRange_3" SheetName="Sheet1" WorkbookPath="Data\Input\Ataskaitos VilniusLt.xlsx" />
+          <ui:ReadRange Range="{x:Null}" AddHeaders="False" DataTable="[in_dt_SeimosTableRegProcessed]" DisplayName="Read RangeTableRegProcessed" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="TableRegProcessed" WorkbookPath="[DataDir &amp; &quot;\Output\Seimos.xlsx&quot;]" />
+          <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[io_dt_AllRows]" DisplayName="Read Range From Input Workbook" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ReadRange_3" SheetName="Sheet1" WorkbookPath="[DataDir &amp; &quot;\Input\Ataskaitos VilniusLt.xlsx&quot;]" />
           <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim columns As String() = {&#xA;    &quot;Asmenų_sk&quot;, &quot;Vienišas_asmuo&quot;, &quot;Vienas_augina_vaikus&quot;, &quot;Neįgalus&quot;, &#xA;    &quot;Deklaracijos_pildymo_data&quot;, &quot;Teisės_terminas&quot;, &quot;Metinės_pajamos&quot;, &#xA;    &quot;Plotas&quot;, &quot;Nuosavybės_teisė&quot;, &quot;Šeimos_turtas&quot;, &quot;Trūksta_dokumentų&quot;, &#xA;    &quot;Apdorojimo_laikas&quot;, &quot;Statusas&quot;, &quot;Išimtis&quot;, &quot;Pajamos_su_35%&quot;, &#xA;    &quot;Turtas_su_35%&quot;, &quot;Pajamos_su_50%&quot;, &quot;Turtas_su_50%&quot;, &#xA;    &quot;Išvada_nauja&quot;, &quot;PastabosKomentarai&quot;, &quot;Vardas&quot;, &quot;Pavardė&quot;, &quot;Nedarbingumas&quot;&#xA;}&#xA;&#xA;For Each colName As String In columns&#xA;    If Not io_dt_AllRows.Columns.Contains(colName) Then&#xA;        io_dt_AllRows.Columns.Add(colName)&#xA;    End If&#xA;Next" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="387.2,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
             <ui:InvokeCode.Arguments>
               <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_AllRows">[io_dt_AllRows]</InOutArgument>
             </ui:InvokeCode.Arguments>
           </ui:InvokeCode>
-          <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_Zodynas]" DisplayName="Load zodynas" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ReadRange_4" SheetName="Sheet1" WorkbookPath="Data\Konf\Lyg2toSPIS.xlsx" />
+          <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_Zodynas]" DisplayName="Load zodynas" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ReadRange_4" SheetName="Sheet1" WorkbookPath="[DataDir &amp; &quot;\Konf\Lyg2toSPIS.xlsx&quot;]" />
         </Sequence>
       </ui:CommentOut.Body>
       <sap:WorkflowViewStateService.ViewState>
@@ -424,7 +425,7 @@
                               <OutArgument x:TypeArguments="x:String">[Path]</OutArgument>
                             </Assign.To>
                             <Assign.Value>
-                              <InArgument x:TypeArguments="x:String">["C:\ROBOT"&amp; "\Data\Input\NDNT" &amp; AK &amp; ".pdf"]</InArgument>
+                              <InArgument x:TypeArguments="x:String">[DataDir &amp; "\Input\NDNT" &amp; AK &amp; ".pdf"]</InArgument>
                             </Assign.Value>
                           </Assign>
                           <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Išrašas'" sap:VirtualizedContainerService.HintSize="587.2,107.2" sap2010:WorkflowViewState.IdRef="Click_10" KeyModifiers="None" MouseButton="BTN_LEFT">

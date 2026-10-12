@@ -1,6 +1,7 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity this:Main.in_DataDir="C:\ROBOT\Data" mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:this="clr-namespace:">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Allows the Orchestrator queue name to be passed as an argument, instead of only being defined in the configuration file." Name="in_OrchestratorQueueName" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Išorinis Data aplankas (Config.xlsx, Input, Output, Temp, Reports, Konf). Jei jame nėra Config.xlsx, naudojamas projekto Data aplankas." Name="in_DataDir" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -300,6 +301,7 @@
                           <InArgument x:TypeArguments="x:Int32" x:Key="in_VPR">[CInt(Config("VPR"))]</InArgument>
                           <InArgument x:TypeArguments="s:String[]" x:Key="in_WorkFilesList">[WorkFilesList]</InArgument>
                           <InArgument x:TypeArguments="x:String" x:Key="in_RivileApiKey">[Config(&quot;Rivile_ApiKey&quot;).ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_InfoDir">[If(Config.ContainsKey(&quot;SP_Informacija&quot;), Config(&quot;SP_Informacija&quot;).ToString, &quot;C:\Users\rpa\Vilniaus Miesto Būstas, SĮ\RoboticProcessAutomation - Informacija apie butus&quot;)]</InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
@@ -498,6 +500,13 @@
                                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
+                                    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim d As String = If(in_Dir, &quot;&quot;).Trim()&#xA;If d = &quot;&quot; OrElse Not System.IO.File.Exists(System.IO.Path.Combine(d, &quot;Config.xlsx&quot;)) Then&#xA;    d = System.IO.Path.Combine(System.Environment.CurrentDirectory, &quot;Data&quot;)&#xA;End If&#xA;For Each subDir As String In New String() {&quot;Input&quot;, &quot;Output&quot;, &quot;Temp&quot;, &quot;Reports&quot;, &quot;Konf&quot;}&#xA;    System.IO.Directory.CreateDirectory(System.IO.Path.Combine(d, subDir))&#xA;Next&#xA;System.Environment.SetEnvironmentVariable(&quot;ROBOT_DATA&quot;, d)&#xA;out_Dir = d" DisplayName="Nustatyti Data aplanką (ROBOT_DATA)" Language="VBNet">
+                                      <ui:InvokeCode.Arguments>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_Dir">[in_DataDir]</InArgument>
+                                        <OutArgument x:TypeArguments="x:String" x:Key="out_Dir">[DataDir]</OutArgument>
+                                      </ui:InvokeCode.Arguments>
+                                    </ui:InvokeCode>
+                                    <ui:LogMessage DisplayName="Log Data aplankas" Level="Info" Message="[&quot;Data aplankas: &quot; &amp; DataDir]" />
                                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CloseAllApplications - Invoke Workflow File (Framework\CloseAllApplications.xaml)" sap:VirtualizedContainerService.HintSize="334.4,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_27" UnSafe="False" WorkflowFileName="Framework\CloseAllApplications.xaml">
                                       <ui:InvokeWorkflowFile.Arguments>
                                         <scg:Dictionary x:TypeArguments="x:String, Argument" />
@@ -505,7 +514,7 @@
                                     </ui:InvokeWorkflowFile>
                                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Invoke InitAllSettings workflow" sap:VirtualizedContainerService.HintSize="334.4,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Framework\InitAllSettings.xaml">
                                       <ui:InvokeWorkflowFile.Arguments>
-                                        <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFile">Data\Config.xlsx</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFile">[DataDir &amp; "\Config.xlsx"]</InArgument>
                                         <InArgument x:TypeArguments="s:String[]" x:Key="in_ConfigSheets">[{"Settings", "Constants"}]</InArgument>
                                         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="out_Config">[Config]</OutArgument>
                                         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt_Zodynas">[dt_Zodynas]</OutArgument>
@@ -653,10 +662,10 @@
                                           <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4" />
                                         </ui:SendMail.Files>
                                       </ui:SendMail>
-                                      <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="C:\Users\rpa\Vilniaus Miesto Būstas, SĮ\RoboticProcessAutomation - Output" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="387.2,160" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="True" Path="[WorkFilesList(0)]" />
+                                      <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[If(Config.ContainsKey(&quot;SP_Output&quot;), Config(&quot;SP_Output&quot;).ToString, &quot;C:\Users\rpa\Vilniaus Miesto Būstas, SĮ\RoboticProcessAutomation - Output&quot;)]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="387.2,160" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="True" Path="[WorkFilesList(0)]" />
                                       <ui:StartProcess WorkingDirectory="{x:Null}" Arguments="/c taskkill /F /IM cmd.exe /T" DisplayName="Start Process" FileName="cmd.exe" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="StartProcess_1" />
                                       <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="387.2,90.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
-                                      <ui:StartProcess WorkingDirectory="{x:Null}" Arguments="[&quot;/c powershell -ExecutionPolicy Bypass -File &quot;&quot;C:\Users\rpa\Documents\NUPKG\monitorProd.ps1&quot;&quot;&quot;]" DisplayName="Start Process" FileName="cmd.exe" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="StartProcess_2" />
+                                      <ui:StartProcess WorkingDirectory="{x:Null}" Arguments="[&quot;/c powershell -ExecutionPolicy Bypass -File &quot;&quot; &amp; If(Config.ContainsKey(&quot;MonitorScript&quot;), Config(&quot;MonitorScript&quot;).ToString, &quot;C:\Users\rpa\Documents\NUPKG\monitorProd.ps1&quot;) &amp; &quot;&quot;&quot;&quot;]" DisplayName="Start Process" FileName="cmd.exe" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="StartProcess_2" />
                                     </Sequence>
                                   </TryCatch.Try>
                                   <TryCatch.Catches>
@@ -790,6 +799,7 @@
     <x:Reference>__ReferenceID1</x:Reference>
     <x:Reference>__ReferenceID3</x:Reference>
     <StateMachine.Variables>
+      <Variable x:TypeArguments="x:String" Name="DataDir" />
       <Variable x:TypeArguments="sd:DataRow" sap2010:Annotation.AnnotationText="Transaction item to be processed. The type of this variable can be changed to match the transaction type in the process. For example, when processing data from a spreadsheet that is read into a DataTable, this type can be changed to DataRow. " Name="TransactionItem" />
       <Variable x:TypeArguments="s:Exception" sap2010:Annotation.AnnotationText="Used during transitions between states to represent exceptions other than business exceptions." Name="SystemException" />
       <Variable x:TypeArguments="ui:BusinessRuleException" sap2010:Annotation.AnnotationText="Used during transitions between states and represents a situation that does not conform to the rules of the process being automated." Name="BusinessException" />

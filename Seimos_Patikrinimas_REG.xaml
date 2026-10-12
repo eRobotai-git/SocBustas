@@ -123,6 +123,7 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Seimos_Patikrinimas_REG" sap:VirtualizedContainerService.HintSize="1867,2487" sap2010:WorkflowViewState.IdRef="Sequence_14">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="[If(String.IsNullOrEmpty(System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;)), System.IO.Path.Combine(System.Environment.CurrentDirectory, &quot;Data&quot;), System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;))]" Name="DataDir" />
       <Variable x:TypeArguments="sd:DataTable" Name="Input" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_MainRenterRow" />
       <Variable x:TypeArguments="x:String" Name="RegAdress" />
@@ -152,9 +153,9 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[io_dt_RegSeimaTable]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="434,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Reg" WorkbookPath="Data\Input\Ataskaitos VilniusLt.xlsx" />
-          <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[in_dt_SeimosTable]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="434,120" sap2010:WorkflowViewState.IdRef="ReadRange_3" SheetName="Seimos" WorkbookPath="Data\Input\Ataskaitos VilniusLt.xlsx" />
-          <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[Input]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="434,120" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="SpisRenterRow" WorkbookPath="Data\Input\Ataskaitos VilniusLt.xlsx" />
+          <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[io_dt_RegSeimaTable]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="434,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Reg" WorkbookPath="[DataDir &amp; &quot;\Input\Ataskaitos VilniusLt.xlsx&quot;]" />
+          <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[in_dt_SeimosTable]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="434,120" sap2010:WorkflowViewState.IdRef="ReadRange_3" SheetName="Seimos" WorkbookPath="[DataDir &amp; &quot;\Input\Ataskaitos VilniusLt.xlsx&quot;]" />
+          <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[Input]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="434,120" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="SpisRenterRow" WorkbookPath="[DataDir &amp; &quot;\Input\Ataskaitos VilniusLt.xlsx&quot;]" />
           <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_7">
             <Assign.To>
               <OutArgument x:TypeArguments="sd:DataRow">[in_RenterRow]</OutArgument>

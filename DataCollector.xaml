@@ -118,6 +118,7 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="DataCollector" sap:VirtualizedContainerService.HintSize="572.8,2515.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="[If(String.IsNullOrEmpty(System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;)), System.IO.Path.Combine(System.Environment.CurrentDirectory, &quot;Data&quot;), System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;))]" Name="DataDir" />
       <Variable x:TypeArguments="sd:DataRow" Name="RenterRowDC" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_FamilyList" />
       <Variable x:TypeArguments="x:String" Name="A" />
@@ -147,9 +148,9 @@
       </Assign.Value>
     </Assign>
     <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[io_dt_AllRows]" DisplayName="Read Range From Input Workbook" sap:VirtualizedContainerService.HintSize="510.4,88" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="Sheet1" WorkbookPath="[in_WorkFilesList(0)]" />
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="If System.IO.Directory.Exists(&quot;C:\ROBOT\Data\Input&quot;) Then&#xD;&#xA;    System.IO.Directory.Delete(&quot;C:\ROBOT\Data\Input&quot;, True)&#xD;&#xA;End If&#xD;&#xA;&#xD;&#xA;System.IO.Directory.CreateDirectory(&quot;C:\ROBOT\Data\Input&quot;)&#xD;&#xA;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="510.4,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="If System.IO.Directory.Exists(in_Dir) Then&#xD;&#xA;    System.IO.Directory.Delete(in_Dir, True)&#xD;&#xA;End If&#xD;&#xA;&#xD;&#xA;System.IO.Directory.CreateDirectory(in_Dir)&#xD;&#xA;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="510.4,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
       <ui:InvokeCode.Arguments>
-        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_Dir">[DataDir &amp; "\Input"]</InArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
     <If Condition="[(io_TransactionItem(35).ToString &amp; &quot; &quot; &amp; io_TransactionItem(36).ToString).Replace(&quot;-&quot;, &quot; &quot;).Trim.ToUpper.Split(New Char() {&quot; &quot;c}, StringSplitOptions.RemoveEmptyEntries).Length = 0 OrElse Not (io_TransactionItem(35).ToString &amp; &quot; &quot; &amp; io_TransactionItem(36).ToString).Replace(&quot;-&quot;, &quot; &quot;).Trim.ToUpper.Split(New Char() {&quot; &quot;c}, StringSplitOptions.RemoveEmptyEntries).All(Function(w) (&quot; &quot; &amp; io_TransactionItem(2).ToString.Replace(&quot;-&quot;, &quot; &quot;).ToUpper &amp; &quot; &quot;).Contains(&quot; &quot; &amp; w &amp; &quot; &quot;))]" DisplayName="Ar PAG NUOM vardas ir pavardė sutampa su „Nuomininkas“">

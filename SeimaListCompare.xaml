@@ -119,6 +119,7 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="SeimaListCompare" sap:VirtualizedContainerService.HintSize="1220,7408" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="[If(String.IsNullOrEmpty(System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;)), System.IO.Path.Combine(System.Environment.CurrentDirectory, &quot;Data&quot;), System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;))]" Name="DataDir" />
       <Variable x:TypeArguments="scg:List(x:String)" Name="AKFromFamilyList_Full" />
       <Variable x:TypeArguments="scg:List(x:String)" Name="AKFromSeimosTableReg" />
       <Variable x:TypeArguments="scg:List(x:String)" Name="NotMatchedFamilyList_Full" />
@@ -164,12 +165,12 @@
                 <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_AllRows">[io_dt_AllRows]</InOutArgument>
               </ui:InvokeCode.Arguments>
             </ui:InvokeCode>
-            <ui:ReadRange Range="{x:Null}" AddHeaders="False" DataTable="[in_dt_FamilyList_Full]" DisplayName="Read Range dt_FamilyList_Full" sap:VirtualizedContainerService.HintSize="434,120" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="dt_FamilyList_Full" WorkbookPath="Data\Output\Seimos.xlsx" />
-            <ui:ReadRange Range="{x:Null}" AddHeaders="False" DataTable="[in_dt_SeimosTableRegProcessed]" DisplayName="Read RangeTableRegProcessed" sap:VirtualizedContainerService.HintSize="434,120" sap2010:WorkflowViewState.IdRef="ReadRange_4" SheetName="TableRegProcessed" WorkbookPath="Data\Output\Seimos.xlsx" />
-            <ui:ReadRange Range="{x:Null}" AddHeaders="False" DataTable="[in_dt_FamilySPIS]" DisplayName="Read RangeTableRegProcessed" sap:VirtualizedContainerService.HintSize="434,120" sap2010:WorkflowViewState.IdRef="ReadRange_6" SheetName="io_DTFamilySPIS" WorkbookPath="Data\Output\Seimos.xlsx" />
-            <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[in_dt_FamilyList_Full]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="434,148" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="dt_FamilyList_Full" WorkbookPath="Data\Output\Seimos.xlsx" />
-            <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[in_dt_SeimosTableRegProcessed]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="434,148" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="TableRegProcessed" WorkbookPath="Data\Output\Seimos.xlsx" />
-            <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[in_dt_FamilySPIS]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="434,139" sap2010:WorkflowViewState.IdRef="WriteRange_3" SheetName="io_DTFamilySPIS" WorkbookPath="Data\Output\Seimos.xlsx" />
+            <ui:ReadRange Range="{x:Null}" AddHeaders="False" DataTable="[in_dt_FamilyList_Full]" DisplayName="Read Range dt_FamilyList_Full" sap:VirtualizedContainerService.HintSize="434,120" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="dt_FamilyList_Full" WorkbookPath="[DataDir &amp; &quot;\Output\Seimos.xlsx&quot;]" />
+            <ui:ReadRange Range="{x:Null}" AddHeaders="False" DataTable="[in_dt_SeimosTableRegProcessed]" DisplayName="Read RangeTableRegProcessed" sap:VirtualizedContainerService.HintSize="434,120" sap2010:WorkflowViewState.IdRef="ReadRange_4" SheetName="TableRegProcessed" WorkbookPath="[DataDir &amp; &quot;\Output\Seimos.xlsx&quot;]" />
+            <ui:ReadRange Range="{x:Null}" AddHeaders="False" DataTable="[in_dt_FamilySPIS]" DisplayName="Read RangeTableRegProcessed" sap:VirtualizedContainerService.HintSize="434,120" sap2010:WorkflowViewState.IdRef="ReadRange_6" SheetName="io_DTFamilySPIS" WorkbookPath="[DataDir &amp; &quot;\Output\Seimos.xlsx&quot;]" />
+            <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[in_dt_FamilyList_Full]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="434,148" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="dt_FamilyList_Full" WorkbookPath="[DataDir &amp; &quot;\Output\Seimos.xlsx&quot;]" />
+            <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[in_dt_SeimosTableRegProcessed]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="434,148" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="TableRegProcessed" WorkbookPath="[DataDir &amp; &quot;\Output\Seimos.xlsx&quot;]" />
+            <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[in_dt_FamilySPIS]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="434,139" sap2010:WorkflowViewState.IdRef="WriteRange_3" SheetName="io_DTFamilySPIS" WorkbookPath="[DataDir &amp; &quot;\Output\Seimos.xlsx&quot;]" />
           </Sequence>
         </Sequence>
       </ui:CommentOut.Body>

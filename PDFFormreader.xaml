@@ -127,6 +127,7 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="PDFFormreader" sap:VirtualizedContainerService.HintSize="756.8,6148.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="[If(String.IsNullOrEmpty(System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;)), System.IO.Path.Combine(System.Environment.CurrentDirectory, &quot;Data&quot;), System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;))]" Name="DataDir" />
       <Variable x:TypeArguments="x:String" Name="PDFText" />
       <Variable x:TypeArguments="s:String[]" Name="Array" />
       <Variable x:TypeArguments="x:String" Name="subtext" />
@@ -168,7 +169,7 @@
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ReadRange AddHeaders="True" DataTable="[dt_Robo]" DisplayName="Read Range Registru Centras" sap:VirtualizedContainerService.HintSize="433.6,88" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="Sheet1" WorkbookPath="Data\Input\Ataskaitos VilniusLt.xlsx">
+            <ui:ReadRange AddHeaders="True" DataTable="[dt_Robo]" DisplayName="Read Range Registru Centras" sap:VirtualizedContainerService.HintSize="433.6,88" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="Sheet1" WorkbookPath="[DataDir &amp; &quot;\Input\Ataskaitos VilniusLt.xlsx&quot;]">
               <ui:ReadRange.Range>
                 <InArgument x:TypeArguments="x:String">
                   <Literal x:TypeArguments="x:String" Value="" />
@@ -189,7 +190,7 @@
                 <OutArgument x:TypeArguments="x:String">[in_Path]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">C:\Users\rpa\Documents\Teise i soc busta\Data\Input\VMI49301040913.pdf</InArgument>
+                <InArgument x:TypeArguments="x:String">[DataDir &amp; &quot;\Input\VMI49301040913.pdf&quot;]</InArgument>
               </Assign.Value>
             </Assign>
           </Sequence>

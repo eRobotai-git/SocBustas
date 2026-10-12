@@ -265,6 +265,7 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="GetFamilyPDF" sap:VirtualizedContainerService.HintSize="1085,9839" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="[If(String.IsNullOrEmpty(System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;)), System.IO.Path.Combine(System.Environment.CurrentDirectory, &quot;Data&quot;), System.Environment.GetEnvironmentVariable(&quot;ROBOT_DATA&quot;))]" Name="DataDir" />
       <Variable x:TypeArguments="x:Int32" Name="SplitIndex">
         <Variable.Default>
           <Literal x:TypeArguments="x:Int32" />
@@ -719,7 +720,7 @@
                                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                   </scg:Dictionary>
                                                 </sap:WorkflowViewStateService.ViewState>
-                                                <ui:SetValue AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="100" DelayBefore="100" DisplayName="Set Text 'Edit'" sap:VirtualizedContainerService.HintSize="388,155" sap2010:WorkflowViewState.IdRef="SetValue_1" Text="[&quot;C:\ROBOT\Data\Input\FamilyList&quot;+in_MR_AK+&quot;.pdf&quot;]">
+                                                <ui:SetValue AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="100" DelayBefore="100" DisplayName="Set Text 'Edit'" sap:VirtualizedContainerService.HintSize="388,155" sap2010:WorkflowViewState.IdRef="SetValue_1" Text="[DataDir &amp; &quot;\Input\FamilyList&quot;+in_MR_AK+&quot;.pdf&quot;]">
                                                   <ui:SetValue.Target>
                                                     <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0821ecc2-c0f0-4ace-9459-25ab088997e9" InformativeScreenshot="c54911639064243ab39f5699719c9661" Selector="&lt;wnd app='chrome.exe' cls='#32770' title='Save As' /&gt;&lt;wnd aaname='Explorer Pane' cls='DirectUIHWND' /&gt;&lt;wnd aaname='File name:' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;">
                                                       <ui:Target.TimeoutMS>
@@ -734,7 +735,7 @@
                                               </Sequence>
                                             </ui:CommentOut.Body>
                                           </ui:CommentOut>
-                                          <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" AlterIfDisabled="False" ClickBeforeTyping="True" DeselectAfter="False" DisplayName="Type Into 'dialog  Save As'" EmptyField="False" sap:VirtualizedContainerService.HintSize="486,155" sap2010:WorkflowViewState.IdRef="TypeInto_1" SendWindowMessages="True" SimulateType="False" Text="[&quot;C:\ROBOT\Data\Input\FamilyList&quot;+in_MR_AK+&quot;.pdf&quot;]">
+                                          <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" AlterIfDisabled="False" ClickBeforeTyping="True" DeselectAfter="False" DisplayName="Type Into 'dialog  Save As'" EmptyField="False" sap:VirtualizedContainerService.HintSize="486,155" sap2010:WorkflowViewState.IdRef="TypeInto_1" SendWindowMessages="True" SimulateType="False" Text="[DataDir &amp; &quot;\Input\FamilyList&quot;+in_MR_AK+&quot;.pdf&quot;]">
                                             <ui:TypeInto.Target>
                                               <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2756623a-dc28-4b8b-b384-4a966d523af4" InformativeScreenshot="1b7f9771f83d902180556945a62c6b41" Selector="&lt;wnd app='chrome.exe' cls='#32770' title='Save As' /&gt;&lt;wnd aaname='Explorer Pane' cls='DirectUIHWND' /&gt;&lt;wnd aaname='File name:' cls='ComboBox' /&gt;">
                                                 <ui:Target.TimeoutMS>
