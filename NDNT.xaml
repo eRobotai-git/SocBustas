@@ -339,7 +339,7 @@
                               <InArgument x:TypeArguments="x:Int32">[ExtractDataTable.AsEnumerable().ToList().FindIndex(Function(r) r(0).ToString.Contains(AK))+1]</InArgument>
                             </Assign.Value>
                           </Assign>
-                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Registrai'" sap:VirtualizedContainerService.HintSize="587.2,107.2" sap2010:WorkflowViewState.IdRef="Click_8" KeyModifiers="None" MouseButton="BTN_LEFT">
+                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="True" ClickType="CLICK_SINGLE" DisplayName="Click 'Registrai'" sap:VirtualizedContainerService.HintSize="587.2,107.2" sap2010:WorkflowViewState.IdRef="Click_8" KeyModifiers="None" MouseButton="BTN_LEFT">
                             <ui:Click.CursorPosition>
                               <ui:CursorPosition Position="Center">
                                 <ui:CursorPosition.OffsetX>
@@ -351,7 +351,7 @@
                               </ui:CursorPosition>
                             </ui:Click.CursorPosition>
                             <ui:Click.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="34b3de6f-de30-451d-8df6-e4f1bce51f41" InformativeScreenshot="cc61e25103a875e50527fa8f30fba8bd" Selector="[string.Format(&quot;&lt;webctrl parentid='registrai' tag='SPAN' idx='{0}' /&gt;&quot;, index)]">
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="34b3de6f-de30-451d-8df6-e4f1bce51f41" InformativeScreenshot="cc61e25103a875e50527fa8f30fba8bd" Selector="[string.Format(&quot;&lt;webctrl tag='BUTTON' id='registrai' css-selector='li:has(input#asmensKodas[value=&amp;quot;{0}&amp;quot;]) button#registrai' /&gt;&quot;, AK)]">
                                 <ui:Target.TimeoutMS>
                                   <InArgument x:TypeArguments="x:Int32" />
                                 </ui:Target.TimeoutMS>
