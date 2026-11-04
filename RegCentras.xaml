@@ -341,7 +341,7 @@
             </sap:WorkflowViewStateService.ViewState>
             <ui:Activate DelayBefore="{x:Null}" DelayMS="{x:Null}" sap:VirtualizedContainerService.HintSize="760,86.4" sap2010:WorkflowViewState.IdRef="Activate_1">
               <ui:Activate.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="648dbd2c-1d5a-4ef4-8155-d63f9ca09212" Selector="&lt;html app='chrome.exe' title='*egistr*' /&gt;">
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="648dbd2c-1d5a-4ef4-8155-d63f9ca09212" Selector="&lt;html app='chrome.exe' url='*registrucentras.lt/ntr/*' /&gt;">
                   <ui:Target.TimeoutMS>
                     <InArgument x:TypeArguments="x:Int32" />
                   </ui:Target.TimeoutMS>
@@ -365,9 +365,9 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To paieška" sap:VirtualizedContainerService.HintSize="683.2,85.6" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="https://www.registrucentras.lt/ntr/paieska/f.php" />
-                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Input AK" sap:VirtualizedContainerService.HintSize="683.2,156" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="[CurrentRow(0).ToString.Trim]">
+                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="True" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="True" SendWindowMessages="{x:Null}" SimulateType="False" Activate="True" DisplayName="Input AK" sap:VirtualizedContainerService.HintSize="683.2,156" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="[CurrentRow(0).ToString.Trim]">
                       <ui:TypeInto.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="78ec88bf-cb3e-4ea3-bda1-8e9b95c6b7ed" InformativeScreenshot="47f697a37bad3b438b095ab22ebecb01" Selector="&lt;webctrl tag='INPUT' type='text' aaname='*sm. kodas' /&gt;">
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="78ec88bf-cb3e-4ea3-bda1-8e9b95c6b7ed" InformativeScreenshot="47f697a37bad3b438b095ab22ebecb01" Selector="&lt;webctrl id='kod' tag='INPUT' type='text' /&gt;">
                           <ui:Target.TimeoutMS>
                             <InArgument x:TypeArguments="x:Int32" />
                           </ui:Target.TimeoutMS>
@@ -431,7 +431,21 @@
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Toliau'" sap:VirtualizedContainerService.HintSize="587.2,107.2" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                                    <Sequence DisplayName="RC rezultatai">
+                            <Sequence.Variables><Variable x:TypeArguments="x:Boolean" Name="rcNerasta" /></Sequence.Variables>
+                            <ui:UiElementExists DisplayName="Element Exists ĮRAŠŲ NERASTA" Exists="[rcNerasta]">
+                              <ui:UiElementExists.Target><ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;webctrl tag='DIV' class='err' innertext='ĮRAŠŲ NERASTA' /&gt;"><ui:Target.TimeoutMS><InArgument x:TypeArguments="x:Int32">3000</InArgument></ui:Target.TimeoutMS><ui:Target.WaitForReady><InArgument x:TypeArguments="ui:WaitForReady" /></ui:Target.WaitForReady></ui:Target></ui:UiElementExists.Target>
+                            </ui:UiElementExists>
+                            <If Condition="[rcNerasta]" DisplayName="Jei įrašų nerasta">
+                              <If.Then>
+                                <Sequence DisplayName="Įrašų nerasta">
+                                  <ui:LogMessage DisplayName="Log RC nerasta" Level="Info" Message="[&quot;RC: ĮRAŠŲ NERASTA, AK=&quot; &amp; CurrentRow(0).ToString]" />
+                                  <Assign DisplayName="PropertyTable = tuščia"><Assign.To><OutArgument x:TypeArguments="sd:DataTable">[PropertyTable]</OutArgument></Assign.To><Assign.Value><InArgument x:TypeArguments="sd:DataTable">[New System.Data.DataTable()]</InArgument></Assign.Value></Assign>
+                                </Sequence>
+                              </If.Then>
+                              <If.Else>
+                                <Sequence DisplayName="Įrašų yra">
+                                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Toliau'" sap:VirtualizedContainerService.HintSize="587.2,107.2" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT">
                             <ui:Click.CursorPosition>
                               <ui:CursorPosition Position="Center">
                                 <ui:CursorPosition.OffsetX>
@@ -491,6 +505,10 @@
                               </uix:TargetApp>
                             </uix:NApplicationCard.TargetApp>
                           </uix:NApplicationCard>
+                                </Sequence>
+                              </If.Else>
+                            </If>
+                          </Sequence>
                           <If Condition="[PropertyTable IsNot Nothing AndAlso PropertyTable.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="587.2,2172.8" sap2010:WorkflowViewState.IdRef="If_5">
                             <If.Then>
                               <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="553.6,1989.6" sap2010:WorkflowViewState.IdRef="Sequence_48">

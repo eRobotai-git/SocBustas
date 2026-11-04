@@ -701,6 +701,11 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:RetryScope>
+        <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Registrų centras (darbinis skirtukas)" Url="https://www.registrucentras.lt/ntr/paieska/f.php">
+          <ui:OpenBrowser.Body><ActivityAction x:TypeArguments="x:Object"><ActivityAction.Argument><DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" /></ActivityAction.Argument>
+            <Sequence DisplayName="RC darbinis skirtukas"><ui:LogMessage DisplayName="Log RC" Level="Info" Message="[&quot;Atidarytas Registrų centro darbinis skirtukas: https://www.registrucentras.lt/ntr/paieska/f.php&quot;]" /></Sequence>
+          </ActivityAction></ui:OpenBrowser.Body>
+        </ui:OpenBrowser>
     </Sequence>
   </Sequence>
 </Activity>
