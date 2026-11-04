@@ -990,17 +990,7 @@
           <OutArgument x:TypeArguments="x:String">[k56KodasHo]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String" xml:space="preserve">[If(
-    System.Text.RegularExpressions.Regex.Match(
-        responseText,
-        "(?&lt;=&lt;K56_KODAS_HO&gt;).*?(?=&lt;/K56_KODAS_HO&gt;)"
-    ).Success,
-    System.Text.RegularExpressions.Regex.Match(
-        responseText,
-        "(?&lt;=&lt;K56_KODAS_HO&gt;).*?(?=&lt;/K56_KODAS_HO&gt;)"
-    ).Value.Trim(),
-    ""
-)]</InArgument>
+          <InArgument x:TypeArguments="x:String" xml:space="preserve">[String.Join(&quot;&quot;, System.Text.RegularExpressions.Regex.Matches(If(responseText, &quot;&quot;), &quot;&lt;K56&gt;.*?&lt;/K56&gt;&quot;, System.Text.RegularExpressions.RegexOptions.Singleline).Cast(Of System.Text.RegularExpressions.Match)().Select(Function(mm) mm.Value).Where(Function(x) Not System.Text.RegularExpressions.Regex.Match(x, &quot;(?&lt;=&lt;K56_PERKELTA&gt;).*?(?=&lt;/K56_PERKELTA&gt;)&quot;).Value.Trim().Equals(&quot;2&quot;)).OrderByDescending(Function(x) System.Text.RegularExpressions.Regex.Match(x, &quot;(?&lt;=&lt;K56_DATE&gt;).*?(?=&lt;/K56_DATE&gt;)&quot;).Value.Trim()).Select(Function(x) System.Text.RegularExpressions.Regex.Match(x, &quot;(?&lt;=&lt;K56_KODAS_HO&gt;).*?(?=&lt;/K56_KODAS_HO&gt;)&quot;).Value.Trim()).Take(1))]</InArgument>
         </Assign.Value>
       </Assign>
       
@@ -1029,17 +1019,7 @@
           <OutArgument x:TypeArguments="x:String">[k56KodasHo]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String" xml:space="preserve">[If(
-    System.Text.RegularExpressions.Regex.Match(
-        responseText,
-        "(?&lt;=&lt;K56_KODAS_HO&gt;).*?(?=&lt;/K56_KODAS_HO&gt;)"
-    ).Success,
-    System.Text.RegularExpressions.Regex.Match(
-        responseText,
-        "(?&lt;=&lt;K56_KODAS_HO&gt;).*?(?=&lt;/K56_KODAS_HO&gt;)"
-    ).Value.Trim(),
-    ""
-)]</InArgument>
+          <InArgument x:TypeArguments="x:String" xml:space="preserve">[String.Join(&quot;&quot;, System.Text.RegularExpressions.Regex.Matches(If(responseText, &quot;&quot;), &quot;&lt;K56&gt;.*?&lt;/K56&gt;&quot;, System.Text.RegularExpressions.RegexOptions.Singleline).Cast(Of System.Text.RegularExpressions.Match)().Select(Function(mm) mm.Value).Where(Function(x) Not System.Text.RegularExpressions.Regex.Match(x, &quot;(?&lt;=&lt;K56_PERKELTA&gt;).*?(?=&lt;/K56_PERKELTA&gt;)&quot;).Value.Trim().Equals(&quot;2&quot;)).OrderByDescending(Function(x) System.Text.RegularExpressions.Regex.Match(x, &quot;(?&lt;=&lt;K56_DATE&gt;).*?(?=&lt;/K56_DATE&gt;)&quot;).Value.Trim()).Select(Function(x) System.Text.RegularExpressions.Regex.Match(x, &quot;(?&lt;=&lt;K56_KODAS_HO&gt;).*?(?=&lt;/K56_KODAS_HO&gt;)&quot;).Value.Trim()).Take(1))]</InArgument>
         </Assign.Value>
       </Assign>
           </Sequence>
@@ -1139,7 +1119,7 @@
                 </Sequence>
               </If.Else>
             </If>
-            <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OAuthToken="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="None" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[New Dictionary(Of String, String) From {&#xD;&#xA;    {&quot;ApiKey&quot;, in_RivileApiKey},&#xD;&#xA;    {&quot;Content-Type&quot;, &quot;application/xml&quot;}&#xD;&#xA;}]" sap:VirtualizedContainerService.HintSize="587.2,400.8" sap2010:WorkflowViewState.IdRef="NetHttpRequest_3" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="POST" Multiplier="2" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="https://api.manorivile.lt/client/v2" Result="[Response]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayload="&lt;body&gt;&#xA;&#xA;    &lt;method&gt;EDIT_K56&lt;/method&gt;&#xA;    &lt;params&gt;&#xA;        &lt;oper&gt;U&lt;/oper&gt;&#xA;    &lt;/params&gt;&#xA;    &lt;data&gt;&#xA;        &lt;K56&gt;&#xA;            &lt;K56_KODAS_HO&gt;010000073364&lt;/K56_KODAS_HO&gt;&#xA;            &lt;K56_KODAS_HV&gt;1&lt;/K56_KODAS_HV&gt;&#xA;        &lt;/K56&gt;&#xA;    &lt;/data&gt;&#xA;&lt;/body&gt;" TextPayloadContentType="application/xml" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+            <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OAuthToken="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="None" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[New Dictionary(Of String, String) From {&#xD;&#xA;    {&quot;ApiKey&quot;, in_RivileApiKey},&#xD;&#xA;    {&quot;Content-Type&quot;, &quot;application/xml&quot;}&#xD;&#xA;}]" sap:VirtualizedContainerService.HintSize="587.2,400.8" sap2010:WorkflowViewState.IdRef="NetHttpRequest_3" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="POST" Multiplier="2" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="https://api.manorivile.lt/client/v2" Result="[Response]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayload="[&quot;&lt;body&gt;&quot; &amp; vbCrLf &amp; &quot;    &lt;method&gt;EDIT_K56&lt;/method&gt;&quot; &amp; vbCrLf &amp; &quot;    &lt;params&gt;&quot; &amp; vbCrLf &amp; &quot;        &lt;oper&gt;U&lt;/oper&gt;&quot; &amp; vbCrLf &amp; &quot;    &lt;/params&gt;&quot; &amp; vbCrLf &amp; &quot;    &lt;data&gt;&quot; &amp; vbCrLf &amp; &quot;        &lt;K56&gt;&quot; &amp; vbCrLf &amp; &quot;            &lt;K56_KODAS_HO&gt;&quot; &amp; k56KodasHo &amp; &quot;&lt;/K56_KODAS_HO&gt;&quot; &amp; vbCrLf &amp; &quot;            &lt;K56_KODAS_HV&gt;&quot; &amp; K56_KODAS_HV &amp; &quot;&lt;/K56_KODAS_HV&gt;&quot; &amp; vbCrLf &amp; &quot;        &lt;/K56&gt;&quot; &amp; vbCrLf &amp; &quot;    &lt;/data&gt;&quot; &amp; vbCrLf &amp; &quot;&lt;/body&gt;&quot;]" TextPayloadContentType="application/xml" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
               <uwah:NetHttpRequest.TimeoutInMiliseconds>
                 <InArgument x:TypeArguments="s:Nullable(x:Int32)">
                   <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
@@ -1160,7 +1140,7 @@
                 <InArgument x:TypeArguments="x:String">[Response.TextContent]</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Write Text File" FileName="[in_InfoDir &amp; &quot;\&quot; &amp;&quot;HV-&quot; &amp; TargetRow(118).ToString.Trim &amp; &quot;.txt&quot;]" sap:VirtualizedContainerService.HintSize="587.2,143.2" sap2010:WorkflowViewState.IdRef="WriteTextFile_3" Text="[&quot;&lt;body&gt;&#xA;&#xA;    &lt;method&gt;EDIT_K56&lt;/method&gt;&#xA;    &lt;params&gt;&#xA;        &lt;oper&gt;U&lt;/oper&gt;&#xA;    &lt;/params&gt;&#xA;    &lt;data&gt;&#xA;        &lt;K56&gt;&#xA;            &lt;K56_KODAS_HO&gt;010000073364&lt;/K56_KODAS_HO&gt;&#xA;            &lt;K56_KODAS_HV&gt;1&lt;/K56_KODAS_HV&gt;&#xA;        &lt;/K56&gt;&#xA;    &lt;/data&gt;&#xA;&lt;/body&gt;&quot; &amp;&#xA;responseText]" />
+            <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Write Text File" FileName="[in_InfoDir &amp; &quot;\&quot; &amp;&quot;HV-&quot; &amp; TargetRow(118).ToString.Trim &amp; &quot;.txt&quot;]" sap:VirtualizedContainerService.HintSize="587.2,143.2" sap2010:WorkflowViewState.IdRef="WriteTextFile_3" Text="[&quot;&lt;body&gt;&quot; &amp; vbCrLf &amp; &quot;    &lt;method&gt;EDIT_K56&lt;/method&gt;&quot; &amp; vbCrLf &amp; &quot;    &lt;params&gt;&quot; &amp; vbCrLf &amp; &quot;        &lt;oper&gt;U&lt;/oper&gt;&quot; &amp; vbCrLf &amp; &quot;    &lt;/params&gt;&quot; &amp; vbCrLf &amp; &quot;    &lt;data&gt;&quot; &amp; vbCrLf &amp; &quot;        &lt;K56&gt;&quot; &amp; vbCrLf &amp; &quot;            &lt;K56_KODAS_HO&gt;&quot; &amp; k56KodasHo &amp; &quot;&lt;/K56_KODAS_HO&gt;&quot; &amp; vbCrLf &amp; &quot;            &lt;K56_KODAS_HV&gt;&quot; &amp; K56_KODAS_HV &amp; &quot;&lt;/K56_KODAS_HV&gt;&quot; &amp; vbCrLf &amp; &quot;        &lt;/K56&gt;&quot; &amp; vbCrLf &amp; &quot;    &lt;/data&gt;&quot; &amp; vbCrLf &amp; &quot;&lt;/body&gt;&quot; &amp; vbCrLf &amp; responseText]" />
           </Sequence>
         </If.Then>
         <If.Else>
@@ -1170,14 +1150,9 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_35">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:Object">[TargetRow(106)]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:Object">["CRM nerastas klientas"]</InArgument>
-              </Assign.Value>
-            </Assign>
+            <ui:LogMessage DisplayName="Log Rivile nerasta" Level="Warn" Message="[&quot;Rivile: K56 &quot; &amp; TargetRow(118).ToString.Trim &amp; &quot;: Rivilėje nerastas neperkeltas K56 dokumentas (visi rasti perkelti arba sąrašas tuščias) - Rivilė neatnaujinta&quot;]" />
+              <Assign DisplayName="Pastaba: Rivilėje nerastas neperkeltas K56"><Assign.To><OutArgument x:TypeArguments="x:Object">[TargetRow(107)]</OutArgument></Assign.To><Assign.Value><InArgument x:TypeArguments="x:String">[If(TargetRow(107) IsNot Nothing, TargetRow(107).ToString.Trim.Substring(0, Math.Min(600, TargetRow(107).ToString.Trim.Length)), String.Empty) &amp; &quot; Rivilėje nerastas neperkeltas K56 dokumentas (visi rasti perkelti arba sąrašas tuščias) - Rivilė neatnaujinta&quot;]</InArgument></Assign.Value></Assign>
+              <Assign DisplayName="Statusas: Apdoroti rankiniu būdu (Rivilė)"><Assign.To><OutArgument x:TypeArguments="x:Object">[TargetRow(106)]</OutArgument></Assign.To><Assign.Value><InArgument x:TypeArguments="x:Object">[&quot;Apdoroti rankiniu būdu&quot;]</InArgument></Assign.Value></Assign>
           </Sequence>
         </If.Else>
       </If>
