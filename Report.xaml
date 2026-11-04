@@ -969,7 +969,7 @@
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OAuthToken="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="None" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[New Dictionary(Of String, String) From {&#xD;&#xA;    {&quot;ApiKey&quot;, in_RivileApiKey},&#xD;&#xA;    {&quot;Content-Type&quot;, &quot;application/xml&quot;}&#xD;&#xA;}]" sap:VirtualizedContainerService.HintSize="664,400.8" sap2010:WorkflowViewState.IdRef="NetHttpRequest_1" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="POST" Multiplier="2" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="https://api.manorivile.lt/client/v2" Result="[Response]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayload="[&quot;&lt;body&gt;&#xA;    &lt;method&gt;GET_K56_LIST&lt;/method&gt;&#xA;    &lt;params&gt;&#xA;        &lt;fil&gt; k56_kodas_ks='&quot;+TargetRow(118).ToString.Trim+&quot;' and k56_kodas_hu ='ATSAKYMASSOC'&lt;/fil&gt;&#xA;    &lt;/params&gt;&#xA;&lt;/body&gt;&quot;]" TextPayloadContentType="application/xml" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+      <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OAuthToken="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="None" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[New Dictionary(Of String, String) From {&#xD;&#xA;    {&quot;ApiKey&quot;, in_RivileApiKey},&#xD;&#xA;    {&quot;Content-Type&quot;, &quot;application/xml&quot;}&#xD;&#xA;}]" sap:VirtualizedContainerService.HintSize="664,400.8" sap2010:WorkflowViewState.IdRef="NetHttpRequest_1" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="POST" Multiplier="2" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="https://api.manorivile.lt/client/v2" Result="[Response]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayload="[&quot;&lt;body&gt;&#xA;    &lt;method&gt;GET_K56_LIST&lt;/method&gt;&#xA;    &lt;params&gt;&#xA;        &lt;fil&gt; k56_kodas_ks='&quot;+TargetRow(118).ToString.Trim+&quot;' and k56_perkelta=1 and k56_kodas_hu ='ATSAKYMASSOC'&lt;/fil&gt;&#xA;    &lt;/params&gt;&#xA;&lt;/body&gt;&quot;]" TextPayloadContentType="application/xml" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
         <uwah:NetHttpRequest.TimeoutInMiliseconds>
           <InArgument x:TypeArguments="s:Nullable(x:Int32)">
             <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
@@ -984,7 +984,7 @@
           <InArgument x:TypeArguments="x:String">[Response.TextContent]</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Write Text File" FileName="[in_InfoDir &amp; &quot;\&quot; &amp; TargetRow(118).ToString.Trim &amp; &quot;.txt&quot;]" sap:VirtualizedContainerService.HintSize="664,143.2" sap2010:WorkflowViewState.IdRef="WriteTextFile_4" Text="[&quot;&lt;body&gt;&#xA;    &lt;method&gt;GET_K56_LIST&lt;/method&gt;&#xA;    &lt;params&gt;&#xA;        &lt;fil&gt; k56_kodas_ks='&quot;+TargetRow(118).ToString.Trim+&quot;' and k56_kodas_hu ='ATSAKYMASSOC'&lt;/fil&gt;&#xA;    &lt;/params&gt;&#xA;&lt;/body&gt;&quot; &amp;&#xA;responseText]" />
+      <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Write Text File" FileName="[in_InfoDir &amp; &quot;\&quot; &amp; TargetRow(118).ToString.Trim &amp; &quot;.txt&quot;]" sap:VirtualizedContainerService.HintSize="664,143.2" sap2010:WorkflowViewState.IdRef="WriteTextFile_4" Text="[&quot;&lt;body&gt;&#xA;    &lt;method&gt;GET_K56_LIST&lt;/method&gt;&#xA;    &lt;params&gt;&#xA;        &lt;fil&gt; k56_kodas_ks='&quot;+TargetRow(118).ToString.Trim+&quot;' and k56_perkelta=1 and k56_kodas_hu ='ATSAKYMASSOC'&lt;/fil&gt;&#xA;    &lt;/params&gt;&#xA;&lt;/body&gt;&quot; &amp;&#xA;responseText]" />
       <Assign sap:VirtualizedContainerService.HintSize="664,83.2" sap2010:WorkflowViewState.IdRef="Assign_30">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[k56KodasHo]</OutArgument>
@@ -1003,6 +1003,48 @@
 )]</InArgument>
         </Assign.Value>
       </Assign>
+      
+      <If Condition="[String.IsNullOrWhiteSpace(k56KodasHo)]" DisplayName="Jei su k56_perkelta=1 nerasta - ieškoti be perkelta">
+        <If.Then>
+          <Sequence DisplayName="Rivile be k56_perkelta">
+            <ui:LogMessage DisplayName="Log Rivile fallback" Level="Info" Message="[&quot;Rivile: K56 &quot; &amp; TargetRow(118).ToString.Trim &amp; &quot; su k56_perkelta=1 nerastas, ieškoma be perkelta&quot;]" />
+            <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OAuthToken="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="None" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request (be k56_perkelta)" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[New Dictionary(Of String, String) From {&#xD;&#xA;    {&quot;ApiKey&quot;, in_RivileApiKey},&#xD;&#xA;    {&quot;Content-Type&quot;, &quot;application/xml&quot;}&#xD;&#xA;}]" sap:VirtualizedContainerService.HintSize="664,400.8" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="POST" Multiplier="2" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="https://api.manorivile.lt/client/v2" Result="[Response]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayload="[&quot;&lt;body&gt;&#xA;    &lt;method&gt;GET_K56_LIST&lt;/method&gt;&#xA;    &lt;params&gt;&#xA;        &lt;fil&gt; k56_kodas_ks='&quot;+TargetRow(118).ToString.Trim+&quot;' and k56_kodas_hu ='ATSAKYMASSOC'&lt;/fil&gt;&#xA;    &lt;/params&gt;&#xA;&lt;/body&gt;&quot;]" TextPayloadContentType="application/xml" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+        <uwah:NetHttpRequest.TimeoutInMiliseconds>
+          <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+            <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
+          </InArgument>
+        </uwah:NetHttpRequest.TimeoutInMiliseconds>
+      </uwah:NetHttpRequest>
+            <Assign sap:VirtualizedContainerService.HintSize="664,81.6">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[responseText]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[Response.TextContent]</InArgument>
+        </Assign.Value>
+      </Assign>
+            <ui:AppendLine File="{x:Null}" DisplayName="Append fallback atsakymas" FileName="[in_InfoDir &amp; &quot;\&quot; &amp; TargetRow(118).ToString.Trim &amp; &quot;.txt&quot;]" Text="[&quot;--- be k56_perkelta ---&quot; &amp; vbCrLf &amp; responseText]" />
+            <Assign sap:VirtualizedContainerService.HintSize="664,83.2">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[k56KodasHo]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String" xml:space="preserve">[If(
+    System.Text.RegularExpressions.Regex.Match(
+        responseText,
+        "(?&lt;=&lt;K56_KODAS_HO&gt;).*?(?=&lt;/K56_KODAS_HO&gt;)"
+    ).Success,
+    System.Text.RegularExpressions.Regex.Match(
+        responseText,
+        "(?&lt;=&lt;K56_KODAS_HO&gt;).*?(?=&lt;/K56_KODAS_HO&gt;)"
+    ).Value.Trim(),
+    ""
+)]</InArgument>
+        </Assign.Value>
+      </Assign>
+          </Sequence>
+        </If.Then>
+      </If>
       <If Condition="[Not String.IsNullOrWhiteSpace(k56KodasHo)]" sap:VirtualizedContainerService.HintSize="664,2904.8" sap2010:WorkflowViewState.IdRef="If_13">
         <If.Then>
           <Sequence sap:VirtualizedContainerService.HintSize="630.4,2550.4" sap2010:WorkflowViewState.IdRef="Sequence_36">
